@@ -80,22 +80,6 @@ class Salary(models.Model):
 
 
 
-#class Payslip(models.Model):
-#    def generate_pdf(self):
-#       buffer = BytesIO()
-#       p = canvas.Canvas(buffer, pagesize=letter)
-#       p.drawString(100, 750, f"Payslip for {self.employee} - {self.payroll_period}")
-#       p.drawString(100, 700, f"Gross Pay: ${self.gross_pay}")
-#        p.drawString(100, 680, f"Deductions: ${self.deductions}")
-#        p.drawString(100, 660, f"Net Pay: ${self.net_pay}")
-        # You can add more details as needed
-#        p.showPage()
-#        p.save()
-#        buffer.seek(0)
-#        return FileResponse(buffer, as_attachment=True, filename=f'payslip_{self.id}.pdf')
-
-    
-
 
 
 

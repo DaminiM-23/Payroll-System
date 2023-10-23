@@ -8,6 +8,3 @@ admin.site.register(Employee_details)
 admin.site.register(Salary)
 #admin.site.register(Payslip)
 
-
-
-
