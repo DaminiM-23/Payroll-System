@@ -7,3 +7,4 @@ admin.site.register(User_login)
 admin.site.register(Employee_details)
 admin.site.register(Salary)
 #admin.site.register(Payslip)
+
