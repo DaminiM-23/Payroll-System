@@ -1,8 +1,5 @@
 from django.db import models
-#from reportlab.lib.pagesizes import letter
-#from reportlab.pdfgen import canvas
-#from django.http import FileResponse
-#from io import BytesIO
+
 
 class User_login(models.Model):
     user_name=models.CharField(max_length=30)
@@ -78,21 +75,6 @@ class Salary(models.Model):
 
 
 
-
-
-#class Payslip(models.Model):
-#    def generate_pdf(self):
-#       buffer = BytesIO()
-#       p = canvas.Canvas(buffer, pagesize=letter)
-#       p.drawString(100, 750, f"Payslip for {self.employee} - {self.payroll_period}")
-#       p.drawString(100, 700, f"Gross Pay: ${self.gross_pay}")
-#        p.drawString(100, 680, f"Deductions: ${self.deductions}")
-#        p.drawString(100, 660, f"Net Pay: ${self.net_pay}")
-        # You can add more details as needed
-#        p.showPage()
-#        p.save()
-#        buffer.seek(0)
-#        return FileResponse(buffer, as_attachment=True, filename=f'payslip_{self.id}.pdf')
 
     
 
