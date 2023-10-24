@@ -7,5 +7,6 @@ from payroll import views
 
   
 urlpatterns = [ 
-    path('', views.base ,name='base' ), 
+    path('', views.login ,name='login' ),
+    path('base', views.base, name="base")
 ] 
