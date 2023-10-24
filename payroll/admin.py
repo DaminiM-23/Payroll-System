@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Employee
+from .models import (Employee_details,User_login,Salary)
 
 
 admin.site.register(User_login)
