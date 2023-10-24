@@ -1,8 +1,4 @@
 from django.db import models
-#from reportlab.lib.pagesizes import letter
-#from reportlab.pdfgen import canvas
-#from django.http import FileResponse
-#from io import BytesIO
 
 class User_login(models.Model):
     user_name=models.CharField(max_length=30)
