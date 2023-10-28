@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Login Page{% endblock %}
+
+{% block nav_item_3 %}{% endblock %}
+
+{% block heading %}Login Page{% endblock %}
+
+{% block content %}
+<div class="content">
+  <div class="login">
+      <form>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Username</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text">Please input your username</div>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1">
+            <div id="passwordHelp" class="form-text">Please input a correct password</div>
+          </div>
+          <!-- <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+          </div> -->
+          <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+  </div>
+</div>
+
+
+{% endblock %}
+
+{% block int_css %}
+<style>
+  .content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh !important;
+  width: 100vw;
+  padding-top: 2vh;
+
+}
+.login{
+  padding:20px;
+  height: 50vh;
+  width: 30vw;
+  border-radius:10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+</style>
+{% endblock %}
