@@ -6,6 +6,7 @@ class User_login(models.Model):
 
 
 
+
 class Employee_details(models.Model):
     #PERSONAL_DETAILS
     title=models.CharField(max_length=30)
@@ -23,9 +24,9 @@ class Employee_details(models.Model):
     cell_no = models.IntegerField()
     Bloodgroup=models.CharField(max_length=10)
     #SERVICE_DATE_DETAILS
-    date_of_joining=models.DateField()
+    date_of_joining = models.DateField()
     date_of_relieving = models.DateField()
-    ate_of_increment = models.DateField()
+    date_of_increment = models.DateField(null=True)
     pay_revised_date  = models.DateField()
     date_of_retirement  = models.DateField()
     from_appointment_date = models.DateField()
@@ -46,7 +47,7 @@ class Employee_details(models.Model):
     handicap=models.BooleanField(default=False)
     quarter=models.BooleanField(default=False)
     senior_citizen=models.BooleanField(default=False)
-    quater_rent=models.BooleanField(default=False)
+    quarter_rent=models.BooleanField(default=True)
     quarter_type=models.CharField(max_length=30)
     #BANK_DETAILS
     bank_acc_no = models.IntegerField()
@@ -67,30 +68,8 @@ class Employee_details(models.Model):
 
 
 class Salary(models.Model):
-    salary=models.IntegerField()
+    Salary=models.IntegerField()
     #relation to employee_details model
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    
-
-
-
-    
+#class Payslip(models.model):

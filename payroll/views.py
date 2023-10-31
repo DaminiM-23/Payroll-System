@@ -1,16 +1,25 @@
 from django.shortcuts import render , HttpResponse
+from django.views.generic.edit import CreateView
+from .models  import Employee_details
 
 # Create your views here.
 def base(request): 
     return render(request,'base.html')
 
-def login(request):
-    return render(request, 'login.html')
+def login(request): 
+    return render(request,'login.html')
 
-# Added e and d rules views link
-def e_n_drules(request):
-    return render(request, 'e_n_drules.html')
+def e_n_drules(request): 
+    return render(request,'e_n_drules.html')
 
-# Added emp_reg rules
-def empreg(request):
-    return render(request, 'emp_reg.html')
+class employee_registration_View(CreateView): 
+   model=Employee_details
+   template_name='employee_registration.html'
+   fields=['title','first_name','middle_name','last_name']
+    
+
+
+
+
+
+
