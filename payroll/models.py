@@ -5,10 +5,9 @@ class User_login(models.Model):
     user_name=models.CharField(max_length=30)
 
 
-
-
 class Employee_details(models.Model):
     #PERSONAL_DETAILS
+    id_no=models.IntegerField(default=0)
     title=models.CharField(max_length=30)
     first_name=models.CharField(max_length=30,null=False)
     middle_name=models.CharField(max_length=30)
@@ -18,19 +17,26 @@ class Employee_details(models.Model):
     gender=models.CharField(max_length=30)
     jntu_no=models.CharField(max_length=30)
     acite_id=models.CharField(max_length=30)
-    employee_no=models.IntegerField()
+    employee_no=models.CharField(max_length=30)
+    sequence_no=models.IntegerField(default=0)
     aadhar_or_unique_id=models.IntegerField()
     email = models.EmailField(max_length=30,unique=True)
-    cell_no = models.IntegerField()
+    cell_no = models.CharField(max_length=20)
     Bloodgroup=models.CharField(max_length=10)
+    #photo=models.ImageField()
+    #sign=models.ImageField()
+
     #SERVICE_DATE_DETAILS
     date_of_joining = models.DateField()
+    shift_joining=models.BooleanField(default=False)
     date_of_relieving = models.DateField()
+    shift_relieving=models.BooleanField(default=False)
     date_of_increment = models.DateField(null=True)
     pay_revised_date  = models.DateField()
     date_of_retirement  = models.DateField()
     from_appointment_date = models.DateField()
     to_appointment_date = models.DateField()
+
     #SERVICE_TYEP_DETAILS
     designation_nature=models.CharField(max_length=30)
     department=models.CharField(max_length=30)
@@ -41,7 +47,8 @@ class Employee_details(models.Model):
     vocational=models.CharField(max_length=30)
     bank_branch=models.CharField(max_length=30)
     user_type=models.CharField(max_length=30)
-    appoint_in=models.CharField(max_length=30)
+    appointed_in=models.CharField(max_length=30)
+
     #BASIC_DETAILS
     TA=models.BooleanField(default=True)
     handicap=models.BooleanField(default=False)
@@ -49,13 +56,15 @@ class Employee_details(models.Model):
     senior_citizen=models.BooleanField(default=False)
     quarter_rent=models.BooleanField(default=True)
     quarter_type=models.CharField(max_length=30)
+
     #BANK_DETAILS
-    bank_acc_no = models.IntegerField()
+    bank_acc_no= models.CharField(max_length=20)
     ifsc_code = models.IntegerField()
     epf = models.IntegerField()
     ppf_no = models.IntegerField()
     pf_no = models.IntegerField()
-    pan_no= models.IntegerField()
+    pan_no= models.CharField(max_length=10)
+
     #PAY_SCALE_DETAILS
     rule=models.CharField(max_length=30)
     scale=models.CharField(max_length=30)
@@ -65,6 +74,7 @@ class Employee_details(models.Model):
     pay_status=models.BooleanField(max_length=30)
     grade_pay=models.CharField(max_length=30)
     remark=models.CharField(max_length=30)
+    #image and sign upload
 
 
 class Salary(models.Model):

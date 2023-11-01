@@ -39,18 +39,19 @@
        
     </div>
   </form>
-  <form class="row g-3">
+  <form method="post" class="row g-3">
+    {% csrf_token %}
     <div class="col-sm-3">
-      <label for="inputSNo" class="form-label">Sequence Number</label>
-      <input type="integer" class="form-control" id="inputSno" >
+      <label for="{{ form.sequence_no.id_for_label }}" class="form-label">Sequence No.</label>
+        <input type="text" id="{{ form.sequence_no.id_for_label }}" name="{{ form.sequence_no.name }}" class="form-control">
     </div>
     <div class="col-sm-3">
-      <label for="inputTitle" class="form-label">Title</label>
-      <input type="text" class="form-control" id="inputTitle">
+        <label for="{{ form.title.id_for_label }}" class="form-label">Title</label>
+        <input type="text" id="{{ form.title.id_for_label }}" name="{{ form.title.name }}" class="form-control">
     </div>
     <div class="col-sm-3">
-      <label for="inputFname" class="form-label">First Name:</label>
-      <input type="text" class="form-control" id="inputFname">
+      <label for="{{ form.first_name.id_for_label }}" class="form-label">First Name</label>
+      <input type="text" id="{{ form.first_name.id_for_label }}" name="{{ form.first_name.name }}" class="form-control">
     </div>
     <div class="col-sm-3" style="width: 30vw; text-align: center;">
         <label>Please Upload your Signature</label>
@@ -68,18 +69,19 @@
     </div>
   </form>
   <!-- row-2- personal details  -->
-  <form  class="row g-3">
+  <form method="post" class="row g-3">
+    {% csrf_token %}
     <div class="col-sm-3">
-      <label for="inputMname" class="form-label">Middle Name</label>
-        <input type="text" class="form-control" id="inputMname">
+      <label for="{{ form.middle_name.id_for_label }}" class="form-label">Middle Name</label>
+      <input type="text" id="{{ form.middle_name.id_for_label }}" name="{{ form.middle_name.name }}" class="form-control">
     </div>
     <div class="col-sm-3">
-      <label for="inputLname" class="form-label">Last Name</label>
-        <input type="text" class="form-control" id="inputLname">
+      <label for="{{ form.last_name.id_for_label }}" class="form-label">Last Name</label>
+      <input type="text" id="{{ form.last_name.id_for_label }}" name="{{ form.last_name.name }}" class="form-control">
     </div>
     <div class="col-sm-3">
-      <label for="inputFtname" class="form-label">Father's Name</label>
-        <input type="text" class="form-control" id="inputFtname">
+      <label for="{{ form.father_name.id_for_label }}" class="form-label">Father Name</label>
+      <input type="text" id="{{ form.father_name.id_for_label }}" name="{{ form.father_name.name }}" class="form-control">
     </div>
   </form>
     <!-- row-3- personal details  -->
@@ -107,33 +109,33 @@
       </div>
   <!-- row-4- personal details  -->
       <div class="col-sm-3">
-        <label for="inputJNTU" class="form-label">JNTU ID</label>
-        <input type="integer" class="form-control" id="inputJNTU" >
+        <label for="{{ form.jntu_no.id_for_label }}" class="form-label">JNTU No.</label>
+        <input type="text" id="{{ form.jntu_no.id_for_label }}" name="{{ form.jntu_no.name }}" class="form-control">
       </div>
     </form>
   </form>
   <form class="row g-3">
     <div class="col-sm-3">
-      <label for="inputACITE" class="form-label">ACITE ID</label>
-        <input type="integer" class="form-control" id="inputACITE">
+      <label for="{{ form.acite_id.id_for_label }}" class="form-label">ACITE ID</label>
+        <input type="text" id="{{ form.acite_id.id_for_label }}" name="{{ form.acite_id.name }}" class="form-control">
     </div>
     <div class="col-sm-3">
-      <label for="inputEno" class="form-label">Employee No.</label>
-        <input type="integer" class="form-control" id="inputEno">
+      <label for="{{ form.employee_no.id_for_label }}" class="form-label">Employee No.</label>
+        <input type="text" id="{{ form.employee_no.id_for_label }}" name="{{ form.employee_no.name }}" class="form-control">
     </div>
     <div class="col-sm-3">
-      <label for="inputAno" class="form-label">Aadhar/Unique ID No.</label>
-        <input type="text" class="form-control" id="inputAno">
+      <label for="{{ form.aadhar_or_unique_id.id_for_label }}" class="form-label">Aadhar/Unique ID No.</label>
+        <input type="text" id="{{ form.aadhar_or_unique_id.id_for_label }}" name="{{ form.aadhar_or_unique_id.name }}" class="form-control">
     </div>
   </form> 
   <form class="row g-3">
     <div class="col-sm-3">
-      <label for="inputEid" class="form-label">Email Id</label>
-        <input type="email" class="form-control" id="inputMname">
+      <label for="{{ form.email.id_for_label }}" class="form-label">Email ID</label>
+      <input type="text" id="{{ form.email.id_for_label }}" name="{{ form.email.name }}" class="form-control">
     </div>
     <div class="col-sm-3">
-      <label for="inputCno" class="form-label">Cell No.</label>
-        <input type="number" class="form-control" id="inputCno">
+      <label for="{{ form.cell_no.id_for_label }}" class="form-label">Cell No.</label>
+      <input type="text" id="{{ form.cell_no.id_for_label }}" name="{{ form.cell_no.name }}" class="form-control">     
     </div>
     <div class="col-sm-3">
       <label for="inputBgroup" class="form-label">Blood Group</label>
@@ -525,8 +527,8 @@
 
 <form class="row g-3">
 <div class="col-sm-3">
-  <label for="inputBAccNo" class="form-label">Bank Account Number:</label>
-  <input type="text" class="form-control" id="inputBAccNo">
+  <label for="{{ form.bank_acc_no.id_for_label }}" class="form-label">Bank Account Number:</label>
+      <input type="text" id="{{ form.bank_acc_no.id_for_label }}" name="{{ form.bank_acc_no.name }}" class="form-control">
 </div>
 <div class="col-sm-3">
   <label for="inputIFSC" class="form-label">IFSC Code:</label>
@@ -546,19 +548,19 @@
   </div>
 </div>
 </form>
-<form class="row g-3">
-<div class="col-sm-3">
-<label for="inputPPF" class="form-label">P.P.F No.:</label>
-<input type="text" class="form-control" id="inputPPF">
-</div>
-<div class="col-sm-3">
-<label for="inputPF" class="form-label">P.F No.:</label>
-<input type="text" class="form-control" id="inputPF">
-</div>
-<div class="col-sm-3">
-<label for="inputPAN" class="form-label">PAN No.:</label>
-<input type="text" class="form-control" id="inputPAN">
-</div>
+<form method="post" class="row g-3">
+  <div class="col-sm-3">
+    <label for="inputPPF" class="form-label">P.P.F No.:</label>
+    <input type="text" class="form-control" id="inputPPF">
+  </div>
+  <div class="col-sm-3">
+    <label for="{{ form.remark.id_for_label }}" class="form-label">P.F No.</label>
+    <input type="text" id="{{ form.remark.id_for_label }}" name="{{ form.remark.name }}" class="form-control">
+  </div>
+  <div class="col-sm-3">
+    <label for="{{ form.pan_no.id_for_label }}" class="form-label">PAN No:</label>
+    <input type="text" id="{{ form.pan_no.id_for_label }}" name="{{ form.pan_no.name }}" class="form-control">
+  </div>
 </form>
 </div>
 
@@ -651,18 +653,19 @@
         </div>
     </div>
     <div class="col-sm-3">
-      <label for="inputGradeP" class="form-label">Grade Pay:</label>
-      <input type="text" class="form-control" id="inputGradeP">
+      <label for="{{ form.grade_pay.id_for_label }}" class="form-label">Grade Pay:</label>
+      <input type="text" id="{{ form.grade_pay.id_for_label }}" name="{{ form.grade_pay.name }}" class="form-control">
     </div>
     <div class="col-sm-3">
-      <label for="inputRemark" class="form-label">Remark:</label>
-      <input type="text" class="form-control" id="inputRemark">
+      <label for="{{ form.remark.id_for_label }}" class="form-label">Remark</label>
+      <input type="text" id="{{ form.remark.id_for_label }}" name="{{ form.remark.name }}" class="form-control">
     </div>
   </form>
 </div>
 <div class="center" >
   <div class="d-grid gap-2 d-md-block">
-    <button type="submit" class="btn btn-primary">Submit</button >
+    <!-- <input type="submit" value="Submit"> -->
+    <button type="submit" class="btn btn-primary">Submit</button > 
     <button type="button" class="btn btn-warning">Cancel</button>
     <button type="button" class="btn btn-primary">Back</button>
   </div>
