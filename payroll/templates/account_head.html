@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}Account Head Management{% endblock %}
+
+{% block nav_item_3 %}{% endblock %}
+
+{% block heading %}{% endblock %}
+
+{% block content %}
+
+<div class="flexborder">
+    <div class="flextitle">
+       Account Head Management
+    </div>
+    <form class="row g-3">
+        <div class="col-sm-3">
+          <label class="form-label">Account Head:</label>
+            <input type="text" class="form-control" id="inputAccHead" required >
+            </div>
+    </form>
+
+    <form class="row g-3">
+        <div class="col-sm-3">
+            <label class="form-label">Account No:</label>
+            <input type="integer" class="form-control" id="inputAccNo" required" >
+            </div>
+    </form> 
+
+    <form class="row g-3">
+        <div class="col-sm-3">
+            <label class="form-label">Staff:</label>
+            <input type="text" class="form-control" id="inputAccStaff" required" >
+            </div>
+    </form> 
+</div>
+<div class="center" >
+    <div class="d-grid gap-2 d-md-block">
+      <button type="submit" class="btn btn-primary">Submit</button >
+      <button type="button" class="btn btn-warning">Cancel</button>
+      <button type="button" class="btn btn-danger ">Report</button>
+    </div>
+
+{% endblock %}
+
+
+{% block int_css %}
+            <style>
+            body{
+              overflow-x: hidden;
+            }
+            
+            
+            .flexborder{
+            border-width: 2px;
+            border-color: rgb(100, 210, 238);
+            border-style: solid;
+            margin-top: 15px;
+            margin-bottom: 30px;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-inline-end: 10px;
+            
+            }
+            
+            /* To control size of the columns */
+            
+            .col-sm-3{
+              padding: 10px;
+              margin-left: 1vw;
+              width: 40vw;
+            }
+            
+            /* controlling size of the input field */
+            
+            .form-control {
+              width: 40vw !important;
+            }
+            
+            .flextitle{
+              text-align: left;
+              font-style: normal;
+              background-color: rgb(100, 210, 238);
+              color:#0e556e;
+              margin-bottom: 5px;
+                 
+            }
+            
+            form.row.g-3{
+              display: flex;
+              flex-direction: row;
+              justify-content: space-around;
+            }
+            
+            .center{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+            
+            }
+            </style>
+            {% endblock %}           
