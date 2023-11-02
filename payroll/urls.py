@@ -12,4 +12,5 @@ urlpatterns = [
     path('base', views.base,name='base'),
     path('e_n_drules', views.e_n_drules ,name='e_n_drules'),
     path('employee_registration', employee_registration_View.as_view() ,name='employee_registration'),
+    path('payment_head',views.payment_head,name='payment_head' ),
 ] 

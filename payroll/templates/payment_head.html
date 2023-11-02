@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block title %}Payment Head{% endblock %}
+
+{% block nav_item_3 %}{% endblock %}
+
+{% block heading %}Payment Head{% endblock %}
+
+{% block content %}
+
+    <div class="flexborder">
+        <div class="flextitle">
+            <h5>Edit Pay Head</h5>
+        </div>
+        <form  class="row g-3">
+            <div class="col-sm-3">
+              <label for="inputMname" class="form-label">Paycode :</label>
+                <input type="text" class="form-control" id="inputMname">
+            </div>
+            <div class="col-sm-3">
+              <label for="inputLname" class="form-label">Payhead :</label>
+                <input type="text" class="form-control" id="inputLname">
+            </div>
+            <div class="col-sm-3">
+                <label for="inputBgroup" class="form-label">Type :</label>
+                <div>
+                  <select class="form-select" aria-label="Please Select">
+                    <option value = "0" >Calculative</option>
+                    <!-- <option value = "1"selected disabled>A+ve</option> -->
+                  </select>
+                </div>
+            </div>
+        </form>
+        <!-- Second row of values -->
+        <form  class="row g-3">
+            <div class="col-sm-3">
+                <label for="inputBgroup" class="form-label">Caculation :</label>
+                <div>
+                  <select class="form-select" aria-label="Please Select">
+                    <option value = "0" >Basic</option>
+                    <!-- <option value = "1"selected disabled>A+ve</option> -->
+                  </select>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <label for="inputMname" class="form-label">Full Name :</label>
+                  <input type="text" class="form-control" id="inputMname">
+              </div>
+              <div class="col-sm-3">
+                <label for="inputLname" class="form-label">Formula :</label>
+                  <input type="text" class="form-control" id="inputLname">
+              </div>
+          </form>
+    </div>
+    <div class="center" >
+        <div class="d-grid gap-2 d-md-block">
+          <button type="submit" class="btn btn-primary">Submit</button >
+          <button type="button" class="btn btn-primary">Back</button>
+        </div>
+      </div>
+
+{% endblock %}
+
+{% block int_css %}
+<style>
+    body{
+    overflow-x: hidden;
+}
+
+.flexborder{
+    border-width: 2px;
+    border-color: rgb(100, 210, 238);
+    border-style: solid;
+    border-radius: 12px;
+    margin-top: 15px;
+    margin-bottom: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-inline-end: 10px;
+}
+
+/* To control size of the columns */
+
+.col-sm-3{
+    padding: 10px;
+    margin-left: 1vw;
+    width: 30vw;
+}
+
+/* controlling size of the input field */
+
+.form-control {
+  width: 20vw !important;
+}
+
+.flextitle{
+    text-align: center;
+    font-style: normal;
+    background-color: rgb(100, 210, 238);
+    color:#0e556e;
+    padding: 1px;
+    border-radius: 10px;
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+}
+
+form.row.g-3{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+</style>
+{% endblock %}

@@ -9,7 +9,7 @@
 {% block content %}
 <div class="flexborder">
   <div class="flextitle">
-      Personal Details
+      <h5>Personal Details</h5>
   </div>
   <form  class="row g-3">
     <!-- row 1 personal details -->
@@ -158,7 +158,7 @@
 <!-- End of personal details -->
 <div class="flexborder">
   <div class="flextitle">
-      Service Date Details
+      <h5>Service Date Details</h5>
   </div>
   <form class="row g-3">
     <div class="col-sm-3">
@@ -236,7 +236,7 @@
 
 <div class="flexborder">
   <div class="flextitle">
-      Basic Details
+     <h5> Basic Details</h5>
   </div>
   <form class="row g-3">
       <div class="col-sm-3">
@@ -342,7 +342,7 @@
 </div>
 <div class="flexborder">
   <div class="flextitle">
-      Service Type Details
+      <h5>Service Type Details</h5>
   </div>
   <form class="row g-3">
       <div class="col-sm-3">
@@ -519,7 +519,7 @@
 
 <div class="flexborder">
 <div class="flextitle">
-    Bank Details
+    <h5>Bank Details</h5>
 </div>
 
 
@@ -564,7 +564,7 @@
 
 <div class="flexborder">
   <div class="flextitle">
-      Pay-Scale Details 
+      <h5>Pay-Scale Details</h5>
   </div>
 
   <form class="row g-3">
@@ -671,28 +671,28 @@
 
 {% block int_css %}
 <style>
-body{
-  overflow-x: hidden;
+    body{
+    overflow-x: hidden;
 }
 
 .flexborder{
-border-width: 2px;
-border-color: rgb(100, 210, 238);
-border-style: solid;
-margin-top: 15px;
-margin-bottom: 30px;
-margin-left: 10px;
-margin-right: 10px;
-margin-inline-end: 10px;
-
+    border-width: 2px;
+    border-color: rgb(100, 210, 238);
+    border-style: solid;
+    border-radius: 12px;
+    margin-top: 15px;
+    margin-bottom: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-inline-end: 10px;
 }
 
 /* To control size of the columns */
 
 .col-sm-3{
-  padding: 10px;
-  margin-left: 1vw;
-  width: 20vw;
+    padding: 10px;
+    margin-left: 1vw;
+    width: 20vw;
 }
 
 /* controlling size of the input field */
@@ -702,19 +702,19 @@ margin-inline-end: 10px;
 }
 
 .flextitle{
-  text-align: left;
-  font-style: normal;
-  background-color: rgb(100, 210, 238);
-  color:#0e556e;
-  margin-bottom: 5px;
-     
+    text-align: center;
+    font-style: normal;
+    background-color: rgb(100, 210, 238);
+    color:#0e556e;
+    padding: 1px;
+    border-radius: 10px;
 }
-.center{
-display: flex;
-justify-content: center;
-align-items: center;
-height: 50px;
 
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
 }
 </style>
 {% endblock %}
