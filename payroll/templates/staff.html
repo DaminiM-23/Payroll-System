@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Payment Head{% endblock %}
+{% block title %}Staff{% endblock %}
 
 {% block nav_item_3 %}{% endblock %}
 
@@ -10,33 +10,31 @@
 
 <div class="flexborder">
     <div class="flextitle">
-         Edit Payment Head
+        Staff
     </div>
     <form class="row g-3">
         <div class="col-sm-3">
-            <label for="inputStaffType" class="form-label">Select Head:</label>
-            <div>
-            <select class="form-select" aria-label="Please Select" required>
-                <option value = "0" selected disabled>Please Select</option>
-                <option value = "1">Income Head</option>
-                <option value = "2"></option>
-                <option value = "3"></option>
-                <option value = "4"></option>
-                <option value = "5"></option>
-                <option value = "6"></option>
-                <option value = "7"></option>
-              </select>
+            <label class="form-label">Staff:</label>
+            <input type="text" class="form-control" id="inputStaff" required >
             </div>
-        </div>
+    </form>
+
+    <form class="row g-3">
+        <div class="col-sm-3">
+            <label class="form-label">Retirement Age :</label>
+            <input type="text" class="form-control" id="inputRAge" required >
+            </div>
     </form>
 </div>
 <div class="center" >
     <div class="d-grid gap-2 d-md-block">
-      <button type="submit" class="btn btn-primary">Show Report</button >
-
+      <button type="submit" class="btn btn-primary">Submit</button >
+      <button type="button" class="btn btn-warning">Cancel</button>
+      <button type="button" class="btn btn-danger ">Report</button>
     </div>
 
-{% endblock %}   
+{% endblock %}
+
 
 {% block int_css %}
             <style>

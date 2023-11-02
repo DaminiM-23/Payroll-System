@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Payment Head{% endblock %}
+{% block title %}Quarter Type Management{% endblock %}
 
 {% block nav_item_3 %}{% endblock %}
 
@@ -10,33 +10,38 @@
 
 <div class="flexborder">
     <div class="flextitle">
-         Edit Payment Head
+       Quarter Type Management
     </div>
     <form class="row g-3">
         <div class="col-sm-3">
-            <label for="inputStaffType" class="form-label">Select Head:</label>
-            <div>
-            <select class="form-select" aria-label="Please Select" required>
-                <option value = "0" selected disabled>Please Select</option>
-                <option value = "1">Income Head</option>
-                <option value = "2"></option>
-                <option value = "3"></option>
-                <option value = "4"></option>
-                <option value = "5"></option>
-                <option value = "6"></option>
-                <option value = "7"></option>
-              </select>
+          <label class="form-label">Quarter:</label>
+            <input type="text" class="form-control" id="inputQuarter" required >
             </div>
-        </div>
     </form>
+
+    <form class="row g-3">
+        <div class="col-sm-3">
+            <label class="form-label">Area:</label>
+            <input type="text" class="form-control" id="inputQArea" required >
+            </div>
+    </form> 
+
+    <form class="row g-3">
+        <div class="col-sm-3">
+            <label class="form-label">Rent:</label>
+            <input type="integer" class="form-control" id="inputRent" required >
+            </div>
+    </form> 
 </div>
 <div class="center" >
     <div class="d-grid gap-2 d-md-block">
-      <button type="submit" class="btn btn-primary">Show Report</button >
-
+      <button type="submit" class="btn btn-primary">Submit</button >
+      <button type="button" class="btn btn-warning">Cancel</button>
+      <button type="button" class="btn btn-danger ">Report</button>
     </div>
 
-{% endblock %}   
+{% endblock %}
+
 
 {% block int_css %}
             <style>
