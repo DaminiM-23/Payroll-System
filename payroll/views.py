@@ -35,8 +35,8 @@ def supp_head(request):
 def appoint(request): 
     return render(request,'appoint.html')
 
-def transaction(request): 
-    return render(request,'transaction.html')
+def transaction_mngt(request): 
+    return render(request,'transaction_mngt.html')
 
 def pay_level(request): 
     return render(request,'pay_level.html')
