@@ -2,42 +2,14 @@ from django.urls import reverse
 
 from django.shortcuts import render , HttpResponse
 from django.views.generic.edit import CreateView
-<<<<<<< HEAD
-from .models  import Employee_details
-=======
 from .models  import Employee_details ,Salary
 from .forms import Employee_details_Form , Salary_Form
 
->>>>>>> fee6b166fa1d56c22e6964ead6a390b5cacc3cb7
 
 # Create your views here.
 def base(request): 
     return render(request,'base.html')
 
-<<<<<<< HEAD
-def login(request): 
-    return render(request,'login.html')
-
-def e_n_drules(request): 
-    return render(request,'e_n_drules.html')
-
-def payment_head(request):
-    return render(request, 'payment_head.html')
-
-class employee_registration_View(CreateView): 
-   model=Employee_details
-   template_name='employee_registration.html'
-   fields=['title','first_name','middle_name','last_name']
-
-
-    
-
-
-
-
-
-
-=======
 
 
 def login(request): 
@@ -107,4 +79,3 @@ class Salary_View(CreateView):
 
 
 
->>>>>>> fee6b166fa1d56c22e6964ead6a390b5cacc3cb7
