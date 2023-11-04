@@ -11,7 +11,6 @@ def base(request):
     return render(request,'base.html')
 
 
-
 def login(request): 
     return render(request,'login.html')
 
@@ -59,7 +58,6 @@ def payment_head(request):
 
 class employee_registration_View(CreateView): 
    model=Employee_details
-
    form_class= Employee_details_Form
    template_name='employee_registration.html'
    #fields='__all__'

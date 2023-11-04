@@ -1,14 +1,13 @@
 
 from django.contrib import admin 
 from django.urls import path 
-  
-# importing views from views..py 
+from django.contrib.auth import views as auth_views
 from .views import employee_registration_View ,Salary_View
 from payroll import views
 
   
 urlpatterns = [ 
-    path('', views.login, name='login'),
+    path('', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path('base', views.base,name='base'),
     path('e_n_drules', views.e_n_drules ,name='e_n_drules'),
     path('employee_registration', employee_registration_View.as_view() ,name='employee_registration'),
