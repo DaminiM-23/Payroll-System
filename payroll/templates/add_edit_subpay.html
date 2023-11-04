@@ -4,13 +4,13 @@
 
 {% block nav_item_3 %}{% endblock %}
 
-{% block heading %}Add Edit Sub Pay Head{% endblock %}
+{% block heading %}{% endblock %}
 
 {% block content %}
 
 <div class="flexborder">
     <div class="flextitle">
-        Add Edit Subpay Head
+       <h5> Add Edit Subpay Head</h5>
     </div>
 
 <form class="row g-3">
@@ -68,58 +68,56 @@
 
 {% block int_css %}
 <style>
-body{
-  overflow-x: hidden;
-}
+  body{
+    overflow-x: hidden;
+  }
+  
+  
+  .flexborder{
+    width:fit-content;
+    margin: auto !important;
+    padding: 2px;
+    border-width: 2px;
+    border-color: rgb(100, 210, 238);
+    border-style: solid;
+    border-radius: 12px;
+    margin-top: 15px;
+    margin-bottom: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-inline-end: 10px;
+  
+  }
+  
+  /* To control size of the columns */
+  
+  .col-sm-3{
+    padding: 20px;
+    width: 30vw;
+  }
+  
+  /* controlling size of the input field */
+  
+  .flextitle{
+    text-align: center;
+    font-style: normal;
+    background-color: rgb(100, 210, 238);
+    color:#0e556e;
+    padding: 1px;
+    border-radius: 10px;
+  }
 
+  .center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+  }
 
-.flexborder{
-border-width: 2px;
-border-color: rgb(100, 210, 238);
-border-style: solid;
-margin-top: 15px;
-margin-bottom: 30px;
-margin-left: 10px;
-margin-right: 10px;
-margin-inline-end: 10px;
-
-}
-
-/* To control size of the columns */
-
-.col-sm-3{
-  padding: 10px;
-  margin-left: 1vw;
-  width: 40vw;
-}
-
-/* controlling size of the input field */
-
-.form-control {
-  width: 40vw !important;
-}
-
-.flextitle{
-  text-align: left;
-  font-style: normal;
-  background-color: rgb(100, 210, 238);
-  color:#0e556e;
-  margin-bottom: 5px;
-     
-}
-
-form.row.g-3{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
-
-.center{
-display: flex;
-justify-content: center;
-align-items: center;
-height: 50px;
-
-}
+  form.row.g-3{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
 </style>
 {% endblock %}
