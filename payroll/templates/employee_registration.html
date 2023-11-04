@@ -11,134 +11,129 @@
   <div class="flextitle">
       Personal Details
   </div>
-  <form class="row g-3">
-    <!-- row 1 personal details -->
-    <div class="col-sm-3">
-      <label for="inputID" class="form-label">ID No:</label>
-        <input type="integer" class="form-control" id="inputID">
-    </div>
-    <!-- Empty divs -->
-    <div class="col-sm-3"></div>
-    <div class="col-sm-3"></div>
-    <div class="col-sm-3" style="width: 30vw; text-align: center;">
-        <div>
-            <label>Please Upload an Image of yourself</label>
-              <input type="file"  accept="image/*" name="image" id="pfile"  onchange="loadFile(event)">
-            <div>
-              <img id="output" width="200" />
-            </div>
-            <!-- js for uploading images -->
-            <script>
-                var loadFile = function(event) {
-                    var image = document.getElementById('output');
-                    image.src = URL.createObjectURL(event.target.files[0]);
-                };
-            </script>
-            
-        </div>
-       
-    </div>
+
+<form class="row g-3">
+  <div class="col-sm-3">
+    <label for="inputID" class="form-label">ID No:</label>
+    <input type="integer" class="form-control" id="inputID">
+  </div>
+  <div class="col-sm-3"></div>
+  <div class="col-sm-3"></div>
+  <div class="col-sm-3">
+      <div>
+          <label>Please Upload Image</label>
+          <input type="file"  accept="image/*" name="image" id="pfile"  onchange="loadFile(event)">
+          
+          <div><img id="output" width="200" /></div>
+
+          <script>
+          var loadFile = function(event) {
+              var image = document.getElementById('output');
+              image.src = URL.createObjectURL(event.target.files[0]);
+          };
+          </script>
+          
+      </div>
+     
+      </div>
+
   </form>
   <form class="row g-3">
-    <div class="col-sm-3">
-      <label for="inputSNo" class="form-label">Sequence Number</label>
-      <input type="integer" class="form-control" id="inputSno" >
-    </div>
-    <div class="col-sm-3">
-      <label for="inputTitle" class="form-label">Title</label>
-      <input type="text" class="form-control" id="inputTitle">
-    </div>
-    <div class="col-sm-3">
-      <label for="inputFname" class="form-label">First Name:</label>
-      <input type="text" class="form-control" id="inputFname">
-    </div>
-    <div class="col-sm-3" style="width: 30vw; text-align: center;">
-        <label>Please Upload your Signature</label>
-        <br>
-        <input type="file"  accept="image/*" name="simage" id="sfile"  onchange="loadFile1(event)">
-        <div>
-          <img id="soutput" width="200" />
-        </div>
-        <script>
-        var loadFile1 = function(event) {
-            var image = document.getElementById('soutput');
-            image.src = URL.createObjectURL(event.target.files[0]);
-        };
-        </script>
-    </div>
+  <div class="col-sm-3">
+    <label for="inputSNo" class="form-label">Sequence Number</label>
+    <input type="integer" class="form-control" id="inputSno" >
+  </div>
+  <div class="col-sm-3">
+    <label for="inputTitle" class="form-label">Title</label>
+    <input type="text" class="form-control" id="inputTitle">
+  </div>
+  <div class="col-sm-3">
+    <label for="inputFname" class="form-label">First Name:</label>
+    <input type="text" class="form-control" id="inputFname">
+  </div>
+  <div class="col-sm-3">
+      <label>Please Upload Sign</label>
+      <input type="file"  accept="image/*" name="simage" id="sfile"  onchange="loadFile1(event)">
+      
+      <div><img id="soutput" width="200" /></div>
+
+      <script>
+      var loadFile1 = function(event) {
+          var image = document.getElementById('soutput');
+          image.src = URL.createObjectURL(event.target.files[0]);
+      };
+      </script>
+  </div>
   </form>
-  <!-- row-2- personal details  -->
   <form class="row g-3">
-    <div class="col-sm-3">
-      <label for="inputMname" class="form-label">Middle Name</label>
-        <input type="text" class="form-control" id="inputMname">
-    </div>
-    <div class="col-sm-3">
+  <div class="col-sm-3">
+    <label for="inputMname" class="form-label">Middle Name</label>
+    <input type="text" class="form-control" id="inputMname">
+  </div>
+  <div class="col-sm-3">
       <label for="inputLname" class="form-label">Last Name</label>
-        <input type="text" class="form-control" id="inputLname">
+      <input type="text" class="form-control" id="inputLname">
     </div>
     <div class="col-sm-3">
       <label for="inputFtname" class="form-label">Father's Name</label>
-        <input type="text" class="form-control" id="inputFtname">
+      <input type="text" class="form-control" id="inputFtname">
     </div>
-  </form>
-    <!-- row-3- personal details  -->
+  </form>  
   <form class="row g-3">
-    <div class="col-sm-3">
-      <label for="inputDOB" class="form-label">Date Of Birth</label>
-      <input type="date" class="form-control" id="inputDOB">
-    </div>
-    <div class="col-sm-3">
+  <div class="col-sm-3">
+    <label for="inputDOB" class="form-label">Date Of Birth</label>
+    <input type="date" class="form-control" id="inputDOB">
+  </div>
+  <div class="col-sm-3">
       <label for="inputGender" class="form-label">Gender</label>
-        <div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefaultM">
-              <label class="form-check-label" for="flexRadioDefaultM">
-                Male
-              </label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefaultF">
-              <label class="form-check-label" for="flexRadioDefaultF">
-                Female
-              </label>
-          </div>
+      <div>
+      <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefaultM">
+          <label class="form-check-label" for="flexRadioDefaultM">
+            Male
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefaultF">
+          <label class="form-check-label" for="flexRadioDefaultF">
+            Female
+          </label>
         </div>
       </div>
-  <!-- row-4- personal details  -->
-      <div class="col-sm-3">
-        <label for="inputJNTU" class="form-label">JNTU ID</label>
-        <input type="integer" class="form-control" id="inputJNTU" >
-      </div>
-    </form>
+    </div>
+
+    <div class="col-sm-3">
+      <label for="inputJNTU" class="form-label">JNTU ID</label>
+      <input type="integer" class="form-control" id="inputJNTU" >
+    </div>
   </form>
+<form class="row g-3">
+<div class="col-sm-3">
+<label for="inputACITE" class="form-label">ACITE ID</label>
+<input type="integer" class="form-control" id="inputACITE">
+</div>
+<div class="col-sm-3">
+  <label for="inputEno" class="form-label">Employee No.</label>
+  <input type="integer" class="form-control" id="inputEno">
+</div>
+<div class="col-sm-3">
+  <label for="inputAno" class="form-label">Aadhar/Unique ID No.</label>
+  <input type="text" class="form-control" id="inputAno">
+</div>
+</form> 
   <form class="row g-3">
-    <div class="col-sm-3">
-      <label for="inputACITE" class="form-label">ACITE ID</label>
-        <input type="integer" class="form-control" id="inputACITE">
-    </div>
-    <div class="col-sm-3">
-      <label for="inputEno" class="form-label">Employee No.</label>
-        <input type="integer" class="form-control" id="inputEno">
-    </div>
-    <div class="col-sm-3">
-      <label for="inputAno" class="form-label">Aadhar/Unique ID No.</label>
-        <input type="text" class="form-control" id="inputAno">
-    </div>
-  </form> 
-  <form class="row g-3">
-    <div class="col-sm-3">
-      <label for="inputEid" class="form-label">Email Id</label>
-        <input type="email" class="form-control" id="inputMname">
-    </div>
-    <div class="col-sm-3">
+  <div class="col-sm-3">
+    <label for="inputEid" class="form-label">Email Id</label>
+    <input type="email" class="form-control" id="inputMname">
+  </div>
+  <div class="col-sm-3">
       <label for="inputCno" class="form-label">Cell No.</label>
-        <input type="number" class="form-control" id="inputCno">
+      <input type="number" class="form-control" id="inputCno">
     </div>
     <div class="col-sm-3">
       <label for="inputBgroup" class="form-label">Blood Group</label>
       <div>
-        <select class="form-select" aria-label="Please Select">
+      <select class="form-select" aria-label="Please Select">
           <option value = "0" selected disabled>Please Select</option>
           <option value = "1">A+ve</option>
           <option value = "2">A-ve</option>
@@ -155,33 +150,34 @@
     </div>
   </form>  
 </div>  
-<!-- End of personal details -->
+
 <div class="flexborder">
   <div class="flextitle">
       Service Date Details
   </div>
   <form class="row g-3">
-    <div class="col-sm-3">
-      <label for="inputDjoin" class="form-label">Date Of Joining:</label>
+      <div class="col-sm-3">
+        <label for="inputDjoin" class="form-label">Date Of Joining:</label>
         <input type="date" class="form-control" id="inputDjoin" >
-    </div>
-    <div class="col-sm-3">
-        <label for="inputShift" class="form-label">Shift:</label>
+      </div>
+      <div class="col-sm-3">
+          <label for="inputShift" class="form-label">Shift:</label>
           <div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="InputFnoon">
-                  <label class="form-check-label" for="InputFnoon">
-                    Forenoon
-                  </label>
+          <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="InputFnoon">
+              <label class="form-check-label" for="InputFnoon">
+                Forenoon
+              </label>
             </div>
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="radio" name="flexRadioDefault" id="InputAnoon" >
-                <label class="form-check-label" for="InputAnoon">
-                  Afternoon
-                </label>
+              <label class="form-check-label" for="InputAnoon">
+                Afternoon
+              </label>
             </div>
           </div>
-    </div>  
+        </div>
+      
   </form>
 
   <form class="row g-3">
@@ -563,159 +559,159 @@
 </div>
 
 <div class="flexborder">
-  <div class="flextitle">
-      Pay-Scale Details 
-  </div>
-
-  <form class="row g-3">
-      <div class="col-sm-3">
-          <label for="inputRule" class="form-label">Rule:</label>
-          <div>
-          <select class="form-select" aria-label="Please Select">
-              <option value = "0" selected disabled>Please Select</option>
-              <option value = "1"></option>
-              <option value = "2"></option>
-              <option value = "3"></option>
-              <option value = "4"></option>
-              <option value = "5"></option>
-              <option value = "6"></option>
-            </select>
-          </div>
-        </div>
-
-        
-        <div class="col-sm-3">
-          <label for="inputScale" class="form-label">Scale:</label>
-          <div>
-          <select class="form-select" aria-label="Please Select">
-              <option value = "0" selected disabled>Please Select</option>
-              <option value = "1"></option>
-              <option value = "2"></option>
-              <option value = "3"></option>
-              <option value = "4"></option>
-              <option value = "5"></option>
-              <option value = "6"></option>
-            </select>
-          </div>
-        </div>
-
-        <div class="col-sm-3">
-          <label for="inputPayL" class="form-label">Pay Level:</label>
-          <div>
-          <select class="form-select" aria-label="Please Select">
-              <option value = "0" selected disabled>Please Select</option>
-              <option value = "1"></option>
-              <option value = "2"></option>
-              <option value = "3"></option>
-              <option value = "4"></option>
-              <option value = "5"></option>
-              <option value = "6"></option>
-            </select>
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <label for="inputCno1" class="form-label">Cell Number:</label>
-          <div>
-          <select class="form-select" aria-label="Please Select">
-              <option value = "0" selected disabled>Please Select</option>
-              <option value = "1"></option>
-              <option value = "2"></option>
-              <option value = "3"></option>
-              <option value = "4"></option>
-              <option value = "5"></option>
-              <option value = "6"></option>
-            </select>
-          </div>
-        </div>
-    </form>
-    <form class="row g-3">
-      <div class="col-sm-3">
-        <label for="inputBasic" class="form-label">Basic:</label>
-        <input type="text" class="form-control" id="inputPPF">
-      </div>
-      <div class="col-sm-3">
-        <label for="inputPayS" class="form-label">Pay Status :</label>
-        <div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="InputPaySyes">
-            <label class="form-check-label" for="InputPayS">
-              Yes
-            </label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="InputPaySno" >
-            <label class="form-check-label" for="InputPaySno">
-              No
-            </label>
-          </div>
-        </div>
-    </div>
-    <div class="col-sm-3">
-      <label for="inputGradeP" class="form-label">Grade Pay:</label>
-      <input type="text" class="form-control" id="inputGradeP">
-    </div>
-    <div class="col-sm-3">
-      <label for="inputRemark" class="form-label">Remark:</label>
-      <input type="text" class="form-control" id="inputRemark">
-    </div>
-  </form>
+<div class="flextitle">
+    Pay-Scale Details 
 </div>
-<div class="center" >
-  <div class="d-grid gap-2 d-md-block">
+
+<form class="row g-3">
+  <div class="col-sm-3">
+      <label for="inputRule" class="form-label">Rule:</label>
+      <div>
+      <select class="form-select" aria-label="Please Select">
+          <option value = "0" selected disabled>Please Select</option>
+          <option value = "1"></option>
+          <option value = "2"></option>
+          <option value = "3"></option>
+          <option value = "4"></option>
+          <option value = "5"></option>
+          <option value = "6"></option>
+        </select>
+      </div>
+    </div>
+
+    
+    <div class="col-sm-3">
+      <label for="inputScale" class="form-label">Scale:</label>
+      <div>
+      <select class="form-select" aria-label="Please Select">
+          <option value = "0" selected disabled>Please Select</option>
+          <option value = "1"></option>
+          <option value = "2"></option>
+          <option value = "3"></option>
+          <option value = "4"></option>
+          <option value = "5"></option>
+          <option value = "6"></option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-sm-3">
+      <label for="inputPayL" class="form-label">Pay Level:</label>
+      <div>
+      <select class="form-select" aria-label="Please Select">
+          <option value = "0" selected disabled>Please Select</option>
+          <option value = "1"></option>
+          <option value = "2"></option>
+          <option value = "3"></option>
+          <option value = "4"></option>
+          <option value = "5"></option>
+          <option value = "6"></option>
+        </select>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <label for="inputCno1" class="form-label">Cell Number:</label>
+      <div>
+      <select class="form-select" aria-label="Please Select">
+          <option value = "0" selected disabled>Please Select</option>
+          <option value = "1"></option>
+          <option value = "2"></option>
+          <option value = "3"></option>
+          <option value = "4"></option>
+          <option value = "5"></option>
+          <option value = "6"></option>
+        </select>
+      </div>
+    </div>
+</form>
+<form class="row g-3">
+  <div class="col-sm-3">
+    <label for="inputBasic" class="form-label">Basic:</label>
+      <input type="text" class="form-control" id="inputPPF">
+  </div>
+  <div class="col-sm-3">
+    <label for="inputPayS" class="form-label">Pay Status :</label>
+    <div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="InputPaySyes">
+          <label class="form-check-label" for="InputPayS">
+            Yes
+          </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="InputPaySno" >
+          <label class="form-check-label" for="InputPaySno">
+            No
+          </label>
+      </div>
+    </div>
+</div>
+<div class="col-sm-3">
+  <label for="inputGradeP" class="form-label">Grade Pay:</label>
+    <input type="text" class="form-control" id="inputGradeP">
+</div>
+<div class="col-sm-3">
+  <label for="inputRemark" class="form-label">Remark:</label>
+    <input type="text" class="form-control" id="inputRemark">
+</div>
+</form>
+</div>
+  <div class="center" >
+    <div class="d-grid gap-2 d-md-block">
     <button type="button" class="btn btn-primary">Submit</button >
     <button type="button" class="btn btn-warning">Cancel</button>
     <button type="button" class="btn btn-primary">Back</button>
+    </div>
   </div>
-</div>
 {% endblock %}
 
 {% block int_css %}
 <style>
-body{
-  overflow-x: hidden;
-}
+  body{
+    overflow-x: hidden;
+  }
 
-.flexborder{
-border-width: 2px;
-border-color: rgb(100, 210, 238);
-border-style: solid;
-margin-top: 15px;
-margin-bottom: 30px;
-margin-left: 10px;
-margin-right: 10px;
-margin-inline-end: 10px;
+  .flexborder{
+      border-width: 2px;
+      border-color: rgb(100, 210, 238);
+      border-style: solid;
+      border-radius: 12px;
+      margin-top: 15px;
+      margin-bottom: 30px;
+      margin-left: 10px;
+      margin-right: 10px;
+      margin-inline-end: 10px;
+  }
 
-}
+  /* To control size of the columns */
 
-/* To control size of the columns */
+  .col-sm-3{
+      padding: 10px;
+      margin-left: 1vw;
+      width: 20vw;
+  }
 
-.col-sm-3{
-  padding: 10px;
-  margin-left: 1vw;
-  width: 20vw;
-}
+  /* controlling size of the input field */
 
-/* controlling size of the input field */
+  .form-control {
+    width: 20vw !important;
+  }
 
-.form-control {
-  width: 20vw !important;
-}
+  .flextitle{
+      text-align: center;
+      font-style: normal;
+      background-color: rgb(100, 210, 238);
+      color:#0e556e;
+      padding: 1px;
+      border-radius: 10px;
+  }
 
-.flextitle{
-  text-align: left;
-  font-style: normal;
-  background-color: rgb(100, 210, 238);
-  color:#0e556e;
-  margin-bottom: 5px;
-     
-}
-.center{
-display: flex;
-justify-content: center;
-align-items: center;
-height: 50px;
-
-}
+  .center{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 50px;
+  }
 </style>
 {% endblock %}
 
