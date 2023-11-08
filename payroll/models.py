@@ -1,8 +1,6 @@
 from django.db import models
 
 
-class User_login(models.Model):
-    user_name=models.CharField(max_length=30)
 
 class Employee_details(models.Model):
     #PERSONAL_DETAILS

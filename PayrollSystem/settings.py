@@ -127,3 +127,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = 'login'  # Replace with the URL pattern name for the login view
 LOGIN_REDIRECT_URL = 'employee_registration'  # Replace with the URL pattern name where you want to redirect after login
+
+

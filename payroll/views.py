@@ -1,5 +1,5 @@
 from django.urls import reverse
-
+#from django.contrib.auth.decorators import login_required
 from django.shortcuts import render , HttpResponse
 from django.views.generic.edit import CreateView
 from .models  import Employee_details ,Salary
@@ -55,14 +55,13 @@ def payment_head(request):
 
 
 
-
+#@login_required
 class employee_registration_View(CreateView): 
    model=Employee_details
    form_class= Employee_details_Form
    template_name='employee_registration.html'
    #fields='__all__'
    #success_url = '/demo2'
-
 
 
     
