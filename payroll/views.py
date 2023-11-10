@@ -1,12 +1,15 @@
 from django.urls import reverse
 #from django.contrib.auth.decorators import login_required
+#from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render , HttpResponse
 from django.views.generic.edit import CreateView
 from .models  import Employee_details ,Salary
 from .forms import Employee_details_Form , Salary_Form
 
 
-# Create your views here.
+
+
+#@login_required
 def base(request): 
     return render(request,'base.html')
 
@@ -14,6 +17,7 @@ def base(request):
 def login(request): 
     return render(request,'login.html')
 
+#@login_required(login_url="login")
 def e_n_drules(request): 
     return render(request,'e_n_drules.html')
 
@@ -55,7 +59,7 @@ def payment_head(request):
 
 
 
-#@login_required
+#class employee_registration_View(CreateView,LoginRequiredMixin): 
 class employee_registration_View(CreateView): 
    model=Employee_details
    form_class= Employee_details_Form

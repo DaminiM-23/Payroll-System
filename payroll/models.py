@@ -1,10 +1,9 @@
 from django.db import models
 
 
-
 class Employee_details(models.Model):
-    #PERSONAL_DETAILS
-    id_no=models.IntegerField(default=0)
+    #PERSONAL_DETAILSS
+    id_no=models.PositiveIntegerField(default=1000)
     title=models.CharField(max_length=30)
     first_name=models.CharField(max_length=30,null=False)
     middle_name=models.CharField(max_length=30)
@@ -12,11 +11,11 @@ class Employee_details(models.Model):
     father_name=models.CharField(max_length=30)
     date_of_birth = models.DateField()
     gender=models.CharField(max_length=30)
-    jntu_no=models.CharField(max_length=30)
-    acite_id=models.CharField(max_length=30)
+    jntu_no=models.CharField(max_length=30 ,unique=True)
+    acite_id=models.CharField(max_length=30 ,unique=True)
     employee_no=models.CharField(max_length=30)
-    sequence_no=models.IntegerField(default=0)
-    aadhar_or_unique_id=models.IntegerField()
+    sequence_no=models.PositiveIntegerField(default=0)
+    aadhar_or_unique_id=models.CharField(max_length=20 , unique=True)
     email = models.EmailField(max_length=30,unique=True)
     cell_no = models.CharField(max_length=20)
     Bloodgroup=models.CharField(max_length=10)
@@ -56,11 +55,11 @@ class Employee_details(models.Model):
 
     #BANK_DETAILS
     bank_acc_no= models.CharField(max_length=20)
-    ifsc_code = models.IntegerField()
-    epf = models.IntegerField()
-    ppf_no = models.IntegerField()
-    pf_no = models.IntegerField()
-    pan_no= models.CharField(max_length=10)
+    ifsc_code =models.CharField(max_length=20)
+    epf = models.CharField(max_length=20)
+    ppf_no = models.CharField(max_length=20)
+    pf_no = models.CharField(max_length=20)
+    pan_no= models.CharField(max_length=20 , unique =True )
 
     #PAY_SCALE_DETAILS
     rule=models.CharField(max_length=30)
