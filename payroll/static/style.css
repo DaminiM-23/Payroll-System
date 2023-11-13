@@ -54,29 +54,8 @@
     text-align: center;
   }
 
+  /* home button */
   
-  
-  
-    /* Login page CSS */
-  
-  /* Shifted to the internal css for login.html */
-  
-  
-    /* Earning and deduction rules css */
-  
-  /* All values have been shifted to the end rules */
-  
-  
-    /* Form flexbox CSS for e_n_drules.html*/
-  
-  
-  /* remaining css has been added as Internal. Check the block in the html template for 
-  1. heading
-  2. */
-  
-    /*  emp_reg page css */
-  
-  /* All current css is internal and has been added in the int_css block */
-  
-  
-  
+  .img > .a {
+    width: 30px;
+  }
