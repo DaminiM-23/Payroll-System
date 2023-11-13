@@ -28,7 +28,7 @@
               {% block nav_item_2 %}
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Payroll 
+                  Payroll   
                 </a>
                 <ul class="dropdown-menu">
                   <li>
@@ -94,7 +94,7 @@
                             <a class="dropdown-item" href="/appoint">Appointment</a>
                           </li>
                           <li>
-                            <a class="dropdown-item" href="/transaction">Transaction Type</a>
+                            <a class="dropdown-item" href="/transaction_mngt">Transaction Type</a>
                           </li>
                           <li>
                             <a class="dropdown-item" href="/pay_level">Pay Level Master</a>
@@ -123,15 +123,6 @@
                           <li>
                             <a class="dropdown-item" href="/e_n_drules">Earning and Deduction Rules</a>
                           </li>
-                          <li>
-                            <a class="dropdown-item" href="#">Image Type</a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="#">Leave Type</a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="#">Loan Type</a>
-                          </li>
                         </ul>
                       </li>
                       <li>
@@ -157,7 +148,7 @@
                   User Profile 
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">unkwn</a></li>
+                  <li><a class="dropdown-item" href="{% url 'logout' %}">logout</a></li>
                   <li>
                     <a class="dropdown-item" href="#">unkwn</a>
                   </li>
@@ -171,6 +162,10 @@
             <ul class="navbar-nav me-end mb-2 mb-lg-0">
               <a class="nav-link" aria-current="page" href="/base" ><img src="../static/home_icon.png" alt="Home" style="height: 2rem;"></a>
             </ul>
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit"> Search</button>
+            </form>
           </div>
         </div>
       </nav>

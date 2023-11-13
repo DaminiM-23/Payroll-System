@@ -106,7 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -122,3 +122,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# projectname/settings.py
+
+LOGIN_URL = 'login'  # Replace with the URL pattern name for the login view
+LOGIN_REDIRECT_URL = 'employee_registration'  # Replace with the URL pattern name where you want to redirect after login
+LOGOUT_REDIRECT_URL = 'login'
+
