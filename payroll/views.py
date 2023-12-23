@@ -9,7 +9,7 @@ from .forms import Employee_details_Form , Salary_Form
 
 def base(request):
     data={
-        'title':'{% block title %}Base Template{% endblock %}',
+        'title':'Base Template',
         'Institute':'Veermata Jeejabai Technological Institute',
         'Address':'H R Mahajani Rd, Matunga, Mumbai, Maharashtra 400019'
         }
@@ -93,7 +93,7 @@ class employee_registration_View(CreateView):
 class Salary_View(CreateView): 
    model=Salary
    form_class= Salary_Form
-   template_name='demo3.html'
+   #template_name='demo3.html'
    #fields='__all__'
    #success_url = '/demo4'
 
