@@ -1,12 +1,17 @@
 from django.urls import reverse
-from django.shortcuts import render , HttpResponse
+from django.shortcuts import render , redirect, HttpResponse
 from django.views.generic.edit import CreateView
 from .models  import Employee_details ,Salary
-from .forms import Employee_details_Form , Salary_Form
+from .forms import Employee_details_Form , Salary_Form 
+from django.contrib import messages
+
+
+
+def success(request): 
+    return render(request,'success.html')
 
 
 # Create your views here.
-
 def base(request):
     data={
         'title':'Base Template',
@@ -15,11 +20,11 @@ def base(request):
         }
     return render(request,"base.html",data)
 
-def login(request): 
-    return render(request,'login.html')
+
 
 def e_n_drules(request): 
     return render(request,'e_n_drules.html')
+
 
 def add_edit_subpay(request):
     return render(request,'add_edit_subpay.html')
@@ -80,14 +85,28 @@ def quarter_type(request):
 def payment_head(request): 
     return render(request,'payment_head.html')
 
+def search(request):
+    query= request.GET.get('q')
+    if query:
+        employees = Employee_details.objects.filter(Q(name__icontains=query) | Q(employee_id__icontains=query))
+    else:
+        employees = Employee_details.objects.all()
+    return render(request, 'employee_registration.html', {'employees': employees, 'query': query})
 
-class employee_registration_View(CreateView): 
+def employee_registration_view(request):
+    if request.method == 'POST':
+        form = Employee_details_Form(request.POST)
+        if form.is_valid():
+            form.save()  # Save the data to the model
+            messages.success(request, 'Employee Registered successfully!')
+            # return redirect('success.html')  # Redirect to a success page
+            form = Employee_details_Form()
+    else:
+        form = Employee_details_Form()
+    return render(request, 'employee_registration.html', {'form': form})
    
-   model=Employee_details
-   form_class= Employee_details_Form
-   template_name='employee_registration.html'
-   #fields='__all__'
-   #success_url = '/demo2'
+   
+
 
     
 class Salary_View(CreateView): 
