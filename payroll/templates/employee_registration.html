@@ -58,10 +58,7 @@
         <label {{form.last_name.id_for_label}}>Last Name:</label>
         {{form.last_name}}
         </div>
-        <div class="col-sm-3">
-          <label {{form.father_name.id_for_label}}>Father Name:</label>
-          {{form.father_name}}
-        </div>
+    
     </div>
     <div class="row g-3"> 
       <div class="col-sm-3">
@@ -72,23 +69,16 @@
           <label {{form.gender.id_for_label}}>Gender:</label>
           {{form.gender}}
       </div>
-      <div class="col-sm-3">
-          <label {{form.jntu_no.id_for_label}}>JNTU ID:</label>
-                {{form.jntu_no}} 
-      </div>
+      
     </div>
     <div class="row g-3">
       <div class="col-sm-3">
-        <label {{form.acite_id.id_for_label}}>ACITE ID:</label>
-        {{form.acite_id}}  
-      </div>
-      <div class="col-sm-3">
-          <label {{form.employee_no.id_for_label}}>Employee No.:</label>
-          {{form.employee_no}}  
-      </div>
-      <div class="col-sm-3">
           <label {{form.aadhar_id.id_for_label}}>Aadhar/Unique ID No.:</label>
           {{form.aadhar_id}} 
+      </div>
+      <div class="col-sm-3">
+          <label {{form.pan_no.id_for_label}}>Pan No.:</label>
+          {{form.pan_no}} 
       </div>
     </div>
     <div class="row g-3">
@@ -97,12 +87,12 @@
         {{form.email}} 
       </div>
       <div class="col-sm-3">
-        <label {{form.cell_no.id_for_label}}>Cell No.:</label>
-        {{form.cell_no}}  
+        <label {{form.mobile_no.id_for_label}}>Mobile No.:</label>
+        {{form.mobile_no}}  
       </div>
       <div class="col-sm-3">
-          <label {{form.bloodgroup.id_for_label}}>Blood Group:</label>
-            {{form.bloodgroup}}
+          <label {{form.address.id_for_label}}>Address:</label>
+            {{form.address}}
       </div> 
     </div> 
   </div>
@@ -116,30 +106,21 @@
         <label {{form.date_of_joining.id_for_label}}>Date of Joining :</label>
                 {{form.date_of_joining}}
       </div>
-      <div class="col-sm-3">
-        <label {{form.shift_joining.id_for_label}}>Shift of Joining :</label>
-                {{form.shift_joining}}
-      </div>
+      
     </div>
     <div class="row g-3">
       <div class="col-sm-3">
         <label {{form.date_of_relieving.id_for_label}}>Date of Relieving :</label>
         {{form.date_of_relieving}}
       </div>
-      <div class="col-sm-3">
-        <label {{form.shift_relieving.id_for_label}}>Shift Relieving :</label>
-        {{form.shift_relieving}}
-      </div> 
+      
     </div>
     <div class="row g-3">
       <div class="col-sm-3">
         <label {{form.date_of_increment.id_for_label}}>Date of Incerment :</label>
         {{form.date_of_increment}}
       </div>
-      <div class="col-sm-3">
-        <label {{form.pay_revised_date.id_for_label}}>Pay Revised Date :</label>
-        {{form.pay_revised_date}}
-      </div>
+      
       <div class="col-sm-3">
         <label {{form.date_of_retirement.id_for_label}}>Date of Retirement :</label>
         {{form.date_of_retirement}}
@@ -166,6 +147,10 @@
           {{form.TA}}      
       </div>
       <div class="col-sm-2 text-center">
+        <label {{form.HRA.id_for_label}}>HRA : </label>   
+        {{form.HRA}}      
+    </div>
+      <div class="col-sm-2 text-center">
         <label {{form.handicap.id_for_label}}>Handicap :</label>
         {{form.handicap}}
       </div>  
@@ -176,12 +161,7 @@
       <div class="col-sm-2 text-center">
         <label {{form.senior_citizen.id_for_label}}>Senior citizen :</label>
         {{form.senior_citizen}}
-      </div>
-      <div class="col-sm-2 text-center">
-          <label {{form.quarter_rent.id_for_label}}>quarter_rent :</label>
-            {{form.quarter_rent}}
-      </div>
-           
+      </div>          
       <div class="col-sm-2 text-center">
         <label {{form.quarter_type.id_for_label}}>Quarter Type:</label>
             {{form.quarter_type}}
@@ -217,32 +197,15 @@
         <label {{form.staff_type.id_for_label}}>Staff Type:</label>
         {{form.staff_type}}
       </div> 
-      <div class="col-sm-3">
-        <label {{form.bank_name.id_for_label}}>Bank Name:</label>
-          {{form.bank_name}}
-        </div>
+      
     </div> 
     <div class="row g-3">
-      <div class="col-sm-3">
-        <label {{form.vocational.id_for_label}}>Vocational:</label>
-      {{form.vocational}}
-      </div> 
-    <div class="col-sm-3"> 
-      <label {{form.bank_branch.id_for_label}}>Bank Branch:</label>
-      {{form.bank_branch}}  
-      </div>
+      
+    
 
-    <div class="col-sm-3">  
-      <label {{form.user_type.id_for_label}}>User Type:</label>
-      {{form.user_type}}
-      </div>   
+     
      </div>
-    <div class="row g-3">
-      <div class="col-sm-3">
-        <label {{form.appointed_in.id_for_label}}>Appointed in:</label>
-              {{form.appointed_in}}
-      </div>
-    </div>
+    
   </div>
   
   <div class="flexborder">
@@ -255,27 +218,33 @@
               {{form.bank_acc_no}} 
       </div>
       <div class="col-sm-3">
+        <label {{form.bank_name.id_for_label}}>Bank Name:</label>
+          {{form.bank_name}}
+        </div>
+      <div class="col-sm-3">
         <label {{form.ifsc_code.id_for_label}}>IFSC Code:</label>
         {{form.ifsc_code}} 
+      </div>
+      
+      <div class="col-sm-3"> 
+        <label {{form.bank_branch.id_for_label}}>Bank Branch:</label>
+        {{form.bank_branch}}  
+        </div>
+    </div>
+    <div class="row g-3">
+      <div class="col-sm-3">
+        <label {{form.gpf_no.id_for_label}}>G.P.F No.:</label>
+                {{form.gpf_no}} 
+      </div>
+      <div class="col-sm-3">
+        <label {{form.dcps_no.id_for_label}}>DCPS No.:</label>
+        {{form.dcps_no}} 
       </div>
       <div class="col-sm-3"> 
         <label {{form.epf.id_for_label}}>EPF:</label>
           {{form.epf}}
       </div>
-    </div>
-    <div class="row g-3">
-      <div class="col-sm-3">
-        <label {{form.ppf_no.id_for_label}}>P.P.F No.:</label>
-                {{form.ppf_no}} 
-      </div>
-      <div class="col-sm-3">
-        <label {{form.pf_no.id_for_label}}>PF No.:</label>
-        {{form.pf_no}} 
-      </div>
-        <div class="col-sm-3">
-          <label {{form.pan_no.id_for_label}}>Pan No.:</label>
-          {{form.pan_no}} 
-      </div>
+        
     </div>
   </div>
 
@@ -287,10 +256,6 @@
       <div class="col-sm-3">
         <label {{form.rule.id_for_label}}>Rule:</label>
           {{form.rule}}
-      </div>
-      <div class="col-sm-3">
-        <label {{form.scale.id_for_label}}>Scale:</label>
-          {{form.scale}}
       </div>
 
       <div class="col-sm-3">
@@ -315,18 +280,15 @@
       <label {{form.grade_pay.id_for_label}}>Grade Pay:</label>
       {{form.grade_pay}} 
     </div>
-    <div class="col-sm-3"> 
-      <label {{form.remark.id_for_label}}>Remark:</label>
-      {{form.remark}}
-    </div> 
+   
   </div>
   </div>
 
   <div class="center" >
     <div class="d-grid gap-3 d-md-block">
-    <button type="submit" class="btn btn-primary" onclick="validateForm()">Submit</button >
-    <button type="button" class="btn btn-warning">Cancel</button>
-    <button type="button" class="btn btn-primary">Back</button>
+    <button type="submit" class="btn btn-primary" onclick="validateForm()">SAVE</button >
+    <button type="button" class="btn btn-warning">UNDO</button>
+    <button type="button" class="btn btn-primary">PRINT</button>
     </div>
   </div>
 </form>
