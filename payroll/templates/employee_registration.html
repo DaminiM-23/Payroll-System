@@ -161,40 +161,38 @@
         Basic Details
     </div>
     <div class="row g-3">
-      <div class="col-sm-3">
-          <label {{form.TA.id_for_label}}>TA :</label>
-          {{form.TA}}
+      <div class="col-sm-2 text-center">
+          <label {{form.TA.id_for_label}}>TA : </label>   
+          {{form.TA}}      
       </div>
-    </div> 
-    <div class="col-sm-3">
-      <label {{form.handicap.id_for_label}}>Handicap :</label>
-      {{form.handicap}}
-    </div>
-      
-      <div class="col-sm-3">
+      <div class="col-sm-2 text-center">
+        <label {{form.handicap.id_for_label}}>Handicap :</label>
+        {{form.handicap}}
+      </div>  
+      <div class="col-sm-2 text-center">
         <label {{form.quarter.id_for_label}}>Quarter :</label>
         {{form.quarter}}
       </div>
-      <div class="col-sm-3">
+      <div class="col-sm-2 text-center">
         <label {{form.senior_citizen.id_for_label}}>Senior citizen :</label>
         {{form.senior_citizen}}
       </div>
-      <div class="row g-3">
-        <div class="col-sm-3">
+      <div class="col-sm-2 text-center">
           <label {{form.quarter_rent.id_for_label}}>quarter_rent :</label>
             {{form.quarter_rent}}
-        </div>
-      </div>       
-      <div class="col-sm-3">
+      </div>
+           
+      <div class="col-sm-2 text-center">
         <label {{form.quarter_type.id_for_label}}>Quarter Type:</label>
             {{form.quarter_type}}
       </div>
+  </div>
   </div>
   <div class="flexborder">
     <div class="flextitle">
         Service Type Details
     </div>
-     <div class="row g-3">
+     <div class="row g-3 "> 
       <div class="col-sm-3">
         <label {{form.designation_nature.id_for_label}}>Designation Nature:</label>
             {{form.designation_nature}}
@@ -309,9 +307,10 @@
         <label {{form.basic.id_for_label}}>Basic:</label>
         {{form.basic}} 
       </div> 
-      <label {{form.pay_status.id_for_label}}>Pay Status:</label>
-      {{form.pay_status}} 
-    </div>
+      <div class="col-sm-3">
+        <label {{form.pay_status.id_for_label}}>Pay Status:</label>
+        {{form.pay_status}} 
+      </div>
     <div class="col-sm-3">
       <label {{form.grade_pay.id_for_label}}>Grade Pay:</label>
       {{form.grade_pay}} 
@@ -320,6 +319,7 @@
       <label {{form.remark.id_for_label}}>Remark:</label>
       {{form.remark}}
     </div> 
+  </div>
   </div>
 
   <div class="center" >
