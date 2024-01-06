@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 
+{% load static %}
+<!-- For the image uplaod -->
+
 {% block title %}Employee Registration{% endblock %}
 
 {% block nav_item_3 %}{% endblock %}
@@ -7,291 +10,260 @@
 {% block heading %}Employee Registration{% endblock %}
 
 {% block content %}
-<form method="post" action="">
-  
-<div class="flexborder">
-  <div class="flextitle">
-      Personal Details
-  </div>
-  {% csrf_token %}
-  {% for field in form %}
-    <div>
-      {% if field.errors %}
-            <span style="color: red;">{{ field.errors.0 }}</span>
-      {% endif %}
-    </div>
-  {% endfor %}
-    <div class="row g-3">
-      <div class="col-sm-3">
-        <label {{form.id_no.id_for_label}}>ID No:</label>
-        {{form.id_no}}  
-      </div>
-      <div class="col-sm-3"> 
-        <!-- <label {{form.photo.id_for_label}}>Upload Photo:</label>
-        {{form.photo}} -->
-      </div>
-    </div>
-    <div class="row g-3">
-      <div class="col-sm-3  ">
-        <label {{form.sequence_no.id_for_label}}>Sequence no:</label>
-        {{form.sequence_no}}   
-      </div> 
-      <div class="col-sm-3">
-        <label {{form.title.id_for_label}}>Title:</label>
-        {{form.title}} 
-      </div> 
-      <div class="col-sm-3">
-        <label {{form.first_name.id_for_label}}>First Name:</label>
-        {{form.first_name}}    
-      </div> 
-       <div class="col-sm-3">
-        <!-- <label {{form.sign.id_for_label}}> Upload Sign:</label>
-        {{form.sign}} -->
-      </div> 
-    </div>
-    <div class="row g-3">
-      <div class="col-sm-3">
-        <label {{form.middle_name.id_for_label}}>Middle Name:</label>
-        {{form.middle_name}}  
-      </div> 
-      <div class="col-sm-3">
-        <label {{form.last_name.id_for_label}}>Last Name:</label>
-        {{form.last_name}}
-        </div>
-    
-    </div>
-    <div class="row g-3"> 
-      <div class="col-sm-3">
-        <label {{form.date_of_birth.id_for_label}}>Date of birth:</label>
-          {{form.date_of_birth}}
-      </div> 
-      <div class="col-sm-3">
-          <label {{form.gender.id_for_label}}>Gender:</label>
-          {{form.gender}}
-      </div>
-      
-    </div>
-    <div class="row g-3">
-      <div class="col-sm-3">
-          <label {{form.aadhar_id.id_for_label}}>Aadhar/Unique ID No.:</label>
-          {{form.aadhar_id}} 
-      </div>
-      <div class="col-sm-3">
-          <label {{form.pan_no.id_for_label}}>Pan No.:</label>
-          {{form.pan_no}} 
-      </div>
-    </div>
-    <div class="row g-3">
-      <div class="col-sm-3">
-        <label {{form.email.id_for_label}}>Email ID:</label>
-        {{form.email}} 
-      </div>
-      <div class="col-sm-3">
-        <label {{form.mobile_no.id_for_label}}>Mobile No.:</label>
-        {{form.mobile_no}}  
-      </div>
-      <div class="col-sm-3">
-          <label {{form.address.id_for_label}}>Address:</label>
-            {{form.address}}
-      </div> 
-    </div> 
-  </div>
 
-  <div class="flexborder">
-    <div class="flextitle">
-        Service Date Details
-    </div>
-    <div class="row g-3"> 
-      <div class="col-sm-3">
-        <label {{form.date_of_joining.id_for_label}}>Date of Joining :</label>
-                {{form.date_of_joining}}
+<form method="post" action="" >
+  <div class="new_block">
+    <div class="title">Personal Details</div>
+      <div class="row d-flex">
+        {% csrf_token %}
+        {% for field in form %}
+          <div>
+            {% if field.errors %}
+                  <span style="color: red;">{{ field.errors.0 }}</span>
+            {% endif %}
+          </div>
+        {% endfor %}       
+        <div class="col-sm-2 px-3 py-2">
+          <label {{ form.id_no.id_for_label }} class="form-label">ID No:</label> 
+            {{ form.id_no }} 
+            
+         
+        </div>
+        <div class="col-sm-2 px-3 py-2">
+          <label {{form.employee_type.id_for_label}} class="form-label">Employee Type:</label>
+            {{form.employee_type}}
+        </div>
+        <div class="col-sm-2 px-3 py-2">
+          <label {{form.sequence_no.id_for_label}} class="form-label">Sequence No. :</label>
+          {{form.sequence_no}}   
+        </div>
+        <!-- <div class="col-sm-1 px-0 py-2 ms-auto">
+          <img id="frame" src="{% if form.instance.photo %}{{ form.instance.photo.url }}{% else %}{% static '../static/dummy.jpg' %}{% endif %}" class="img-fluid photo"><br>
+        </div>
+        <div class="col-sm-2 px-2 py-2">
+          <label {{form.photo.id_for_label}} class="form-label">Upload Photo:</label>
+          {{form.photo}}
+        </div> -->
       </div>
-      
-    </div>
-    <div class="row g-3">
-      <div class="col-sm-3">
-        <label {{form.date_of_relieving.id_for_label}}>Date of Relieving :</label>
+
+      <div class="row d-flex">
+        <div class="col-sm-2 px-3 py-2">
+          <label {{form.title.id_for_label}} class="form-label">Title</label>
+          {{form.title}} 
+        </div>
+        <div class="col-sm-2 px-3 py-2">
+          <label {{form.first_name.id_for_label}} class="form-label">First Name</label>
+          {{form.first_name}}   
+        </div>
+        <div class="col-sm-2 px-3 py-2">
+          <label {{form.middle_name.id_for_label}} class="form-label">Middle Name</label>
+          {{form.middle_name}} 
+        </div>
+        <div class="col-sm-2 px-3 py-2">
+          <label {{form.last_name.id_for_label}} class="form-label">Last Name</label>
+          {{form.last_name}}
+        </div>
+        <!-- <div class="col-sm-1 px-0 py-2 ms-auto">
+          <img id="frame" src="{% if form.instance.photo %}{{ form.instance.photo.url }}{% else %}{% static '../static/dummy_sign.jpg' %}{% endif %}" class="img-fluid sign"><br>
+        </div>
+        <div class="col-sm-2 px-2 py-2">
+          <label {{form.sign.id_for_label}} class="form-label">Upload Sign:</label>
+          {{form.sign}}
+        </div> -->
+      </div>
+      <div class="row d-flex">
+        <div class="col-sm-2 px-3 py-2">
+          <label {{form.date_of_birth.id_for_label}} class="form-label">Date of Birth</label>
+          {{form.date_of_birth}}
+        </div>
+        <div class="col-sm-2 px-3 py-2">
+          <label  {{form.gender.id_for_label}} class="form-label">Gender</label>
+          {{form.gender}}
+        </div>
+        <div class="col-sm-2 px-3 py-2">
+          <label {{form.aadhar_id.id_for_label}} class="form-label">Aadhar/Unique ID No. :</label>
+          {{form.aadhar_id}} 
+        </div>
+        <div class="col-sm-2 px-3 py-2">
+          <label {{form.pan_no.id_for_label}} class="form-label">PAN Card No. :</label>
+          {{form.pan_no}} 
+        </div>
+      </div>
+      <div class="row d-flex">
+        <div class="col-sm-2 px-3 py-2">
+          <label {{form.email.id_for_label}} class="form-label">Email ID</label>
+          {{form.email}} 
+        </div>
+        <div class="col-sm-2 px-3 py-2">
+          <label  {{form.mobile_no.id_for_label}} class="form-label">Mobile No.:</label>
+          {{form.mobile_no}}  
+        </div>
+        <div class="col-sm-2 px-3 py-2">
+          <label  {{form.address.id_for_label}} class="form-label">Address :</label>
+          {{form.address}}  
+        </div>
+      </div>
+  </div>
+  <div class="new_block">
+    <div class="title">Service Date Details</div>
+    <div class="row d-flex">
+      <div class="col-sm-2 px-3 py-2">
+        <label {{form.date_of_joining.id_for_label}} class="form-label">Date of Joining:</label>
+        {{form.date_of_joining}}
+      </div>
+      <div class="col-sm-2 px-3 py-2">
+        <label {{form.date_of_relieving.id_for_label}} class="form-label">Date of relieving :</label>
         {{form.date_of_relieving}}
       </div>
-      
-    </div>
-    <div class="row g-3">
-      <div class="col-sm-3">
-        <label {{form.date_of_increment.id_for_label}}>Date of Incerment :</label>
+      <div class="col-sm-2 px-3 py-2">
+        <label {{form.date_of_increment.id_for_label}} class="form-label">Date of Increment :</label>
         {{form.date_of_increment}}
       </div>
-      
-      <div class="col-sm-3">
-        <label {{form.date_of_retirement.id_for_label}}>Date of Retirement :</label>
+      <div class="col-sm-2 px-3 py-2">
+        <label {{form.date_of_retirement.id_for_label}} class="form-label">Date of Retirement :</label>
         {{form.date_of_retirement}}
-        </div>
-    </div>
-    <div class="row g-3">
-      <div class="col-sm-3">
-        <label {{form.from_appointment_date.id_for_label}}>From Appointment Date :</label>
+      </div>
+      <div class="col-sm-2 px-3 py-2">
+        <label {{form.from_appointment_date.id_for_label}} class="form-label">From Appointment Date :</label>
         {{form.from_appointment_date}}
       </div>
-      <div class="col-sm-3">
-        <label {{form.to_appointment_date.id_for_label}}>To appointment Date :</label>
+      <div class="col-sm-2 px-3 py-2">
+        <label {{form.to_appointment_date.id_for_label}} class="form-label">To Appointment Date :</label>
         {{form.to_appointment_date}}
-      </div> 
+      </div>
     </div>
   </div>
-  <div class="flexborder">
-    <div class="flextitle">
-        Basic Details
-    </div>
-    <div class="row g-3">
-      <div class="col-sm-2 text-center">
-          <label {{form.TA.id_for_label}}>TA : </label>   
-          {{form.TA}}      
+  <div class="new_block">
+    <div class="title">Basic Details</div>
+    <div class="row d-flex">
+      <div class="col-sm-2 px-3 py-2">
+        <label {{form.TA.id_for_label}} class="form-label">TA :</label>
+        {{form.TA}}
       </div>
-      <div class="col-sm-2 text-center">
-        <label {{form.HRA.id_for_label}}>HRA : </label>   
-        {{form.HRA}}      
-    </div>
-      <div class="col-sm-2 text-center">
-        <label {{form.handicap.id_for_label}}>Handicap :</label>
+      <div class="col-sm-2 px-3 py-2">
+        <label {{form.handicap.id_for_label}} class="form-label">Handicap :</label>
         {{form.handicap}}
-      </div>  
-      <div class="col-sm-2 text-center">
-        <label {{form.quarter.id_for_label}}>Quarter :</label>
+      </div>
+      <div class="col-sm-2 px-3 py-2">
+        <label  {{form.quarter.id_for_label}} class="form-label">Quarter</label>
         {{form.quarter}}
       </div>
-      <div class="col-sm-2 text-center">
-        <label {{form.senior_citizen.id_for_label}}>Senior citizen :</label>
+      <div class="col-sm-2 px-3 py-2">
+        <label {{form.senior_citizen.id_for_label}} class="form-label">Senior Citizen :</label>
         {{form.senior_citizen}}
-      </div>          
-      <div class="col-sm-2 text-center">
-        <label {{form.quarter_type.id_for_label}}>Quarter Type:</label>
-            {{form.quarter_type}}
       </div>
-  </div>
-  </div>
-  <div class="flexborder">
-    <div class="flextitle">
-        Service Type Details
+      <div class="col-sm-2 px-3 py-2">
+        <label {{form.HRA.id_for_label}} class="form-label">HRA :</label>
+        {{form.HRA}}
+      </div>
+      <div class="col-sm-2 px-3 py-2">
+        <label {{form.quarter_type.id_for_label}} class="form-label">Quarter Type :</label>
+        {{form.quarter_type}}
+      </div>
     </div>
-     <div class="row g-3 "> 
-      <div class="col-sm-3">
-        <label {{form.designation_nature.id_for_label}}>Designation Nature:</label>
-            {{form.designation_nature}}
+  </div>
+  <div class="new_block">
+    <div class="title">Service Type Details</div>
+    <div class="row d-flex">
+      <div class="col-sm-2 px-3 py-2">
+        <label {{form.designation_nature.id_for_label}} class="form-label">Designation Nature :</label>
+        {{form.designation_nature}}
       </div>
-
-    <div class="col-sm-3">
-      <label {{form.department.id_for_label}}>Department:</label>
-      {{form.department}}
-    </div> 
-    <div class="col-sm-3">
-      <label {{form.designation.id_for_label}}>Designation:</label>
-          {{form.designation}}
-          </div> 
-    </div>
-    <div class="row g-3">
-      <div class="col-sm-3">
-        <label {{form.appointment.id_for_label}}>Appointment:</label>
-          {{form.appointment}}
+      <div class="col-sm-2 px-3 py-2">
+        <label {{form.department.id_for_label}} class="form-label">Department :</label>
+        {{form.department}}
       </div>
-
-    <div class="col-sm-3"> 
-        <label {{form.staff_type.id_for_label}}>Staff Type:</label>
+      <div class="col-sm-2 px-3 py-2">
+        <label {{form.designation.id_for_label}} class="form-label">Designation :</label>
+        {{form.designation}}
+      </div>
+      <div class="col-sm-2 px-3 py-2">
+        <label {{form.appointment.id_for_label}} class="form-label">Appointment</label>
+        {{form.appointment}}
+      </div>
+      <div class="col-sm-2 px-3 py-2">
+        <label {{form.staff_type.id_for_label}} class="form-label">Staff Type :</label>
         {{form.staff_type}}
-      </div> 
-      
-    </div> 
-    <div class="row g-3">
-      
-    
-
-     
-     </div>
-    
-  </div>
-  
-  <div class="flexborder">
-    <div class="flextitle">
-        Bank Details
-    </div>
-    <div class="row g-3">
-      <div class="col-sm-3">
-        <label {{form.bank_acc_no.id_for_label}}>Bank Account Number:</label>
-              {{form.bank_acc_no}} 
       </div>
-      <div class="col-sm-3">
-        <label {{form.bank_name.id_for_label}}>Bank Name:</label>
-          {{form.bank_name}}
-        </div>
-      <div class="col-sm-3">
-        <label {{form.ifsc_code.id_for_label}}>IFSC Code:</label>
+    </div>
+  </div>
+  <div class="new_block">
+    <div class="title">Bank Details</div>
+    <div class="row d-flex">
+      <div class="col-sm-2 px-3 py-2">
+        <label {{form.bank_name.id_for_label}} class="form-label">Bank Name :</label>
+        {{form.bank_name}}
+      </div>
+      <div class="col-sm-2 px-3 py-2">
+        <label {{form.bank_branch.id_for_label}} class="form-label">Bank Branch :</label>
+        {{form.bank_branch}}  
+      </div>
+      <div class="col-sm-2 px-3 py-2">
+        <label {{form.bank_acc_no.id_for_label}} class="form-label">Bank Account Number:</label>
+        {{form.bank_acc_no}} 
+      </div>
+      <div class="col-sm-2 px-3 py-2">
+        <label {{form.ifsc_code.id_for_label}} class="form-label">IFSC Code :</label>
         {{form.ifsc_code}} 
       </div>
-      
-      <div class="col-sm-3"> 
-        <label {{form.bank_branch.id_for_label}}>Bank Branch:</label>
-        {{form.bank_branch}}  
-        </div>
     </div>
-    <div class="row g-3">
-      <div class="col-sm-3">
-        <label {{form.gpf_no.id_for_label}}>G.P.F No.:</label>
-                {{form.gpf_no}} 
+    <div class="row d-flex">
+      <div class="col-sm-2 px-3 py-2">
+        <label  {{form.epf.id_for_label}} class="form-label">EPF :</label>
+        {{form.epf}}
       </div>
-      <div class="col-sm-3">
-        <label {{form.dcps_no.id_for_label}}>DCPS No.:</label>
+      <div class="col-sm-2 px-3 py-2">
+        <label {{form.gpf_no.id_for_label}} class="form-label">G.P.F. No. :</label>
+        {{form.gpf_no}} 
+      </div>
+      <div class="col-sm-2 px-3 py-2">
+        <label {{form.dcps_no.id_for_label}} class="form-label">D.C.P.S. No.:</label>
         {{form.dcps_no}} 
       </div>
-      <div class="col-sm-3"> 
-        <label {{form.epf.id_for_label}}>EPF:</label>
-          {{form.epf}}
-      </div>
-        
     </div>
   </div>
-
-  <div class="flexborder">
-    <div class="flextitle">
-        Pay-Scale Details 
-    </div> 
-     <div class="row g-3">
-      <div class="col-sm-3">
-        <label {{form.rule.id_for_label}}>Rule:</label>
-          {{form.rule}}
+  <div class="new_block">
+    <div class="title">Pay-Scale Details</div>
+    <div class="row d-flex">
+      <div class="col-sm-2 px-3 py-2">
+        <label {{form.rule.id_for_label}} class="form-label">Rule :</label>
+        {{form.rule}}
       </div>
-
-      <div class="col-sm-3">
-        <label {{form.pay_level.id_for_label}}>Pay Level:</label>
-          {{form.pay_level}}
-      </div> 
-       <div class="col-sm-3">
-        <label {{form.cell_number.id_for_label}}>Cell Number:</label>
-          {{form.cell_number}}
+      <div class="col-sm-2 px-3 py-2">
+        <label  {{form.pay_level.id_for_label}} class="form-label">Pay Level :</label>
+        {{form.pay_level}}
       </div>
-    </div> 
-    <div class="row g-3">
-      <div class="col-sm-3">
-        <label {{form.basic.id_for_label}}>Basic:</label>
+      <div class="col-sm-2 px-3 py-2">
+        <label {{form.cell_number.id_for_label}} class="form-label">Cell Number :</label>
+        {{form.cell_number}}
+      </div>
+      <div class="col-sm-2 px-3 py-2">
+        <label {{form.basic.id_for_label}} class="form-label">Basic :</label>
         {{form.basic}} 
-      </div> 
-      <div class="col-sm-3">
-        <label {{form.pay_status.id_for_label}}>Pay Status:</label>
+      </div>
+      <div class="col-sm-2 px-3 py-2">
+        <label {{form.pay_status.id_for_label}} class="form-label">Pay Status :</label>
         {{form.pay_status}} 
       </div>
-    <div class="col-sm-3">
-      <label {{form.grade_pay.id_for_label}}>Grade Pay:</label>
-      {{form.grade_pay}} 
+      <div class="col-sm-2 px-3 py-2">
+        <label {{form.grade_pay.id_for_label}} class="form-label">Grade Pay :</label>
+        {{form.grade_pay}} 
+      </div>
     </div>
-   
   </div>
-  </div>
+
 
   <div class="center" >
     <div class="d-grid gap-3 d-md-block">
-    <button type="submit" class="btn btn-primary" onclick="validateForm()">SAVE</button >
-    <button type="button" class="btn btn-warning">UNDO</button>
+    <button type="submit" class="btn btn-primary">SAVE</button >
+    <button type="button" class="btn btn-primary">UNDO</button>
     <button type="button" class="btn btn-primary">PRINT</button>
     </div>
   </div>
 </form>
+
+=======
+
 {% endblock %}
 
 {% block int_css %}
@@ -300,33 +272,10 @@
     overflow-x: hidden;
   }
 
-  .flexborder{
-      border-width: 2px;
-      border-color: rgb(100, 210, 238);
-      border-style: solid;
-      border-radius: 12px;
-      margin-top: 15px;
-      margin-bottom: 30px;
-      margin-left: 10px;
-      margin-right: 10px;
-      margin-inline-end: 10px;
+  .new_block{
+    margin: 2vw;
   }
-
-  /* To control size of the columns */
-
-  .col-sm-3{
-      padding: 10px;
-      margin-left: 1vw;
-      width: 20vw;
-  }
-
-  /* controlling size of the input field */
-
-  .form-control {
-    width: 20vw !important;
-  }
-
-  .flextitle{
+  .title{
       text-align: center;
       font-style: normal;
       background-color: rgb(100, 210, 238);
@@ -341,5 +290,17 @@
       align-items: center;
       height: 50px;
   }
+
+  .photo{
+    object-fit: cover;
+    height: 9vw; 
+ }
+
+ .sign{
+    object-fit: cover;
+    width: 9vw;
+ }
+
+  
 </style>
 {% endblock %}
