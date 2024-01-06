@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{{title}}</title>
+    <title>Base Template</title>
     
     <link rel="stylesheet" href="../static/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" >
@@ -12,8 +12,8 @@
   </head>
 <body>
     <div class="header">
-        <h1>{{Institute}}</h1>
-        <h4><i>{{Address}}</i></h4>
+        <h1>Veermata Jeejabai Technological Institute</h1>
+        <h4><i>H R Mahajani Rd, Matunga, Mumbai, Maharashtra 400019</i></h4>
     </div>
     <div class="homenav">
       <nav class="navbar navbar-expand-lg bg-light">
@@ -148,7 +148,7 @@
                   User Profile 
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="{% url 'logout' %}">logout</a></li>
+                  <li><a class="dropdown-item" href="">logout</a></li>
                   <li>
                     <a class="dropdown-item" href="#">unkwn</a>
                   </li>
@@ -160,12 +160,21 @@
               {% endblock %}
             </ul>
             <ul class="navbar-nav me-end mb-2 mb-lg-0">
-              <a class="nav-link" aria-current="page" href="/base" ><img src="../static/home_icon.png" alt="Home" style="height: 2rem;"></a>
-            </ul>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit"> Search</button>
-            </form>
+              <a class="nav-link" aria-current="page" href="" ><img src="../static/home_icon.png" alt="Home" style="height: 2rem;"></a>
+            </ul> <!-- 
+            <form class="d-flex" role="search"> </form>   -->
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" value="{{ query }}">
+              <button onclick="searchEmployees()" class="btn btn-outline-success" type="submit"> Search</button>
+            <!-- JavaScript to handle the search -->
+                <script>
+                  function searchEmployees() {
+                      // Get the value from the input field
+                      var query = document.querySelector('input[name="q"]').value;
+
+                      // Redirect to the search URL with the query parameter
+                      window.location.href = '/search/?q=' + query;
+                  }
+                </script>
           </div>
         </div>
       </nav>

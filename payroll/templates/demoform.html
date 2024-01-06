@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}Employee Registration{% endblock %}
+
+{% block nav_item_3 %}{% endblock %}
+
+{% block heading %}Employee Registration{% endblock %}
+
+{% block content %}
+<form method="post" action="">
+   {% csrf_token %}
+  <div class="new_block">
+    <div class="title">Personal Details</div>
+    <div class="row d-flex">
+      <!-- <div class="col-sm-2 px-3 py-2">
+        <label for="" class="form-label">Employee Type:</label>
+        <select id="emp_type" class="form-select">
+          <option selected>Choose...</option>
+          <option>...</option>
+        </select>
+      </div> -->
+      <div class="col-sm-2 px-3 py-2">
+         <label {{form.id_no.id_for_label}}>ID No:</label>
+         {{form.id_no}}  
+      </div>
+      <!-- <div class="col-sm-2 px-3 py-2">
+        <label for="" class="form-label">Sequence No. :</label>
+        <input type="text" class="form-control" placeholder="id_no" aria-label="id_no">
+      </div> -->
+      <!-- <div class="col-sm-2 px-3">
+          <img id="frame" src="../static/dummy.jpg" class="img-fluid"><br>
+          <label for="{{form.photo.id_for_label}}" class="form-label">Upload Photo:</label>
+          <input type="file" id="formFile" onchange="preview()" class="form-control-file">
+      </div> -->
+    </div>
+  </div>
+
+
+  <div class="center" >
+    <div class="d-grid gap-3 d-md-block">
+    <button type="submit" class="btn btn-primary" >SAVE</button >
+    <button type="button" class="btn btn-warning">UNDO</button>
+    <button type="button" class="btn btn-primary">PRINT</button>
+    </div>
+  </div>
+</form>
+
+<script>
+  function preview() {
+      frame.src = URL.createObjectURL(event.target.files[0]);
+  }
+  function clearImage() {
+      document.getElementById('formFile').value = null;
+      frame.src = "";
+  }
+</script>
+{% endblock %}
+
+{% block int_css %}
+<style>
+  body{
+    overflow-x: hidden;
+  }
+
+  .new_block{
+    margin: 2vw;
+  }
+  .title{
+      text-align: center;
+      font-style: normal;
+      background-color: rgb(100, 210, 238);
+      color:#0e556e;
+      padding: 1px;
+      border-radius: 10px;
+  }
+
+  .center{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 50px;
+  }
+
+  .img-fluid{
+    object-fit: cover;
+    height: 10vw; 
+ }
+  
+</style>
+{% endblock %}

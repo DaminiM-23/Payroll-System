@@ -2,19 +2,19 @@
 from django.contrib import admin 
 from django.urls import path 
 from django.contrib.auth import views as auth_views
-from .views import employee_registration_View ,Salary_View
+from .views import employee_registration_view ,Salary_View
 from payroll import views
 
   
 urlpatterns = [ 
-    path('', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
-    path('logout', auth_views.LogoutView.as_view(), name='logout'),
+    # path('demoform', views.demoform_view,name='demoform'),
     path('base', views.base,name='base'),
     path('e_n_drules', views.e_n_drules ,name='e_n_drules'),
-    path('employee_registration', employee_registration_View.as_view() ,name='employee_registration'),
+    path('', views.employee_registration_view ,name='employee_registration'),
     path('add_edit_subpay',views.add_edit_subpay ,name='add_edit_subpay'),
     path('rule_man',views.rule_man ,name='rule_man'),
     path('staff',views.staff ,name='staff'),
+    path('success',views.success ,name='success'),
     path('staff_man',views.staff_man ,name='staff_man'),
     path('supp_head',views.supp_head ,name='supp_head'),
     path('appoint',views.appoint ,name='appoint'),
