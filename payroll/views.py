@@ -2,13 +2,7 @@ from django.urls import reverse
 from django.shortcuts import render , redirect, HttpResponse
 from django.views.generic.edit import CreateView
 from .models  import Employee_details ,Salary
-from .forms import Employee_details_Form , Salary_Form 
-from django.contrib import messages
-
-
-
-def success(request): 
-    return render(request,'success.html')
+from .forms import Employee_details_Form , Salary_Form
 
 
 # Create your views here.
@@ -36,8 +30,22 @@ def staff(request):
     return render(request,'staff.html')
     
 
-def staff_man(request): 
-    return render(request,'staff_man.html')
+# def staff_man(request): 
+#     return render(request,'staff_man.html')
+
+# def staff_man(request):
+#     if request.method == 'POST':
+#         form = Staff_Mngt_Form(request.POST)
+#         if form.is_valid():
+#             form.save()  # Save the data to the model
+#             # messages.success(request, 'Employee Registered successfully!')
+#             # return redirect('success.html')  # Redirect to a success page
+#             form = Staff_Mngt_Form()
+#     else:
+#         form = Staff_Mngt_Form()
+#     return render(request, 'employee_registration.html', {'form': form})
+
+
 
 def supp_head(request): 
     data={
@@ -85,28 +93,14 @@ def quarter_type(request):
 def payment_head(request): 
     return render(request,'payment_head.html')
 
-def search(request):
-    query= request.GET.get('q')
-    if query:
-        employees = Employee_details.objects.filter(Q(name__icontains=query) | Q(employee_id__icontains=query))
-    else:
-        employees = Employee_details.objects.all()
-    return render(request, 'employee_registration.html', {'employees': employees, 'query': query})
 
-def employee_registration_view(request):
-    if request.method == 'POST':
-        form = Employee_details_Form(request.POST)
-        if form.is_valid():
-            form.save()  # Save the data to the model
-            messages.success(request, 'Employee Registered successfully!')
-            # return redirect('success.html')  # Redirect to a success page
-            form = Employee_details_Form()
-    else:
-        form = Employee_details_Form()
-    return render(request, 'employee_registration.html', {'form': form})
+class employee_registration_View(CreateView): 
    
-   
-
+   model=Employee_details
+   form_class= Employee_details_Form
+   template_name='employee_registration.html'
+   #fields='__all__'
+   #success_url = '/demo2'
 
     
 class Salary_View(CreateView): 
