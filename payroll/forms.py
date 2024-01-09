@@ -61,7 +61,13 @@ class Employee_details_Form(forms.ModelForm):
              'HRA':forms.RadioSelect(choices=[(True, 'Yes'), (False, 'No')],)
               }
 
-
+class rule_man_Form(forms.ModelForm):
+    class Meta:
+        model = rule_man
+        fields = [ 'pay_rule','rule_name']
+        widgets={
+            'pay_rule':forms.TextInput(attrs={'class': 'form-control'}),
+            'rule_name':forms.TextInput(attrs={'class': 'form-control'}),
 
 class Salary_Form(forms.ModelForm):
     class Meta:
