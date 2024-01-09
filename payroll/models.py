@@ -32,26 +32,7 @@ class Employee_details(models.Model):
     address=models.CharField(max_length=100,default='')
     # photo=models.FileField( default='')
     # sign=models.FileField(default='')
-    
-
-    TITLE_CHOICES = [('1', 'Mr.'),('2', 'Mrs.'), ('3', 'Dr.')] 
-    title=models.CharField(max_length=1,choices=TITLE_CHOICES,blank=False)
-    first_name=models.CharField(max_length=30, default='')
-    middle_name=models.CharField(max_length=30, default='')
-    last_name=models.CharField(max_length=30, default='')
-    date_of_birth = models.DateField()
-    GENDER_CHOICES = [('M', 'Male'),('F', 'Female'), ('O', 'Other')] 
-    gender=models.CharField(max_length=1,choices=GENDER_CHOICES,blank=False)
-    
-    aadhar_id=models.CharField(max_length=20,default='')
-    pan_no= models.CharField(max_length=20 , unique =True ,blank=False)
-    email = models.EmailField(max_length=30,default='')
-    mobile_no = models.CharField(max_length=20,default='')
-    address=models.CharField(max_length=100,default='')
-    # photo=models.FileField( upload_to='static/employee_photos',validators=[FileExtensionValidator(['jpg', 'jpeg', 'png'])],max_length=255,blank=True)
-    # sign=models.FileField( upload_to='static/employee_signs',validators=[FileExtensionValidator(['jpg', 'jpeg', 'png'])],max_length=255,blank=True)
-
-    # #SERVICE_DATE_DETAILS
+       
     # #SERVICE_DATE_DETAILS
     date_of_joining = models.DateField()
     date_of_relieving = models.DateField()
@@ -298,14 +279,7 @@ class Employee_details(models.Model):
          ]
     quarter_type=models.CharField(max_length=1, choices=QUARTER_TYPE_CHOICES, blank=False)
 
-    # # #BANK_DETAILS
-    bank_acc_no= models.CharField(max_length=20,blank=False)
-    ifsc_code =models.CharField(max_length=20,blank=False)
-    bank_name=models.CharField(max_length=1, choices=BANK_NAME_CHOICES, blank=False)
-    bank_branch=models.CharField(max_length=30,blank=False)  
-    epf=models.CharField(max_length=20,  blank=False)
-    gpf_no = models.CharField(max_length=20, unique =True ,blank=False)
-    dcps_no = models.CharField(max_length=20, unique =True ,blank=False)
+    
     
     # # #BANK_DETAILS
     bank_acc_no= models.CharField(max_length=20,blank=False)
@@ -320,7 +294,6 @@ class Employee_details(models.Model):
     gpf_no = models.CharField(max_length=20, unique =True ,blank=False)
     dcps_no = models.CharField(max_length=20, unique =True ,blank=False)
     
-
     # # #PAY_SCALE_DETAILS
     RULE_CHOICES = [   
         ('1', 'R7'),
@@ -377,68 +350,9 @@ class Employee_details(models.Model):
     basic=models.IntegerField(default=0)
     pay_status=models.BooleanField(blank=False)
     grade_pay=models.CharField(max_length=30,blank=False)
-    
-   
 
-
-    # # #PAY_SCALE_DETAILS
-    RULE_CHOICES = [   
-        ('1', 'R7'),
-        ('2', 'R6'),
-        ('3', 'LUMSUM'),
-        ('4', 'Daily Wages ')]
-    rule=models.CharField(max_length=1, choices=RULE_CHOICES, blank=False)
-    PAY_LEVEL_CHOICES = [
-        ('1', 'S-1(15000-47600)'),
-        ('2', 'S-2(15300-48700)'),
-        ('3', 'S-3(16600-52400)'),
-        ('4', 'S-4(17100-54000)'),
-        ('5', 'S-5(18000-56900)'),
-        ('6', 'S-6(19900-63200)'),
-        ('7', 'S-7(21700-69100)'),
-        ('8', 'S-8(25500-81100)'),
-        ('9', 'S-9(26400-83600)'),
-        ('10', 'S-10(29200-92300)'),
-        ('11', 'S-11(30100-95100)'),
-        ('12', 'S-12(32000-101600)'),
-        ('13', 'S-13(35400-112400)'),
-        ('14', 'S-14(38600-122800)'),
-        ('15', 'S-15(41800-132300)'),
-        ('16', 'S-16(44900-142400)'),
-        ('17', 'S-17(47600-151100)'),
-        ('18', 'S-18(49100-155800)'),
-        ('19', '1-1(0)'),
-        ('20', '15600-39100(5000)'),
-        ('21', '9A(56100-177500)'),
-        ('22', '10(57700-182400)'),
-        ('23', '11(68900-205500)'),
-        ('24', '12(79800-211500)'),
-        ('25', '13A1(131400-217100)'),
-        ('26', '14(144200-218200)'),
-        ('27' ,'LUMSUM')]
-    pay_level=models.CharField(max_length=30, choices=PAY_LEVEL_CHOICES, blank=False)
-    CELL_NUMBER_CHOICES = [    
-        ('1', '1'),
-        ('2', '2'),
-        ('3', '3'),
-        ('4', '4'),
-        ('5', '5'),
-        ('6', '6'),
-        ('7', '7'),
-        ('8', '8'),
-        ('9', '9'),
-        ('10', '10'),
-        ('11', '11'),
-        ('12', '12'),
-        ('13', '13'),
-        ('14', '14'),
-        ('15', '15'),]
-    cell_number=models.CharField(max_length=10, choices=CELL_NUMBER_CHOICES, blank=False)
-    basic=models.IntegerField(default=0)
-    pay_status=models.BooleanField(blank=False)
-    grade_pay=models.CharField(max_length=30,blank=False)
-
- 
+    def __str__(self):
+        return f"{self.employee_type} - {self.id}"
    
 class Salary(models.Model):
     Salary=models.IntegerField()
@@ -452,3 +366,14 @@ class Salary(models.Model):
     
 
 # class Payslip(models.model):
+    
+class staff_type(models.Model):
+    stafftype =models.CharField(max_length=30, default='')
+
+
+
+# retirement_age =models.CharField(max_length=10,default='')
+
+class rule_man(models.Model):
+    pay_rule =models.CharField(max_length=30, default='')
+    rule_name =models.CharField(max_length=30, default='')
