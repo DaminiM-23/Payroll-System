@@ -1,8 +1,10 @@
-from django.urls import reverse
-from django.shortcuts import render , redirect, HttpResponse
+from django.urls import reverse_lazy
+from django.shortcuts import render , redirect, HttpResponseRedirect , get_object_or_404
 from django.views.generic.edit import CreateView
-from .models  import Employee_details ,Salary
-from .forms import Employee_details_Form , Salary_Form
+from .models  import Employee_details ,Salary , staff_type , rule_man
+from .forms import Employee_details_Form , Salary_Form , rule_man_Form , staff_type_Form
+from django.contrib import messages
+from django.core import validators
 
 
 # Create your views here.
@@ -23,8 +25,21 @@ def e_n_drules(request):
 def add_edit_subpay(request):
     return render(request,'add_edit_subpay.html')
    
-def rule_man(request): 
-    return render(request,'rule_man.html')
+def rule_man_view(request):
+    if request.method == 'POST':
+        fm = rule_man_Form(request.POST)
+        if fm.is_valid():
+            pr=fm.cleaned_data['pay_rule']
+            rm=fm.cleaned_data['rule_name']
+            reg=rule_man(pay_rule=pr, rule_name=rm)
+            reg.save()  # Save the data to the model
+            messages.success(request, 'Pay Rule added successfully!')
+            return redirect('rule_man')  # Redirect to a success page
+            fm = rule_man_Form()
+    else:
+        fm = rule_man_Form()
+    rule_data = rule_man.objects.all()
+    return render(request, 'rule_man.html', {'form': fm,'rule_data': rule_data})
 
 def staff(request): 
     return render(request,'staff.html')
@@ -94,13 +109,17 @@ def payment_head(request):
     return render(request,'payment_head.html')
 
 
-class employee_registration_View(CreateView): 
-   
-   model=Employee_details
-   form_class= Employee_details_Form
-   template_name='employee_registration.html'
-   #fields='__all__'
-   #success_url = '/demo2'
+def employee_registration_view(request):
+    if request.method == 'POST':
+        form = Employee_details_Form(request.POST)
+        if form.is_valid():
+            form.save()  # Save the data to the model
+            messages.success(request, 'Employee Registered successfully!')
+          
+            form = Employee_details_Form()
+    else:
+        form = Employee_details_Form()
+    return render(request, 'employee_registration.html', {'form': form})
 
     
 class Salary_View(CreateView): 
