@@ -33,9 +33,38 @@
           <label {{form.employee_type.id_for_label}} class="form-label">Employee Type:</label>
             {{form.employee_type}}
         </div>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+          $(document).ready(function () {
+            $('#id_employee_type').change(function () {
+              var selectedType = $(this).val();
+              var sequenceNoField = $('#id_sequence_no');
+        
+              if (selectedType === '1') 
+              {
+                sequenceNoField.val('1000');
+              } 
+              else if (selectedType === '2') 
+              {
+                sequenceNoField.val('4000');
+              } 
+              else if (selectedType === '3') 
+              {
+                sequenceNoField.val('5000');
+              }
+              else if (selectedType === '4')
+              {
+                sequenceNoField.val('7000');
+              }
+            });
+          });
+        </script>
+
         <div class="col-sm-2 px-3 py-2">
-          <label {{form.sequence_no.id_for_label}} class="form-label">Sequence No. :</label>
+          <label {{form.sequence_no.id_for_label}} class="form-label" >Sequence No. :</label>
           {{form.sequence_no}}   
+          
         </div>
         <!-- <div class="col-sm-1 px-0 py-2 ms-auto">
           <img id="frame" src="{% if form.instance.photo %}{{ form.instance.photo.url }}{% else %}{% static '../static/dummy.jpg' %}{% endif %}" class="img-fluid photo"><br>
@@ -105,7 +134,7 @@
       </div>
   </div>
   <div class="new_block">
-    <div class="title">Service Date Details</div>
+    <div class="title">Service  Details</div>
     <div class="row d-flex">
       <div class="col-sm-2 px-3 py-2">
         <label {{form.date_of_joining.id_for_label}} class="form-label">Date of Joining:</label>
@@ -130,6 +159,26 @@
       <div class="col-sm-2 px-3 py-2">
         <label {{form.to_appointment_date.id_for_label}} class="form-label">To Appointment Date :</label>
         {{form.to_appointment_date}}
+      </div>
+      <div class="col-sm-2 px-3 py-2">
+        <label {{form.designation_nature.id_for_label}} class="form-label">Designation Nature :</label>
+        {{form.designation_nature}}
+      </div>
+      <div class="col-sm-2 px-3 py-2">
+        <label {{form.department.id_for_label}} class="form-label">Department :</label>
+        {{form.department}}
+      </div>
+      <div class="col-sm-2 px-3 py-2">
+        <label {{form.designation.id_for_label}} class="form-label">Designation :</label>
+        {{form.designation}}
+      </div>
+      <div class="col-sm-2 px-3 py-2">
+        <label {{form.appointment.id_for_label}} class="form-label">Appointment</label>
+        {{form.appointment}}
+      </div>
+      <div class="col-sm-2 px-3 py-2">
+        <label {{form.staff_type.id_for_label}} class="form-label">Staff Type :</label>
+        {{form.staff_type}}
       </div>
     </div>
   </div>
@@ -162,7 +211,7 @@
       </div>
     </div>
   </div>
-  <div class="new_block">
+  {% comment %} <div class="new_block">
     <div class="title">Service Type Details</div>
     <div class="row d-flex">
       <div class="col-sm-2 px-3 py-2">
@@ -186,7 +235,7 @@
         {{form.staff_type}}
       </div>
     </div>
-  </div>
+  </div> {% endcomment %}
   <div class="new_block">
     <div class="title">Bank Details</div>
     <div class="row d-flex">
@@ -300,6 +349,11 @@
     object-fit: cover;
     width: 9vw;
  }
+
+ .form-control option[value=""] {
+  color: #888888; /* Change the color as needed */
+}
+
 
   
 </style>
