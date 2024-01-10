@@ -1,7 +1,7 @@
 from django import forms
-from .models import Employee_details ,Salary 
-from django.contrib.auth.models import User
-       
+from .models import Employee_details ,Salary , staff_type , rule_man
+# from django.contrib.auth.models import User
+# from django.core import validators      
 
 
 class Employee_details_Form(forms.ModelForm):         
@@ -31,14 +31,14 @@ class Employee_details_Form(forms.ModelForm):
              'title':forms.Select(attrs={'class': 'form-control'}),
              'middle_name':forms.TextInput(attrs={'class': 'form-control'}),
              'last_name':forms.TextInput(attrs={'class': 'form-control'}),
-             'first_name':forms.TextInput(attrs={'class': 'form-control'}),
+             'first_name':forms.TextInput(attrs={'class': 'form-control','placeholder':'Enter your name'}),
              'gender':forms.Select(attrs={'class': 'form-control'}),
-             'sequence_no':forms.TextInput(attrs={'class': 'form-control'}),
+             'sequence_no':forms.TextInput(attrs={'class': 'form-control','readonly': 'readonly'}),
              'aadhar_id':forms.TextInput(attrs={'class': 'form-control'}),
              'pan_no':forms.TextInput(attrs={'class': 'form-control'}),
              'email':forms.TextInput(attrs={'class': 'form-control'}),
              'mobile_no':forms.TextInput(attrs={'class': 'form-control'}),
-             'address':forms.TextInput(attrs={'class': 'form-control'}),
+             'address':forms.Textarea(attrs={'class':  'form-control form-horizontal','rows': 2}),
              'designation_nature' :forms.Select(attrs={'class': 'form-control'}),
              'department':forms.Select(attrs={'class': 'form-control'}),
              'designation':forms.Select(attrs={'class': 'form-control'}),
@@ -61,13 +61,7 @@ class Employee_details_Form(forms.ModelForm):
              'HRA':forms.RadioSelect(choices=[(True, 'Yes'), (False, 'No')],)
               }
 
-class rule_man_Form(forms.ModelForm):
-    class Meta:
-        model = rule_man
-        fields = [ 'pay_rule','rule_name']
-        widgets={
-            'pay_rule':forms.TextInput(attrs={'class': 'form-control'}),
-            'rule_name':forms.TextInput(attrs={'class': 'form-control'}),
+
 
 class Salary_Form(forms.ModelForm):
     class Meta:
@@ -75,11 +69,22 @@ class Salary_Form(forms.ModelForm):
         fields = '__all__'
         
 
-class Staff_Mngt_Form(forms.ModelForm):
+class staff_type_Form(forms.ModelForm):
     class Meta:
-        model = Employee_details
-        fields = ['staff_type']
+        model = staff_type
+        fields = ['stafftype']
+        widgets={
+            'stafftype':forms.TextInput(attrs={'class': 'form-control'})
+            }
 
+class rule_man_Form(forms.ModelForm):
+    class Meta:
+        model = rule_man
+        fields = [ 'pay_rule','rule_name']
+        widgets={
+            'pay_rule':forms.TextInput(attrs={'class': 'form-control'}),
+            'rule_name':forms.TextInput(attrs={'class': 'form-control'}),
+        }
 # class demoform_Form(forms.ModelForm):         
 #     class Meta:
 #         model = demo
@@ -87,3 +92,13 @@ class Staff_Mngt_Form(forms.ModelForm):
 
        
 
+# class EmployeeForm(forms.Form):
+#     EMPLOYEE_TYPE_CHOICES = [
+#         ('1', 'Permanent'),
+#         ('2', 'Contractual Non-Teaching'),
+#         ('3', 'Contractual Teaching'),
+#         ('4', 'Security'),
+#     ]
+    
+#     employee_type = forms.ChoiceField(choices=EMPLOYEE_TYPE_CHOICES)
+#     sequence_no = forms.IntegerField(required=False, widget=forms.TextInput(attrs={'readonly': 'readonly'}))
