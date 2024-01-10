@@ -44,25 +44,23 @@
     {% if rule_data %} 
         <table class="table table-hover">
           <thead>
-            <tr>        
+            <tr>   
+              <th scope="col">Action</th>     
               <th scope="col">Pay Rule</th>
               <th scope="col">Rule Name</th>
-              <th scope="col">Action</th>
+              
             </tr>
           </thead>
           <tbody class="table-group-divider">
             {% for i in rule_data %}
             <tr>   
+              <td >
+                edit
+               {% comment %} edit option {% endcomment %}
+             </td>
               <td>{{i.pay_rule}}</td>
               <td>{{i.rule_name}}</td> 
-              <td >
-                
-                <form action="{% url 'delete_data' i.id %}" method="post" class="d-inline">
-                  {% csrf_token %} 
-                  <input type = "submit"  value="Delete" >
-                 
-                </form>
-              </td>
+              
              
             </tr>
             {% endfor %}
