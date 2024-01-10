@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import (Employee_details,Salary)
+from .models import (Employee_details,Salary,staff_type,rule_man )
 
 class obj_Employee_details(admin.ModelAdmin):
     list_display=['id_no','employee_type','sequence_no','title','first_name','middle_name','last_name',
@@ -20,4 +20,8 @@ class obj_salary(admin.ModelAdmin):
 admin.site.register(Employee_details,obj_Employee_details)
 admin.site.register(Salary,obj_salary)
 
-# admin.site.register(demo)
+admin.site.register(staff_type)
+
+class obj_rule_man(admin.ModelAdmin):
+    list_display=['pay_rule','rule_name']
+admin.site.register(rule_man,obj_rule_man)
