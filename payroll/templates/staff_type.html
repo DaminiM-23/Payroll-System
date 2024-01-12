@@ -1,0 +1,246 @@
+{% extends "base.html" %}
+
+{% block title %}Staff Type Management{% endblock %}
+
+{% block nav_item_3 %}{% endblock %}
+
+{% block heading %}{% endblock %}
+
+{% block content %}
+
+<div class="flexborder">
+    <div class="flextitle">
+        <h5>Staff Type Management</h5>
+    </div>
+    <form class="row g-3">
+        <div class="col-sm-3">{% extends "base.html" %}
+
+{% block title %}Staff Type Management{% endblock %}
+
+{% block nav_item_3 %}{% endblock %}
+
+{% block heading %}{% endblock %}
+
+{% block content %}
+
+<div class="flex-container">
+  <div class="block">
+    <div class="flexborder">
+    <div class="flextitle">
+        <h5>Staff Type Management</h5>
+    </div>
+    <form  method="post"  action="{% url 'staff_type' %}" >
+      {% csrf_token %}  
+      <div class="row g-3">
+        <div class="col-sm-3">
+          <label {{ form.stafftype.id_for_label }} class="form-label">Staff Type:</label> 
+          {{ form.stafftype }} 
+            </div>
+            </div>
+    
+</div>
+<div class="center" >
+    <div class="d-grid gap-2 d-md-block">
+      <button type="submit" class="btn btn-primary">Submit</button >
+      
+    </div>
+</div>
+</form>
+  </div>
+  <div class="table-container">
+    <h2 class="flextitle">Staff Type List</h2>
+    {% if staff_type_data %}
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Action</th>
+          {% comment %} <th scope="col">ID</th> {% endcomment %}
+          <th scope="col">Staff Type</th>
+          
+        </tr>
+      </thead>
+      <tbody class="table-group-divider">
+        {% for i in staff_type_data %}
+        <tr>
+          <td >Edit</td>
+          {% comment %} <td>1</td> {% endcomment %}
+          <td>{{i.stafftype}}</td>
+          
+        </tr> 
+        {% endfor %}
+      </tbody>
+    </table> 
+    </div>
+  </div>  
+  {% else %} 
+      No Data Found
+  {% endif %} 
+{% endblock %}
+
+
+{% block int_css %}
+<style>
+  body{
+    overflow-x: hidden;
+  }
+  
+  
+  .flexborder{
+    width:fit-content;
+    margin: auto !important;
+    padding: 2px;
+    border-width: 2px;
+    border-color: rgb(100, 210, 238);
+    border-style: solid;
+    border-radius: 12px;
+    margin-top: 15px;
+    margin-bottom: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-inline-end: 10px;
+  
+  }
+  
+  /* To control size of the columns */
+  
+  .col-sm-3{
+    padding: 20px;
+    width: 30vw;
+  }
+  
+  /* controlling size of the input field */
+  
+  .flextitle{
+    text-align: center;
+    font-style: normal;
+    background-color: rgb(100, 210, 238);
+    color:#0e556e;
+    padding: 1px;
+    border-radius: 10px;
+  }
+
+  .center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+  }
+
+  div.row.g-3{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .flex-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start; /* Align items at the top */
+    }
+    .block {
+        flex: 0 0 40%; /* Adjust width of the rule management block */
+        /* Additional styling for the rule management block */
+    }
+
+    .table-container {
+      flex: 0 0 55%; /* Adjust width of the table */
+        margin-right: 20px;
+        margin-bottom: 20px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .flex-container {
+            flex-direction: column; /* Stack content vertically on smaller screens */
+        }
+
+        .block
+         {
+          flex: 0 0 55%; /* Adjust width of the table */
+          margin-left: auto; /* Ensure full width on smaller screens */
+          margin-bottom: 20px; /* Add space between sections */
+        }
+    }
+
+    .table {
+        border: 1px solid #000; /* Add a solid black border around the table */
+        border-collapse: collapse; /* Collapse borders into a single border */
+    }
+    .table th {
+        background-color:rgb(100, 210, 238); /* Change background color */
+        color: #0e556e; /* Change text color */
+       
+    }
+
+
+</style>
+{% endblock %}                 
+            <label class="form-label">Staff Type :</label>
+            <input type="text" class="form-control" id="inputStaffType" required >
+            </div>
+    </form>
+</div>
+<div class="center" >
+    <div class="d-grid gap-2 d-md-block">
+      <button type="submit" class="btn btn-primary">Submit</button >
+      <button type="button" class="btn btn-warning">Cancel</button>
+      <button type="button" class="btn btn-danger ">Report</button>
+    </div>
+
+{% endblock %}
+
+
+{% block int_css %}
+<style>
+  body{
+    overflow-x: hidden;
+  }
+  
+  
+  .flexborder{
+    width:fit-content;
+    margin: auto !important;
+    padding: 2px;
+    border-width: 2px;
+    border-color: rgb(100, 210, 238);
+    border-style: solid;
+    border-radius: 12px;
+    margin-top: 15px;
+    margin-bottom: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-inline-end: 10px;
+  
+  }
+  
+  /* To control size of the columns */
+  
+  .col-sm-3{
+    padding: 20px;
+    width: 30vw;
+  }
+  
+  /* controlling size of the input field */
+  
+  .flextitle{
+    text-align: center;
+    font-style: normal;
+    background-color: rgb(100, 210, 238);
+    color:#0e556e;
+    padding: 1px;
+    border-radius: 10px;
+  }
+
+  .center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+  }
+
+  form.row.g-3{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+</style>
+{% endblock %}                 
