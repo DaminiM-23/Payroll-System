@@ -1,37 +1,83 @@
 {% extends "base.html" %}
 
-{% block title %}Department Management{% endblock %}
+{% block title %}Department{% endblock %}
 
-
+{% block nav_item_3 %}{% endblock %}
 
 {% block heading %}{% endblock %}
 
 {% block content %}
 
-<div class="flexborder">
+<div class="flex-container">
+  <div class="block">
+    <div class="flexborder">
     <div class="flextitle">
-        <h5>{{h5}}</h5>
+        <h5>Department Management</h5>
     </div>
-    <form class="row g-3">
+    <form method="post" action="{% url 'department' %}"> 
+      {% csrf_token %}
+      <div class="row g-3">
+        {% if form.errors %}
+                <ul class="errorlist">
+                    {% for field, errors in form.errors.items %}
+                        <li>{{ field }}: {{ errors.0 }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
         <div class="col-sm-3">
-          <label class="form-label">{{formlabel1}}</label>
-            <input type="text" class="form-control" id="inputSubDept" required >
+          <label {{ form.dep_name.id_for_label }} class="form-label">Department :</label> 
+          {{ form.dep_name }} 
+          {% comment %} <label class="form-label">Department Name:</label>
+            <input type="text" class="form-control" id="inputSubDept" required > {% endcomment %}
             </div>
-    </form>
+            </div>
+   
 
-    <form class="row g-3">
+    {% comment %} <div class="row g-3">
         <div class="col-sm-3">
-            <label class="form-label">{{formlabel2}}</label>
+            <label class="form-label">Short Name:</label>
             <input type="text" class="form-control" id="inputDeptSN" >
             </div>
-    </form>
+    </div> {% endcomment %}
+    
 </div>
 <div class="center" >
     <div class="d-grid gap-2 d-md-block">
       <button type="submit" class="btn btn-primary">Submit</button >
-      <button type="button" class="btn btn-warning">Cancel</button>
-      <button type="button" class="btn btn-danger ">Report</button>
     </div>
+</div>
+</form>
+  </div>
+ 
+  <div class="table-container">
+    <h4 class="flextitle">Department List</h4>
+    {% if department_data %} 
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Action</th>
+                <th scope="col">ID</th>
+                <th scope="col">Department Name</th>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider">
+              {% for i in department_data %}
+              <tr>
+                <td >Edit</td>
+                <td>{{i.id}}</td>
+                <td>{{i.dep_name}}</td>
+                <td></td>
+              </tr>
+              {% endfor %}
+            
+              
+            </tbody>
+          </table> 
+          {% else %} 
+                No Data Found
+         {% endif %} 
+  </div>
+</div>  
 
 {% endblock %}
 
@@ -84,10 +130,53 @@
     height: 50px;
   }
 
-  form.row.g-3{
+  div.row.g-3{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
   }
+
+  .flex-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start; /* Align items at the top */
+    }
+    .block {
+        flex: 0 0 40%; /* Adjust width of the rule management block */
+        /* Additional styling for the rule management block */
+    }
+
+    .table-container {
+      flex: 0 0 55%; /* Adjust width of the table */
+        margin-right: 20px;
+        margin-bottom: 20px;
+        overflow-y: scroll;
+        height: 400px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .flex-container {
+            flex-direction: column; /* Stack content vertically on smaller screens */
+        }
+
+        .block
+         {
+          flex: 0 0 55%; /* Adjust width of the table */
+          margin-left: auto; /* Ensure full width on smaller screens */
+          margin-bottom: 20px; /* Add space between sections */
+        }
+    }
+
+    .table {
+        border: 1px solid #000; /* Add a solid black border around the table */
+        border-collapse: collapse; /* Collapse borders into a single border */
+    }
+    .table th {
+        background-color:rgb(100, 210, 238); /* Change background color */
+        color: #0e556e; /* Change text color */
+       
+    }
+  
 </style>
 {% endblock %}               
