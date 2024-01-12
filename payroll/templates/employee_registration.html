@@ -7,7 +7,7 @@
 
 {% block nav_item_3 %}{% endblock %}
 
-{% block heading %}Employee Registration{% endblock %}
+{% comment %} {% block heading %}Employee Registration{% endblock %} {% endcomment %}
 
 {% block content %}
 
@@ -16,18 +16,24 @@
     <div class="title">Personal Details</div>
       <div class="row d-flex">
         {% csrf_token %}
-        {% for field in form %}
+        {% comment %} {% for field in form %} {% endcomment %}
           <div>
-            {% if field.errors %}
-                  <span style="color: red;">{{ field.errors.0 }}</span>
+            {% if form.errors %}
+                <ul class="errorlist">
+                    {% for field, errors in form.errors.items %}
+                        <li>{{ field }}: {{ errors.0 }}</li>
+                    {% endfor %}
+                </ul>
             {% endif %}
+            {% comment %} {% if field.errors %}
+                  <span style="color: red;">{{ field.errors.0 }}</span>
+                  
+            {% endif %} {% endcomment %}
           </div>
-        {% endfor %}       
+        {% comment %} {% endfor %}        {% endcomment %}
         <div class="col-sm-2 px-3 py-2">
           <label {{ form.id_no.id_for_label }} class="form-label">ID No:</label> 
-            {{ form.id_no }} 
-            
-         
+            {{ form.id_no }}                  
         </div>
         <div class="col-sm-2 px-3 py-2">
           <label {{form.employee_type.id_for_label}} class="form-label">Employee Type:</label>
@@ -62,7 +68,7 @@
         </script>
 
         <div class="col-sm-2 px-3 py-2">
-          <label {{form.sequence_no.id_for_label}} class="form-label" >Sequence No. :</label>
+          <label {{form.sequence_no.id_for_label}} class="form-label" >Sequence No:</label>
           {{form.sequence_no}}   
           
         </div>
@@ -77,19 +83,20 @@
 
       <div class="row d-flex">
         <div class="col-sm-2 px-3 py-2">
-          <label {{form.title.id_for_label}} class="form-label">Title</label>
+          <label {{form.title.id_for_label}} class="form-label">Title :</label>
           {{form.title}} 
         </div>
         <div class="col-sm-2 px-3 py-2">
-          <label {{form.first_name.id_for_label}} class="form-label">First Name</label>
-          {{form.first_name}}   
+          
+         <label for={{form.first_name.id_for_label}} class="form-label">First Name :</label>
+          {{form.first_name}}    
         </div>
         <div class="col-sm-2 px-3 py-2">
-          <label {{form.middle_name.id_for_label}} class="form-label">Middle Name</label>
-          {{form.middle_name}} 
+          <label for="{{ form.middle_name.id_for_label }}" class="form-label">Middle Name:</label>
+                          {{ form.middle_name }}
         </div>
         <div class="col-sm-2 px-3 py-2">
-          <label {{form.last_name.id_for_label}} class="form-label">Last Name</label>
+          <label {{form.last_name.id_for_label}} class="form-label">Last Name :</label>
           {{form.last_name}}
         </div>
         <!-- <div class="col-sm-1 px-0 py-2 ms-auto">
@@ -127,7 +134,7 @@
           <label  {{form.mobile_no.id_for_label}} class="form-label">Mobile No.:</label>
           {{form.mobile_no}}  
         </div>
-        <div class="col-sm-2 px-3 py-2">
+        <div class="col-sm-4 px-3 py-2">
           <label  {{form.address.id_for_label}} class="form-label">Address :</label>
           {{form.address}}  
         </div>
@@ -165,8 +172,14 @@
         {{form.designation_nature}}
       </div>
       <div class="col-sm-2 px-3 py-2">
-        <label {{form.department.id_for_label}} class="form-label">Department :</label>
-        {{form.department}}
+        <label for="{{ form.dep_name.id_for_label }}">Department :</label>
+         <select id="{{ form.dep_name.id_for_label }}" name="{{ form.dep_name.name }}" class="form-control" >
+            {% for i in department_data %}
+                <option value="{{ i.dep_name }}">{{ i.dep_name }}</option>
+            {% endfor %}
+        </select>
+        {% comment %} <label {{form.department.id_for_label}} class="form-label">Department :</label>
+        {{form.department}} {% endcomment %}
       </div>
       <div class="col-sm-2 px-3 py-2">
         <label {{form.designation.id_for_label}} class="form-label">Designation :</label>
@@ -177,8 +190,26 @@
         {{form.appointment}}
       </div>
       <div class="col-sm-2 px-3 py-2">
-        <label {{form.staff_type.id_for_label}} class="form-label">Staff Type :</label>
-        {{form.staff_type}}
+        <label for="{{ form.staff_type.id_for_label }}">Staff Type :</label>
+         <select id="{{ form.staff_type.id_for_label }}" name="{{ form.staff_type.name }}" class="form-control" >
+            {% for i in staff_type_data %}
+                <option value="{{ i.stafftype }}">{{ i.stafftype }}</option>
+            {% endfor %}
+        </select>  
+        {% comment %} <label {{form.staff_type.id_for_label}} class="form-label">Staff Type :</label>
+        {{form.staff_type}} {% endcomment %}
+      </div>
+      <div class="col-sm-2 px-3 py-2">
+        <label  {{form.epf.id_for_label}} class="form-label">EPF :</label>
+        {{form.epf}}
+      </div>
+      <div class="col-sm-2 px-3 py-2">
+        <label {{form.gpf_no.id_for_label}} class="form-label">G.P.F. No. :</label>
+        {{form.gpf_no}} 
+      </div>
+      <div class="col-sm-2 px-3 py-2">
+        <label {{form.dcps_no.id_for_label}} class="form-label">D.C.P.S. No.:</label>
+        {{form.dcps_no}} 
       </div>
     </div>
   </div>
@@ -256,31 +287,31 @@
         {{form.ifsc_code}} 
       </div>
     </div>
-    <div class="row d-flex">
-      <div class="col-sm-2 px-3 py-2">
-        <label  {{form.epf.id_for_label}} class="form-label">EPF :</label>
-        {{form.epf}}
-      </div>
-      <div class="col-sm-2 px-3 py-2">
-        <label {{form.gpf_no.id_for_label}} class="form-label">G.P.F. No. :</label>
-        {{form.gpf_no}} 
-      </div>
-      <div class="col-sm-2 px-3 py-2">
-        <label {{form.dcps_no.id_for_label}} class="form-label">D.C.P.S. No.:</label>
-        {{form.dcps_no}} 
-      </div>
-    </div>
+    
   </div>
   <div class="new_block">
     <div class="title">Pay-Scale Details</div>
     <div class="row d-flex">
       <div class="col-sm-2 px-3 py-2">
-        <label {{form.rule.id_for_label}} class="form-label">Rule :</label>
-        {{form.rule}}
+        <label for="{{ form.rule.id_for_label }}">Rule :</label>
+         <select id="{{ form.rule.id_for_label }}" name="{{ form.rule.name }}" class="form-control" >
+            {% for i in rule_data %}
+                <option value="{{ i.pay_rule }}">{{ i.pay_rule }}</option>
+            {% endfor %}
+        </select>   
+       {% comment %} <label {{form.rule.id_for_label}} class="form-label">Rule :</label>
+        {{form.rule}}   {% endcomment %}
       </div>
       <div class="col-sm-2 px-3 py-2">
-        <label  {{form.pay_level.id_for_label}} class="form-label">Pay Level :</label>
-        {{form.pay_level}}
+        {% comment %} <label  {{form.pay_level.id_for_label}} class="form-label">Pay Level :</label>
+        {{form.pay_level}} {% endcomment %}
+
+        <label for="{{ form.pay_level.id_for_label }}">Rule :</label>
+         <select id="{{ form.pay_level.id_for_label }}" name="{{ form.pay_level.name }}" class="form-control" >
+            {% for i in pay_level_data %}
+                <option value="{{ i.pay_level}}">{{ i.pay_level }}</option>
+            {% endfor %}
+        </select>   
       </div>
       <div class="col-sm-2 px-3 py-2">
         <label {{form.cell_number.id_for_label}} class="form-label">Cell Number :</label>
@@ -311,7 +342,7 @@
   </div>
 </form>
 
-=======
+
 
 {% endblock %}
 
@@ -352,9 +383,7 @@
 
  .form-control option[value=""] {
   color: #888888; /* Change the color as needed */
-}
+ }
 
-
-  
 </style>
 {% endblock %}
