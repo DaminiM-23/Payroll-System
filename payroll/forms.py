@@ -62,10 +62,7 @@ class Employee_details_Form(forms.ModelForm):
              'HRA':forms.RadioSelect(choices=[(True, 'Yes'), (False, 'No')],)
               }
          
-        
-
-
-
+    
 class Salary_Form(forms.ModelForm):
     class Meta:
         model = Salary
@@ -146,13 +143,3 @@ class appointment_Form(forms.ModelForm):
 
        
 
-# class EmployeeForm(forms.Form):
-#     EMPLOYEE_TYPE_CHOICES = [
-#         ('1', 'Permanent'),
-#         ('2', 'Contractual Non-Teaching'),
-#         ('3', 'Contractual Teaching'),
-#         ('4', 'Security'),
-#     ]
-    
-#     employee_type = forms.ChoiceField(choices=EMPLOYEE_TYPE_CHOICES)
-#     sequence_no = forms.IntegerField(required=False, widget=forms.TextInput(attrs={'readonly': 'readonly'}))
