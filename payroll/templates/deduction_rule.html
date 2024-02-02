@@ -1,0 +1,194 @@
+{% extends "base.html" %}
+{% block nav_item_3 %}{% endblock %}
+{% block content %}
+
+<div class="flex-container">
+
+  <div class="block">    
+
+    <div class="flexborder">
+      <div class="flextitle">
+          <h5>Add Deduction Rule</h5>
+      </div>
+      <form method="post" action="">
+        {% csrf_token %}
+        <div class="row g-3">
+          {% if form.errors %}
+              <ul class="errorlist">
+                  {% for field, errors in form.errors.items %}
+                      <li>{{ field }}: {{ errors.0 }}</li>
+                  {% endfor %}
+                  {% endif %}
+          <div class="col-sm-3">
+            <label for="{{ form.rule.id_for_label }}">Rule :</label>
+            <select id="{{ form.rule.id_for_label }}" name="{{ form.rule.name }}" class="form-control" >
+               {% for i in rule_data %}
+                   <option value="{{ i.pay_rule }}">{{ i.pay_rule }}</option>
+               {% endfor %}
+           </select> 
+              </div>
+              <div class="col-sm-3">
+                <label for="{{ form.head_deduction.id_for_label }}">Pay Head:</label>
+                 <select id="{{ form.head_deduction.id_for_label }}" name="{{ form.head_deduction.name }}" class="form-control" >
+                  {% for i in payhead_d %}
+                      <option value="{{ i.pay_head }}">{{ i.pay_head }}</option>
+                  {% endfor %}</select> 
+            </div> 
+         </div>
+     
+  
+          <div class="row g-3">
+           <div class="col-sm-3">
+            <label for="{{form.per.id_for_label}}" class="form-label">Percentage:</label>
+                             {{form.per}} 
+              </div>
+            
+            <div class="col-sm-3">
+              <label for="{{form.cal.id_for_label}}" class="form-label">(basic)</label>
+                                  {{form.cal}} 
+          </div>
+          <div class="col-sm-3">
+            <label for="{{form.eff_date.id_for_label}}"class="form-label">Effective from Date:</label>
+            {{form.eff_date}}
+        </div>
+            </div>
+        </div>
+        <div class="center" >
+            <div class="d-grid gap-2 d-md-block">
+              <button type="submit" class="btn btn-primary">Submit</button >
+
+            </div>
+        </div>
+      </form>
+    </div>
+    <div class="table-container">
+      <h4 class="flextitle">Deduction Rules</h4>
+      {% if  deduction_rule_data %} 
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Action</th>
+          <th scope="col">Pay Rule</th>
+          <th scope="col">Payhead</th>
+          <th scope="col">Percentage</th>
+          <th scope="col">Basic</th>
+          <th scope="col">Effective From</th>
+        </tr>
+      </thead>
+      <tbody class="table-group-divider">
+        {% for i in  deduction_rule_data %}
+        <tr>
+          <th scope="col">Edit</th>
+          <th scope="col">{{i.rule}}</th>
+          <th scope="col">{{i.head_deduction}}</th>
+          <th scope="col">{{i.per}}</th>
+          <th scope="col">{{i.cal}}</th>
+          <th scope="col">{{i.eff_date}}</th>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table> 
+    </div>
+    {% else %} 
+    No Data Found
+    {% endif %} 
+  </div>  
+  
+{% endblock %}
+
+{% block int_css %}
+<style>
+  body{
+    overflow-x: hidden;
+  }
+  
+  
+  .flexborder{
+    width: 500px;;
+    margin: auto !important;
+    padding: 5px;
+    border-width: 2px;
+    border-radius:10px;
+    margin-top: 4vh;
+    margin-bottom: 30px;
+    margin-left:5vw;
+    margin-right:5vw;
+    
+    height: fit-content;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;}
+  
+  /* To control size of the columns */
+  
+  .col-sm-3{
+    padding: 10px;
+    width:15vw;
+  }
+  
+  /* controlling size of the input field */
+  
+  .flextitle{
+    text-align: center;
+    font-style: normal;
+    background-color: rgb(71, 93, 135);
+    color:#ebf6f9;
+    padding: 1px;
+    border-radius: 10px;
+  }
+
+  .center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+  }
+
+  div.row.g-3{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+.flex-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start; /* Align items at the top */
+        margin-top: 2vw;
+        margin-left: 10px;
+    }
+
+
+    .table-container {
+      flex: 0 0 55%; /* Adjust width of the table */
+        margin-right: 20px;
+        margin-bottom: 20px;
+        overflow-y: scroll;
+        height: 400px;
+    }
+
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .flex-container {
+            flex-direction: column; /* Stack content vertically on smaller screens */
+        }
+
+        .block
+         {
+          flex: 0 0 55%; /* Adjust width of the table */
+          margin-left: 15px; /* Ensure full width on smaller screens */
+          margin-bottom: 20px; /* Add space between sections */
+        }
+    }
+
+    .table {
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; /* Add a solid black border around the table */
+        border-collapse: collapse; /* Collapse borders into a single border */
+    }
+    .table th {
+         /* Change background color */
+        color: #0e556e; /* Change text color */
+       
+    }
+  
+  
+</style>
+{% endblock %}

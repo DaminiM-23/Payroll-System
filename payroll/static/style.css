@@ -38,7 +38,8 @@
   .header{
     width: 100vw;
     height: auto;
-    background-image: linear-gradient(90deg,#0B88CF 0%,#2596be 35%,#07d4d7 100%);
+    background-color: rgb(6,56,127); 
+        /* background-image: linear-gradient(90deg,#0B88CF 0%,#5fc4e9 35%,#063b87 100%); */
   }
   
   .header h1{

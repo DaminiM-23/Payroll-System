@@ -1,23 +1,38 @@
 from django.contrib import admin
-from .models import (Employee_details,Salary)
+from .models import *
 
 class obj_Employee_details(admin.ModelAdmin):
     list_display=['id_no','employee_type','sequence_no','title','first_name','middle_name','last_name',
                   'date_of_birth','gender','aadhar_id','pan_no','email','mobile_no','address','date_of_joining', 'date_of_relieving','date_of_increment',
                   'date_of_retirement', 'from_appointment_date', 'to_appointment_date',
                   'designation_nature',  'department','designation' ,'appointment',
-                  'staff_type','TA','HRA','handicap','quarter','senior_citizen','quarter_type',
-                  'bank_acc_no','ifsc_code','bank_name','bank_branch',
+                  'staff_type','TA','HRA','handicap','quarter','senior_citizen',
+                  'bank_acc_no','ifsc_code','bank','bank_branch',
                   'epf','gpf_no','dcps_no','rule','pay_level','cell_number',
                   'basic','pay_status','grade_pay']
 
-
-
-
-class obj_salary(admin.ModelAdmin):
-    list_display=['Salary']
-
 admin.site.register(Employee_details,obj_Employee_details)
-admin.site.register(Salary,obj_salary)
 
-# admin.site.register(demo)
+
+class obj_satff_type(admin.ModelAdmin):
+    list_display=['stafftype','retirement_age']
+
+   
+admin.site.register(staff_type,obj_satff_type)
+admin.site.register(des_nature)
+admin.site.register(appointment)
+admin.site.register(department)
+admin.site.register(designation)
+admin.site.register(payhead_deduction)
+admin.site.register(payhead_earning)
+admin.site.register(bank)
+
+class obj_PayLevelMaster(admin.ModelAdmin):
+    list_display=['id','staff_type','pay_level','cell_1','cell_2','cell_3','cell_4','cell_5','cell_6','cell_7','cell_8','cell_9','cell_10']
+    
+admin.site.register(PayLevelMaster,obj_PayLevelMaster) 
+
+
+class obj_rule_man(admin.ModelAdmin):
+    list_display=['pay_rule','rule_name']
+admin.site.register(rule_man,obj_rule_man)

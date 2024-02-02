@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Payment Head{% endblock %}
+{% block title %}Designature{% endblock %}
 
 {% block nav_item_3 %}{% endblock %}
 
@@ -11,11 +11,11 @@
 <div class="flex-container">
   <div class="block">
     <div class="flexborder">
-    <div class="flextitle">
-        <h5>Edit Payment Head</h5>
+    <div class="flextitle">  
+        <h5>Designation Management</h5>
     </div>
-    <form method="post" action=""> 
-      {% csrf_token %}
+    <form method="post" action="{% url 'designation' %}"> 
+    {% csrf_token %}
       <div class="row g-3">
         {% if form.errors %}
                 <ul class="errorlist">
@@ -24,75 +24,50 @@
                     {% endfor %}
                 </ul>
             {% endif %}
+        </ul>
         <div class="col-sm-3">
-          {% comment %} <label for={{form.paycode.id_for_label}} class="form-label">Paycode :</label>
-          {{form.paycode}}   {% endcomment %}
-       </div>
-      
-        <div class="col-sm-3">
-          <label for="{{ form.head.id_for_label }}"> Select Pay Head:</label>
-          <select id="{{ form.head.id_for_label }}" name="{{ form.head.name }}" class="form-control" >
-           {% for i in pay_head_data %}  
-               <option value="{{ i.pay_head }}">{{ i.pay_head }}</option>
-           {% endfor %}</select>  
-        </div>
-      </div>
-      <div class="row g-3">
-        <div class="col-sm-3">
-          <label {{form.type.id_for_label}} class="form-label">Type :</label>
-          {{form.type}} 
-      </div> 
-   
-    <div class="col-sm-3">
-      <label {{form.cal.id_for_label}} class="form-label">Calculation :</label>
-          {{form.cal}} 
-        </select>
-      </div>
-    </div>
-      <div class="row g-3">
+            <label for={{form.designation.id_for_label}} class="form-label">Designation :</label>
+            {{form.designation}}  
+            </div>
    </div>
-    <div class="center" >
-        <div class="d-grid gap-4 d-md-block">
-          <button type="submit" class="btn btn-primary">Submit</button >
-        </div>
+    
+</div>
+<div class="center" >
+    <div class="d-grid gap-2 d-md-block">
+      <button type="submit" class="btn btn-primary">Submit</button >
     </div>
-  </form>
-  </div>
+</div>
+</form>
   </div>
  
   <div class="table-container">
-    <h2 class="flextitle">Scale Details</h2>
-    {% if payment_head_data %} 
-  <table class="table table-hover">
-    <thead> 
-      <tr>
-        <th scope="col">Action</th>
-        {% comment %} <th scope="col">PayCode</th> {% endcomment %}
-        <th scope="col">PayHead</th>
-        <th scope="col">Type</th>
-        <th scope="col">Calculation</th>
-        {% comment %} <th scope="col">Full Name</th>
-        <th scope="col">Formula</th> {% endcomment %}
-      </tr>
-    </thead>
-    <tbody class="table-group-divider">
-      {% for i in payment_head_data %}
-      <tr>
-        <td >Edit</td>
-        <td>{{ i.head }}</td>
-        <td>{{ i.type}}</td>
-        <td>{{ i.cal}}</td>
-        {% comment %} <td>{{ i.pay_rule }}</td> {% endcomment %}
-      </tr>
-      {% endfor %}     
-    </tbody>
-  </table> 
+    <h4 class="flextitle">Designation List</h4>
+    {% if designation_data %} 
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">Action</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Designation</th> 
+                </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    {% for i in designation_data %}
+                        <tr>
+                            <td >Edit</td>
+                            <td>{{i.id}}</td>
+                            <td>{{i.designation}}</td>
+                        </tr>
+                {% endfor %}
+                
+                
+                </tbody>
+            </table> 
+    {% else %} 
+            No Data Found
+     {% endif %} 
   </div>
-  {% else %} 
-     No Data Found
-  {% endif %} 
-
-</div>
+</div>  
 
 {% endblock %}
 
@@ -109,20 +84,18 @@
     margin: auto !important;
     padding: 5px;
     border-width: 2px;
-    border-radius:10px;
     margin-top: 4vh;
     margin-bottom: 30px;
     margin-left:5vw;
     margin-right:5vw;
-    
     height: fit-content;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;}
   
   /* To control size of the columns */
   
   .col-sm-3{
-    padding: 10px;
-    width:15vw;
+    padding: 20px;
+    width: 30vw;
   }
   
   /* controlling size of the input field */
@@ -133,7 +106,8 @@
     background-color: rgb(71, 93, 135);
     color:#ebf6f9;
     padding: 1px;
-    border-radius: 10px;
+    
+    
   }
 
   .center{
@@ -148,14 +122,16 @@
     flex-direction: row;
     justify-content: space-around;
   }
-.flex-container {
+
+  .flex-container {
         display: flex;
         justify-content: space-between;
         align-items: flex-start; /* Align items at the top */
-        margin-top: 2vw;
-        margin-left: 10px;
     }
-
+    .block {
+        flex: 0 0 40%; /* Adjust width of the rule management block */
+        /* Additional styling for the rule management block */
+    }
 
     .table-container {
       flex: 0 0 55%; /* Adjust width of the table */
@@ -164,7 +140,6 @@
         overflow-y: scroll;
         height: 400px;
     }
-
 
     /* Responsive adjustments */
     @media (max-width: 768px) {
@@ -175,7 +150,7 @@
         .block
          {
           flex: 0 0 55%; /* Adjust width of the table */
-          margin-left: 15px; /* Ensure full width on smaller screens */
+          margin-left: auto; /* Ensure full width on smaller screens */
           margin-bottom: 20px; /* Add space between sections */
         }
     }
@@ -190,6 +165,5 @@
        
     }
   
-  
 </style>
-{% endblock %}
+{% endblock %}               

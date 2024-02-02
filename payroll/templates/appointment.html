@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Pay Level Master{% endblock %}
+{% block title %}Appointment {% endblock %}
 
 {% block nav_item_3 %}{% endblock %}
 
@@ -12,10 +12,10 @@
   <div class="block">
     <div class="flexborder">
     <div class="flextitle">
-        <h5>Pay Level</h5>
+        <h5>Appointment</h5>
     </div>
-    <form  method="post" action="{% url 'pay_level' %}">
-      {% csrf_token %} 
+    <form method="post" action="{% url 'appointment' %}" >
+      {% csrf_token %}
       <div class="row g-3">
         {% if form.errors %}
                 <ul class="errorlist">
@@ -24,97 +24,118 @@
                     {% endfor %}
                 </ul>
             {% endif %}
-          <div class="col-sm-3">
-            <label for="{{ form.staff_type.id_for_label }}">Staff Type :</label>
-            <select id="{{ form.staff_type.id_for_label }}" name="{{ form.staff_type.name }}" class="form-control" >
-              {% for i in staff_type_data %}
-                  <option value="{{ i.stafftype }}">{{ i.stafftype }}</option>
-              {% endfor %}
-           </select>  
-          </div>
-      </div>   
-    <div class="row g-3">
-      <div class="col-sm-3">
-        <label {{ form.pay_level.id_for_label }} class="form-label">Pay level :</label> 
-              {{ form.pay_level }}
-      </div>
-    </div>
+        <div class="col-sm-3">
+          <label for={{form.appointment.id_for_label}} class="form-label">Appointment :</label>
+          {{form.appointment}} 
+            </div>
+            </div>
     
 </div>
 <div class="center" >
     <div class="d-grid gap-2 d-md-block">
       <button type="submit" class="btn btn-primary">Submit</button >
-
     </div>
 </div>
-  </div>
 </form>
-
-
-  <div class="table-container_lg">
-    <h4 class="flextitle">Pay Level List</h4>
-    {% if  pay_level_data  %} 
+  </div>
+  {% comment %} <div class="table-container_lg">
+    <h4 class="flextitle">Select Pay Head</h4>
   <table class="table table-hover">
     <thead>
       <tr>
-        <th scope="col" >Action</th>
-        <th scope="col" >Amount</th>
-        <th scope="col">Staff</th>
-        <th scope="col">Pay Level</th>
+        <th scope="col">Sr. No.</th>
+        <th scope="col">Action</th>
+        <th scope="col">Pay Short</th>
       </tr>
     </thead>
     <tbody class="table-group-divider">
-      {% for pay_level in  pay_level_data %}
-        <tr>
-          <td >Edit</td>
-          <td><form method="POST" action="{% url 'display_cell_values' %}">
-            {% csrf_token %}
-            <input type="hidden" name="pay_level_id" value="{{ pay_level.id }}">
-            <button type="submit">Display</button>
-        </form></td>
-          <td>{{ pay_level.staff_type }}</td>
-          <td>{{ pay_level.pay_level }}</td>
-        </tr>
-      {% endfor %}
+      <tr>
+        <td >1</td>
+        <td><input type="checkbox"></td>
+        <td>DA</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><input type="checkbox"></td>
+        <td>HRA</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><input type="checkbox"></td>
+        <td>CLA</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td><input type="checkbox"></td>
+        <td>7th Pay Arre</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td><input type="checkbox"></td>
+        <td>TRA</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td><input type="checkbox"></td>
+        <td>Sp.Allowance</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td><input type="checkbox"></td>
+        <td>P.Pay</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td><input type="checkbox"></td>
+        <td>DA Arrears</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td><input type="checkbox"></td>
+        <td>Spl.Arrears</td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td><input type="checkbox"></td>
+        <td>REFUND OTH</td>
+      </tr>
+      <tr>
+        <td>11</td>
+        <td><input type="checkbox"></td>
+        <td>ADD.REM</td>
+      </tr>
     </tbody>
   </table> 
- 
-  </div>
-  
+  </div> {% endcomment %}
+
+  <div class="table-container">
+  <h4 class="flextitle">Appointment</h4>
+  {% if appointment_data %} 
+  <table class="table table-hover">
+    
+    <thead>
+      <tr>
+        <th scope="col">Action</th>
+        <th scope="col">ID</th>
+        <th scope="col">Appointment</th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+      {% for i in appointment_data %}
+      <tr>
+        <td >Edit</td>
+        <td>{{i.id}}</td>
+        <td>{{i.appointment}}</td>
+      {% endfor %}                 
+      </tr> 
+      
+    </tbody>
+  </table>
   {% else %} 
   No Data Found
-  {% endif %} 
-  
-
-  
-   
-  <div class="table-container"> 
-    <table class="table table-hover">      
-      <thead>
-        <tr>
-          <th scope="col">Cell Number</th>
-          <th scope="col">Amount</th>
-        </tr>
-      </thead>
-       <tbody class="table-group-divider" >
-       
-          {% for cell_value in cell_values %}
-              <tr>
-                  <td>{{ cell_value.id }}</td>  
-                  <td>{{ cell_value }}</td>
-              </tr>
-          {% endfor %}
-      
-
-
-        
-      
-       </tbody>
-    </table>
-    </div>
+{% endif %} 
   </div>
-
-
+</div>  
 
 {% endblock %}
 
@@ -182,7 +203,6 @@
     .block {
         flex: 0 0 40%; /* Adjust width of the rule management block */
         /* Additional styling for the rule management block */
-        
     }
 
     .table-container {
@@ -190,9 +210,7 @@
         margin-right: 20px;
         margin-bottom: 20px;
         margin-left: 60px;
-        width: 75%;
-        overflow-y: scroll;
-        height: 400px;
+        width: 65%;
         
 
     }
@@ -216,7 +234,6 @@
           flex: 0 0 55%; /* Adjust width of the table */
           margin-left: auto; /* Ensure full width on smaller screens */
           margin-bottom: 20px; /* Add space between sections */
-          
         }
     }
 
@@ -232,4 +249,4 @@
     }
   
 </style>
-{% endblock %}          
+{% endblock %}           

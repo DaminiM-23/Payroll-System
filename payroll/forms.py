@@ -1,8 +1,6 @@
-from typing import Self
 from django import forms
 from .models import *
-# from django.contrib.auth.models import User
-# from django.core import validators      
+  
 
 
 class Employee_details_Form(forms.ModelForm):         
@@ -10,7 +8,6 @@ class Employee_details_Form(forms.ModelForm):
         model = Employee_details
         fields = '__all__'
         widgets={
-
              'date_of_birth':forms.DateInput(attrs={'type': 'date','class': 'form-control'}),
              'date_of_joining':forms.DateInput(attrs={'type': 'date','class': 'form-control'}),
              'date_of_relieving':forms.DateInput(attrs={'type': 'date','class': 'form-control'}),
@@ -48,7 +45,7 @@ class Employee_details_Form(forms.ModelForm):
              'quarter_type':forms.Select(attrs={'class': 'form-control'}),
              'bank_acc_no':forms.TextInput(attrs={'class': 'form-control',}),
              'ifsc_code':forms.TextInput(attrs={'class': 'form-control',}),
-             'bank_name':forms.Select(attrs={'class': 'form-control',}),
+             'bank':forms.TextInput(attrs={'class': 'form-control',}),
              'bank_branch':forms.TextInput(attrs={'class': 'form-control',}),
              'epf':forms.TextInput(attrs={'class': 'form-control',}),
              'gpf_no':forms.TextInput(attrs={'class': 'form-control',}),
@@ -60,23 +57,23 @@ class Employee_details_Form(forms.ModelForm):
              'pay_status':forms.RadioSelect(choices=[(True, 'Yes'), (False, 'No')],),
              'grade_pay':forms.TextInput(attrs={'class': 'form-control',}),
              'HRA':forms.RadioSelect(choices=[(True, 'Yes'), (False, 'No')],)
-              }
-         
-    
-class Salary_Form(forms.ModelForm):
-    class Meta:
-        model = Salary
-        fields = '__all__'
+              } 
         
 
+
+
+
+
+        
 class staff_type_Form(forms.ModelForm):
     class Meta:
         model = staff_type
-        fields = ['stafftype']
+        fields = ['stafftype','retirement_age']
         widgets={
-            'stafftype':forms.TextInput(attrs={'class': 'form-control'})
+            'stafftype':forms.TextInput(attrs={'class': 'form-control'}),
+            'retirement_age':forms.TextInput(attrs={'class': 'form-control'})
             }
-
+ 
 class rule_man_Form(forms.ModelForm):
     class Meta:
         model = rule_man
@@ -103,6 +100,9 @@ class department_Form(forms.ModelForm):
         fields = [ 'dep_name']
         widgets={
             'dep_name':forms.TextInput(attrs={'class': 'form-control'}),
+            'dep_name':forms.TextInput(attrs={'class': 'form-control'}),
+           
+            'dep_name':forms.TextInput(attrs={'class': 'form-control'}),          
            
             # 'des_nature':forms.TextInput(attrs={'class': 'form-control'}),       
         }
@@ -121,13 +121,9 @@ class des_nature_Form(forms.ModelForm):
         widgets={   
             'des_nature':forms.TextInput(attrs={'class': 'form-control'}),
         }
+class DisplayCellValuesForm(forms.Form):
+    pay_level_id = forms.IntegerField(widget=forms.HiddenInput())
 
-class basic_amount_Form(forms.ModelForm):         
-    class Meta:
-        model = basic_amount
-        fields = '__all__'
-        widgets={
-            'basic_amount':forms.TextInput(attrs={'class': 'form-control'})}
 
 class appointment_Form(forms.ModelForm):
     class Meta:
@@ -137,11 +133,66 @@ class appointment_Form(forms.ModelForm):
             'appointment':forms.TextInput(attrs={'class': 'form-control'}),
         }
 
+class bank_Form(forms.ModelForm):
+    class Meta:
+        model = bank
+        fields = ['bank']
+        widgets={   
+            'bank':forms.TextInput(attrs={'class': 'form-control'}),
+        }
 
 
 
+class payhead_earning_Form(forms.ModelForm):
+    class Meta:
+        model = payhead_earning
+        fields = ['pay_head','f_name']
+        widgets={   
+            'pay_head':forms.TextInput(attrs={'class': 'form-control'}),
+            'f_name':forms.TextInput(attrs={'class': 'form-control'})
+        }
 
+    
+class payhead_deduction_Form(forms.ModelForm):
+    class Meta:
+        model = payhead_deduction
+        fields = ['pay_head','f_name']
+        widgets={   
+            'pay_head':forms.TextInput(attrs={'class': 'form-control'}),
+            'f_name':forms.TextInput(attrs={'class': 'form-control'})
+        }    
+   
+class payment_head_Form(forms.ModelForm):
+    class Meta:
+        model = payment_head
+        fields = ['head','type','cal']
+        widgets={   
+            # 'Paycode':forms.TextInput(attrs={'class': 'form-control'}),
+            'head':forms.TextInput(attrs={'class': 'form-control'}),
+            'type':forms.Select(attrs={'class': 'form-control'}),
+            'cal':forms.TextInput(attrs={'class': 'form-control'})
+        }
 
+class deduction_rule_Form(forms.ModelForm):
+    class Meta: 
+        model = deduction_rule
+        fields =['rule','cal','per','head_deduction','eff_date']
+        widgets={   
+            'rule':forms.TextInput(attrs={'class': 'form-control'}),
+            'cal':forms.TextInput(attrs={'class': 'form-control'}),
+            'per':forms.TextInput(attrs={'class': 'form-control'}),
+            'head_deduction':forms.Select(attrs={'class': 'form-control'}),
+            'eff_date':forms.DateInput(attrs={'type': 'date','class': 'form-control'})
+        }
 
-       
-
+class earning_rule_Form(forms.ModelForm):
+    class Meta:
+        model = earning_rule
+        fields =['rule','cal','per','head_earning','eff_date']
+        widgets={   
+            'rule':forms.TextInput(attrs={'class': 'form-control'}),
+            'cal':forms.TextInput(attrs={'class': 'form-control'}),
+            'per':forms.TextInput(attrs={'class': 'form-control'}),
+            'head_earning':forms.Select(attrs={'class': 'form-control'}),
+            'eff_date':forms.DateInput(attrs={'type': 'date','class': 'form-control'})
+        } 

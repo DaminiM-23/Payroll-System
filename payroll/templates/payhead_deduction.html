@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Department{% endblock %}
+{% block title %}Add pay Head{% endblock %}
 
 {% block nav_item_3 %}{% endblock %}
 
@@ -9,12 +9,12 @@
 {% block content %}
 
 <div class="flex-container">
-  <div class="block">
+  <div class="block">    
     <div class="flexborder">
     <div class="flextitle">
-        <h5>Department Management</h5>
+       <h5>Pay Head Deduction</h5>
     </div>
-    <form method="post" action="{% url 'department' %}"> 
+    <form method="post" action="">
       {% csrf_token %}
       <div class="row g-3">
         {% if form.errors %}
@@ -25,59 +25,57 @@
                 </ul>
             {% endif %}
         <div class="col-sm-3">
-          <label {{ form.dep_name.id_for_label }} class="form-label">Department :</label> 
-          {{ form.dep_name }} 
-          {% comment %} <label class="form-label">Department Name:</label>
-            <input type="text" class="form-control" id="inputSubDept" required > {% endcomment %}
-            </div>
-            </div>
-   
-
-    {% comment %} <div class="row g-3">
-        <div class="col-sm-3">
-            <label class="form-label">Short Name:</label>
-            <input type="text" class="form-control" id="inputDeptSN" >
-            </div>
-    </div> {% endcomment %}
-    
-</div>
-<div class="center" >
-    <div class="d-grid gap-2 d-md-block">
-      <button type="submit" class="btn btn-primary">Submit</button >
-    </div>
-</div>
-</form>
-  </div>
- 
-  <div class="table-container">
-    <h4 class="flextitle">Department List</h4>
-    {% if department_data %} 
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col">Sr. No.</th> 
-                <th scope="col">Action</th>
-               <th scope="col">Department Name</th>
-              </tr>
-            </thead>
-            <tbody class="table-group-divider">
-              {% for i in department_data %}
-              <tr>
-                <td >{{forloop.counter}}</td> 
-                <td >Edit</td>
-                <td>{{i.dep_name}}</td>
-               
-              </tr>
-              {% endfor %}
+          
+          <label for={{form.pay_head.id_for_label}} class="form-label">Add Pay Head :</label>
+            {{form.pay_head}}  
             
-              
-            </tbody>
-          </table> 
-          {% else %} 
-                No Data Found
-         {% endif %} 
-  </div>
-</div>  
+          <label for={{form.f_name.id_for_label}} class="form-label">Full Name :</label> 
+            {{form.f_name}} 
+            
+               
+
+            {% comment %} <label class="form-label">Add Pay Head :</label>
+            <input type="text" class="form-control" id="inputSuppH" required > {% endcomment %}
+            </div>
+            </div>
+    
+            </div>
+            <div class="center" >
+                <div class="d-grid gap-2 d-md-block">
+                  <button type="submit" class="btn btn-primary">Submit</button >
+                </div>
+                </div>
+                </div>
+     </form>
+    <div class="table-container">  
+      <h2 class="flextitle">Pay Head List</h2>
+      {% if  payhead_d %} 
+      <table class="table table-hover">
+        <thead>
+          <tr> 
+            <th scope="col">Action</th>
+            <th scope="col">ID</th>
+            <th scope="col">Pay Head</th>
+            <th scope="col">Full Form</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          {% for i in  payhead_d %}
+          <tr>
+            <td >Edit</td>
+            <td>{{i.id}}</td>
+            <td>{{i.pay_head}}</td>
+            <td>{{i.f_name}}</td>
+          </tr>
+          {% endfor %}
+          
+        </tbody>
+      </table> 
+      {% else %} 
+         No Data Found
+      {% endif %} 
+      </div>
+    </div>    
 
 {% endblock %}
 
@@ -135,7 +133,6 @@
     flex-direction: row;
     justify-content: space-around;
   }
-
   .flex-container {
         display: flex;
         justify-content: space-between;
@@ -150,8 +147,6 @@
       flex: 0 0 55%; /* Adjust width of the table */
         margin-right: 20px;
         margin-bottom: 20px;
-        overflow-y: scroll;
-        height: 400px;
     }
 
     /* Responsive adjustments */
@@ -177,6 +172,5 @@
         color: #0e556e; /* Change text color */
        
     }
-  
 </style>
-{% endblock %}               
+{% endblock %}                 

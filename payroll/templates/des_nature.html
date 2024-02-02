@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Department{% endblock %}
+{% block title %}Designation nature{% endblock %}
 
 {% block nav_item_3 %}{% endblock %}
 
@@ -12,33 +12,24 @@
   <div class="block">
     <div class="flexborder">
     <div class="flextitle">
-        <h5>Department Management</h5>
+        <h5>Designation Nature Management</h5>
     </div>
-    <form method="post" action="{% url 'department' %}"> 
-      {% csrf_token %}
-      <div class="row g-3">
-        {% if form.errors %}
-                <ul class="errorlist">
-                    {% for field, errors in form.errors.items %}
-                        <li>{{ field }}: {{ errors.0 }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-        <div class="col-sm-3">
-          <label {{ form.dep_name.id_for_label }} class="form-label">Department :</label> 
-          {{ form.dep_name }} 
-          {% comment %} <label class="form-label">Department Name:</label>
-            <input type="text" class="form-control" id="inputSubDept" required > {% endcomment %}
-            </div>
-            </div>
-   
-
-    {% comment %} <div class="row g-3">
-        <div class="col-sm-3">
-            <label class="form-label">Short Name:</label>
-            <input type="text" class="form-control" id="inputDeptSN" >
-            </div>
-    </div> {% endcomment %}
+    <form method="post" action="{% url 'des_nature' %}" > 
+        {% csrf_token %}
+        <div class="row g-3">
+          {% if form.errors %}
+                  <ul class="errorlist">
+                      {% for field, errors in form.errors.items %}
+                          <li>{{ field }}: {{ errors.0 }}</li>
+                      {% endfor %}
+                  </ul>
+              {% endif %}
+          </ul>
+          <div class="col-sm-3">
+              <label for={{form.des_nature.id_for_label}} class="form-label">Designation :</label>
+              {{form.des_nature}}  
+              </div>
+     </div>
     
 </div>
 <div class="center" >
@@ -48,34 +39,36 @@
 </div>
 </form>
   </div>
+
+  
  
   <div class="table-container">
-    <h4 class="flextitle">Department List</h4>
-    {% if department_data %} 
-          <table class="table table-hover">
+    <h4 class="flextitle">Designation Nature List</h4>
+    {% if des_nature_data %} 
+        <table class="table table-hover">
             <thead>
-              <tr>
-                <th scope="col">Sr. No.</th> 
+            <tr>
                 <th scope="col">Action</th>
-               <th scope="col">Department Name</th>
-              </tr>
+                <th scope="col">ID</th>
+                <th scope="col">Designatio Nature</th> 
+            </tr>
             </thead>
             <tbody class="table-group-divider">
-              {% for i in department_data %}
-              <tr>
-                <td >{{forloop.counter}}</td> 
+                {% for i in des_nature_data %}
+            <tr>
                 <td >Edit</td>
-                <td>{{i.dep_name}}</td>
-               
-              </tr>
-              {% endfor %}
-            
-              
-            </tbody>
-          </table> 
-          {% else %} 
-                No Data Found
-         {% endif %} 
+                <td>{{i.id}}</td>
+                <td>{{i.des_nature}}</td>
+            </tr>
+      {% endfor %}
+      
+      
+      
+    </tbody>
+  </table> 
+  {% else %} 
+  No Data Found
+{% endif %} 
   </div>
 </div>  
 
@@ -90,20 +83,16 @@
   
   
   .flexborder{
-    width:fit-content;
+    width: 500px;;
     margin: auto !important;
-    padding: 2px;
+    padding: 5px;
     border-width: 2px;
-    border-color: rgb(100, 210, 238);
-    border-style: solid;
-    border-radius: 12px;
-    margin-top: 15px;
+    margin-top: 4vh;
     margin-bottom: 30px;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-inline-end: 10px;
-  
-  }
+    margin-left:5vw;
+    margin-right:5vw;
+    height: fit-content;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;}
   
   /* To control size of the columns */
   
@@ -117,10 +106,11 @@
   .flextitle{
     text-align: center;
     font-style: normal;
-    background-color: rgb(100, 210, 238);
-    color:#0e556e;
+    background-color: rgb(71, 93, 135);
+    color:#ebf6f9;
     padding: 1px;
-    border-radius: 10px;
+    
+    
   }
 
   .center{
@@ -169,11 +159,11 @@
     }
 
     .table {
-        border: 1px solid #000; /* Add a solid black border around the table */
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; /* Add a solid black border around the table */
         border-collapse: collapse; /* Collapse borders into a single border */
     }
     .table th {
-        background-color:rgb(100, 210, 238); /* Change background color */
+         /* Change background color */
         color: #0e556e; /* Change text color */
        
     }

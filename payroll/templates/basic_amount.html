@@ -70,7 +70,7 @@
           <td><form method="POST" action="{% url 'display_cell_values' %}">
             {% csrf_token %}
             <input type="hidden" name="pay_level_id" value="{{ pay_level.id }}">
-            <button type="submit">Display</button>
+            <button type="submit">display</button>
         </form></td>
           <td>{{ pay_level.staff_type }}</td>
           <td>{{ pay_level.pay_level }}</td>
@@ -78,7 +78,7 @@
       {% endfor %}
     </tbody>
   </table> 
- 
+
   </div>
   
   {% else %} 
@@ -98,13 +98,63 @@
       </thead>
        <tbody class="table-group-divider" >
        
-          {% for cell_value in cell_values %}
+          {% for index, cell_value in cell_values %}
               <tr>
-                  <td>{{ cell_value.id }}</td>  
+                 <td>{{ index|add:1}} </td> 
                   <td>{{ cell_value }}</td>
               </tr>
           {% endfor %}
-      
+        
+   
+          {% comment %} <tr >    
+            <td>1</td>
+            <td></td>        
+          </tr>       
+          <tr>    
+            <td>2</td>
+            <td>98765</td>
+          </tr>   
+          <tr> 
+            <td>3</td>
+            <td>98765</td>
+          </tr>  
+          <tr> 
+            <td>4</td>
+            <td>9875</td>
+          </tr>   {% endcomment %}
+
+         
+            {% comment %} <td>3</td>
+            <td>{{ i.cell_3 }}</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>{{ i.cell_4 }}</td>
+          </tr>
+          <tr>    
+            <td>5</td>
+            <td>{{i.cell_5}}</td>            
+          </tr>       
+          <tr>
+            <td>6</td>
+            <td>{{ i.cell_6 }}</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>{{ i.cell_7 }}</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>{{ i.cell_8 }}</td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>{{ i.cell_9 }}</td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>{{ i.cell_10 }}</td>
+          </tr> {% endcomment %}
 
 
         

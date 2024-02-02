@@ -7,32 +7,108 @@
 {% block heading %}{% endblock %}
 
 {% block content %}
-
-<div class="flexborder">
-    <div class="flextitle">
+<div class="flex-container">
+  <div class="block">
+    <div class="flexborder">
+      <div class="flextitle">
       <h5>Rule Management</h5>
     </div>
-    <form class="row g-3">
+    <form  method="post" action="{% url 'rule_man' %}">
+      {% csrf_token %}  
+      <div class="row g-3">
         <div class="col-sm-3">
-          <label class="form-label">Pay Rule:</label>
-            <input type="text" class="form-control" id="inputPayRule" required >
-            </div>
-    </form>
-
-    <form class="row g-3">
-        <div class="col-sm-3">
-            <label class="form-label">Rule Name:</label>
-            <input type="text" class="form-control" id="inputRuleName" required >
-            </div>
-    </form>
+          <label {{ form.pay_rule.id_for_label }} class="form-label">Pay Rule:</label> 
+          {{ form.pay_rule }} 
+        </div>
+      </div>
+      <div class="row g-3">
+          <div class="col-sm-3">
+            <label {{ form.rule_name.id_for_label }} class="form-label">Rule Name:</label> 
+            {{ form.rule_name }}
+          </div>
+      </div>   
 </div>
 <div class="center" >
     <div class="d-grid gap-2 d-md-block">
-      <button type="submit" class="btn btn-primary">Submit</button >
-      <button type="button" class="btn btn-warning">Cancel</button>
-      <button type="button" class="btn btn-danger ">Report</button>
+      <button type="submit" class="button" >Submit</button >
+      
     </div>
+  </div> 
+</form>
+  </div>
+  <div class="table-container">
+    <h2 class="flextitle">Rule List</h2>
+    {% if rule_data %} 
+        <table class="table table-hover">
+          <thead>
+            <tr>   
+              <th scope="col">Sr. No.</th>  
+              <th scope="col">Action</th>     
+              <th scope="col">Pay Rule</th>
+              <th scope="col">Rule Name</th>              
+            </tr>
+          </thead>
+          <tbody class="table-group-divider">
+            {% for i in rule_data %}
+            <tr>   
+              <td scope="col">{{forloop.counter}}</td> 
+              <td >
+                <button class="btn btn-primary edit-btn">Edit</button>
+               {% comment %} edit option {% endcomment %}
+             </td>
+              <td> <span class="editable-field" data-field="pay_rule" data-id="{{ i.pk }}">{{ i.pay_rule }}</span>
+                <input type="text" class="edit-field" data-field="pay_rule" data-id="{{ i.pk }}" value="{{ i.pay_rule }}" style="display: none;"></td>
+              <td><span class="editable-field" data-field="rule_name" data-id="{{ i.pk }}">{{ i.rule_name }}</span>
+                <input type="text" class="edit-field" data-field="rule_name" data-id="{{ i.pk }}" value="{{ i.rule_name }}" style="display: none;"></td>             
+            </tr>
+            
+            {% endfor %}            
+          </tbody>
+        </table> 
+        </div>
+   {% else %} 
+         No Data Found
+   {% endif %} 
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                <script>
+                    $(document).ready(function() {
+                        $('.edit-btn').on('click', function() {
+                            var $row = $(this).closest('tr');
+                            $row.find('.editable-field').toggle();
+                            $row.find('.edit-field').toggle();
+                        });
 
+                        $('.edit-field').on('blur', function() {
+                            var $input = $(this);
+                            var field = $input.data('field');
+                            var id = $input.data('id');
+                            var value = $input.val();
+
+                            // Send AJAX request to update the value in the backend
+                            $.ajax({
+                                method: 'POST',
+                               url: '/update_rule/' + id + '/',
+                                data: {
+                                    field: field,
+                                    value: value,
+                                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                                },
+                                success: function(response) {
+                                    if (response.success) {
+                                        $input.hide();
+                                        $input.siblings('.editable-field').text(value).show();
+                                    } else {
+                                        alert('Failed to update ' + field);
+                                    }
+                                },
+                                error: function(xhr, status, error) {
+                                    console.error(xhr.responseText);
+                                }
+                            });
+                        });
+                    });
+                </script>
 {% endblock %}
 
 
@@ -42,8 +118,29 @@
     overflow-x: hidden;
   }
   
-  
+  .table {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; /* Add a solid black border around the table /
+      border-collapse: collapse; / Collapse borders into a single border /
+  }
+  .table th {
+       / Change background color /
+      color: #0063b87 ; / Change text color */
+
+  }
   .flexborder{
+  width:fit-content;
+  margin: auto !important;
+  padding: 10px;
+  border-width: 2px;
+  border-radius:10px;
+  margin-top: 4vh;
+  margin-bottom: 30px;
+  margin-left:25vw;
+  margin-right:25vw;
+  margin-inline-end: 10px;
+  height: 300px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;}
+  {% comment %} .flexborder{
     width:fit-content;
     margin: auto !important;
     padding: 2px;
@@ -57,7 +154,7 @@
     margin-right: 10px;
     margin-inline-end: 10px;
   
-  }
+  } {% endcomment %}
   
   /* To control size of the columns */
   
@@ -71,11 +168,27 @@
   .flextitle{
     text-align: center;
     font-style: normal;
-    background-color: rgb(100, 210, 238);
-    color:#0e556e;
+    background-color: rgb(6,56,127); 
+    color:white;
     padding: 1px;
-    border-radius: 10px;
+    
   }
+
+  .button {
+    padding: 10px 20px;
+    background-color: rgb(6, 56, 127);
+    color: white; /* White text color */
+    border: 2px solid #06387F; /* Border color */
+    border-radius: 5px; /* Optional: Rounded corners */
+    transition-duration: 0.4s;
+  }
+  
+  .button:hover {
+    background-color: rgb(6, 56, 127); /* Background color for the hover state */
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+
 
   .center{
     display: flex;
@@ -84,10 +197,51 @@
     height: 50px;
   }
 
-  form.row.g-3{
+  div.row.g-3{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
   }
+
+  .flex-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start; /* Align items at the top */
+    }
+    .block {
+        flex: 0 0 40%; /* Adjust width of the rule management block */
+        /* Additional styling for the rule management block */
+    }
+
+    .table-container {
+      flex: 0 0 55%; /* Adjust width of the table */
+        margin-right: 20px;
+        margin-bottom: 20px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .flex-container {
+            flex-direction: column; /* Stack content vertically on smaller screens */
+        }
+
+        .block
+         {
+          flex: 0 0 55%; /* Adjust width of the table */
+          margin-left: auto; /* Ensure full width on smaller screens */
+          margin-bottom: 20px; /* Add space between sections */
+        }
+    }
+
+    .table {
+        border: 1px solid #000; /* Add a solid black border around the table */
+        border-collapse: collapse; /* Collapse borders into a single border */
+    }
+    .table th {
+        background-color:rgb(6,56,127); /* Change background color */
+        color: white ; /* Change text color */
+       
+    }
+  
 </style>
 {% endblock %}                 
