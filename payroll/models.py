@@ -7,13 +7,26 @@ class Employee_details(models.Model):
     #PERSONAL_DETAILSS
     id_no=models.PositiveIntegerField(unique =True, default=1)
     TITLE_CHOICES = [('', 'Select'),('1', 'Mr.'),('2', 'Mrs.'), ('3', 'Dr.')] 
+    id_no=models.PositiveIntegerField(unique =True, default=1)
+    TITLE_CHOICES = [('', 'Select'),('1', 'Mr.'),('2', 'Mrs.'), ('3', 'Dr.')] 
     title=models.CharField(max_length=1,choices=TITLE_CHOICES,blank=False)
     first_name=models.CharField(max_length=30, default='')
     middle_name=models.CharField(max_length=30, default='')
     last_name=models.CharField(max_length=30, default='')
     date_of_birth = models.DateField()
     GENDER_CHOICES = [('', 'Select'),('M', 'Male'),('F', 'Female'), ('O', 'Other')] 
+    GENDER_CHOICES = [('', 'Select'),('M', 'Male'),('F', 'Female'), ('O', 'Other')] 
     gender=models.CharField(max_length=1,choices=GENDER_CHOICES,blank=False)
+    EMPLOYEE_TYPE_CHOICES = [
+        ('', 'Select'),
+        ('1', 'Permanent'),
+        # ('2', 'Permanent Teaching Non-Sanctioned'),
+        # ('3', 'Permanent Non-Teaching Excess'),
+        ('2', 'Contractual Non-Teaching'),
+        ('3', 'Contractual Teaching'),
+        ('4', 'Security'),
+    ]
+    employee_type=models.CharField(max_length=40, choices=EMPLOYEE_TYPE_CHOICES, blank=False)
     EMPLOYEE_TYPE_CHOICES = [
         ('', 'Select'),
         ('1', 'Permanent'),
@@ -30,12 +43,15 @@ class Employee_details(models.Model):
     email = models.EmailField(max_length=30,default='')
     mobile_no = models.CharField(max_length=20,default='')
     address=models.CharField(max_length=500,default='')
+    address=models.CharField(max_length=500,default='')
     # photo=models.FileField( default='')
     # sign=models.FileField(default='')
+       
        
     # #SERVICE_DATE_DETAILS
     date_of_joining = models.DateField()
     date_of_relieving = models.DateField()
+    date_of_increment = models.DateField()
     date_of_increment = models.DateField()
     date_of_increment = models.DateField()
     date_of_retirement  = models.DateField()
@@ -55,6 +71,7 @@ class Employee_details(models.Model):
     # # #BANK_DETAILS
     bank_acc_no= models.CharField(max_length=20,blank=False)
     ifsc_code =models.CharField(max_length=20,blank=False)
+    bank=models.CharField(max_length=30, default='', blank=False)
     bank=models.CharField(max_length=30, default='', blank=False)
     bank_branch=models.CharField(max_length=30,blank=False)  
     epf=models.CharField(max_length=20,  blank=False)

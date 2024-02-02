@@ -131,10 +131,54 @@
   }
 
   div.row.g-3{
+  div.row.g-3{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
   }
+
+  .flex-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start; /* Align items at the top */
+    }
+    .block {
+        flex: 0 0 40%; /* Adjust width of the rule management block */
+        /* Additional styling for the rule management block */
+    }
+
+    .table-container {
+      flex: 0 0 55%; /* Adjust width of the table */
+        margin-right: 20px;
+        margin-bottom: 20px;
+        overflow-y: scroll;
+        height: 400px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .flex-container {
+            flex-direction: column; /* Stack content vertically on smaller screens */
+        }
+
+        .block
+         {
+          flex: 0 0 55%; /* Adjust width of the table */
+          margin-left: auto; /* Ensure full width on smaller screens */
+          margin-bottom: 20px; /* Add space between sections */
+        }
+    }
+
+    .table {
+        border: 1px solid #000; /* Add a solid black border around the table */
+        border-collapse: collapse; /* Collapse borders into a single border */
+    }
+    .table th {
+        background-color:rgb(100, 210, 238); /* Change background color */
+        color: #0e556e; /* Change text color */
+       
+    }
+  
 
   .flex-container {
         display: flex;

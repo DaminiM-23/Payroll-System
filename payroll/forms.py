@@ -1,3 +1,5 @@
+
+from typing import Self
 from django import forms
 from .models import *
   
