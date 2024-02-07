@@ -22,6 +22,7 @@ class Employee_details_Form(forms.ModelForm):
              'pay_status': forms.RadioSelect(choices=[(True, 'Yes'), (False, 'No')]),
              'employee_type':forms.Select(attrs={'class': 'form-control',}),
              'id_no':forms.TextInput(attrs={'class': 'form-control'}),
+             #For the image upload
              #Changed the input to allow preview image to connect to the uploaded image
              'photo': forms.FileInput(attrs={'class': 'form-control-file', 'onchange': 'previewImage(this)'}),
              #Sign ka new variable
