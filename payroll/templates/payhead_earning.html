@@ -63,7 +63,7 @@
           {% for i in  payhead_e %}
           <tr>
             <td >Edit</td>
-            <td>{{i.id}}</td>
+            <td>{{forloop.counter}}</td>
             <td>{{i.pay_head}}</td>
             <td>{{i.f_name}}</td>
           </tr>

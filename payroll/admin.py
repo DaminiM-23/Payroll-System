@@ -1,18 +1,18 @@
 from django.contrib import admin
 from .models import *
 
-class obj_Employee_details(admin.ModelAdmin):
-    list_display=['id_no','employee_type','sequence_no','title','first_name','middle_name','last_name',
-                  'date_of_birth','gender','aadhar_id','pan_no','email','mobile_no','address','date_of_joining', 'date_of_relieving','date_of_increment',
-                  'date_of_retirement', 'from_appointment_date', 'to_appointment_date',
-                  'designation_nature',  'department','designation' ,'appointment',
-                  'staff_type','TA','HRA','handicap','quarter','senior_citizen',
-                  'bank_acc_no','ifsc_code','bank','bank_branch',
-                  'epf','gpf_no','dcps_no','rule','pay_level','cell_number',
-                  'basic','pay_status','grade_pay']
+# class obj_Employee_details(admin.ModelAdmin):
+#     list_display=['id_no','employee_type','sequence_no','title','first_name','middle_name','last_name',
+#                   'date_of_birth','gender','aadhar_id','pan_no','email','mobile_no','address','photo','date_of_joining', 'date_of_relieving','date_of_increment',
+#                   'date_of_retirement', 'from_appointment_date', 'to_appointment_date',
+#                   'designation_nature',  'department','designation' ,'appointment',
+#                   'staff_type','TA','HRA','handicap','quarter','senior_citizen',
+#                   'bank_acc_no','ifsc_code','bank','bank_branch',
+#                   'epf','gpf_no','dcps_no','rule','pay_level','cell_number',
+#                   'basic','pay_status','grade_pay']
 
-admin.site.register(Employee_details,obj_Employee_details)
-
+# admin.site.register(Employee_details,obj_Employee_details)
+admin.site.register(Employee_details)
 
 class obj_satff_type(admin.ModelAdmin):
     list_display=['stafftype','retirement_age']
@@ -25,6 +25,8 @@ admin.site.register(department)
 admin.site.register(designation)
 admin.site.register(payhead_deduction)
 admin.site.register(payhead_earning)
+admin.site.register(deduction_rule)  
+admin.site.register(earning_rule)
 admin.site.register(bank)
 
 class obj_PayLevelMaster(admin.ModelAdmin):

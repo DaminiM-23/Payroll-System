@@ -50,7 +50,7 @@
                     {% for i in bank_data %}
                         <tr>
                             <td >Edit</td>
-                            <td>{{i.id}}</td>
+                            <td>{{forloop.counter}}</td>
                             <td>{{i.bank}}</td>
                         </tr>
                 {% endfor %}

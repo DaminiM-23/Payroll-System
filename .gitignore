@@ -4,6 +4,4 @@ venv/
 
 **/migrations/*.py
 **/migrations/*.pyc
-*.sqlite3
-db.sqlite3
 

@@ -5,9 +5,7 @@ from django.db import models
 
 class Employee_details(models.Model):
     #PERSONAL_DETAILSS
-    id_no=models.PositiveIntegerField(unique =True, default=1)
-    TITLE_CHOICES = [('', 'Select'),('1', 'Mr.'),('2', 'Mrs.'), ('3', 'Dr.')] 
-    id_no=models.PositiveIntegerField(unique =True, default=1)
+    id_no=models.PositiveIntegerField(unique =True)
     TITLE_CHOICES = [('', 'Select'),('1', 'Mr.'),('2', 'Mrs.'), ('3', 'Dr.')] 
     title=models.CharField(max_length=1,choices=TITLE_CHOICES,blank=False)
     first_name=models.CharField(max_length=30, default='')
@@ -15,7 +13,7 @@ class Employee_details(models.Model):
     last_name=models.CharField(max_length=30, default='')
     date_of_birth = models.DateField()
     GENDER_CHOICES = [('', 'Select'),('M', 'Male'),('F', 'Female'), ('O', 'Other')] 
-    GENDER_CHOICES = [('', 'Select'),('M', 'Male'),('F', 'Female'), ('O', 'Other')] 
+    
     gender=models.CharField(max_length=1,choices=GENDER_CHOICES,blank=False)
     EMPLOYEE_TYPE_CHOICES = [
         ('', 'Select'),
@@ -27,23 +25,15 @@ class Employee_details(models.Model):
         ('4', 'Security'),
     ]
     employee_type=models.CharField(max_length=40, choices=EMPLOYEE_TYPE_CHOICES, blank=False)
-    EMPLOYEE_TYPE_CHOICES = [
-        ('', 'Select'),
-        ('1', 'Permanent'),
-        # ('2', 'Permanent Teaching Non-Sanctioned'),
-        # ('3', 'Permanent Non-Teaching Excess'),
-        ('2', 'Contractual Non-Teaching'),
-        ('3', 'Contractual Teaching'),
-        ('4', 'Security'),
-    ]
-    employee_type=models.CharField(max_length=40, choices=EMPLOYEE_TYPE_CHOICES, blank=False)
+   
+    
     sequence_no=models.PositiveIntegerField(default=0)
     aadhar_id=models.CharField(max_length=20,default='')
-    pan_no= models.CharField(max_length=20 , unique =True ,blank=False)
+    pan_no= models.CharField(max_length=20 , unique =True ,blank=False,default='')
     email = models.EmailField(max_length=30,default='')
     mobile_no = models.CharField(max_length=20,default='')
     address=models.CharField(max_length=500,default='')
-    address=models.CharField(max_length=500,default='')
+    
     # photo=models.FileField( default='')
     # sign=models.FileField(default='')
        
@@ -78,7 +68,7 @@ class Employee_details(models.Model):
     gpf_no = models.CharField(max_length=20, unique =True ,blank=False)
     dcps_no = models.CharField(max_length=20, unique =True ,blank=False)
     rule=models.CharField(max_length=10, blank=False)
-    pay_level=models.CharField(max_length=30, blank=False)
+    pay_level=models.CharField(max_length=30, blank=False,)
     cell_number=models.CharField(max_length=10, blank=False)
     basic=models.IntegerField(default=0)
     pay_status=models.BooleanField(blank=False)

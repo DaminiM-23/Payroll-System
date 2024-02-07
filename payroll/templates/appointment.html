@@ -124,7 +124,7 @@
       {% for i in appointment_data %}
       <tr>
         <td >Edit</td>
-        <td>{{i.id}}</td>
+        <td>{{forloop.counter}}</td>
         <td>{{i.appointment}}</td>
       {% endfor %}                 
       </tr> 

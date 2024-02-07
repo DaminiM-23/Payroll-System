@@ -32,8 +32,9 @@
           </div>
         {% comment %} {% endfor %}        {% endcomment %}
         <div class="col-sm-2 px-3 py-2">
-          <label {{ form.id_no.id_for_label }} class="form-label">ID No:</label> 
-            {{ form.id_no }}                  
+          <label for="{{ form.id_no.id_for_label }}" class="form-label">ID No:</label> 
+          {{form.id_no}}
+          {% comment %} <input id ="id_no" name="id" type="text"    class="form-control" value="{{ latest_id}}" disabled>                {% endcomment %}
         </div>
         <div class="col-sm-2 px-3 py-2">
           <label {{form.employee_type.id_for_label}} class="form-label">Employee Type:</label>
@@ -72,14 +73,31 @@
           {{form.sequence_no}}   
           
         </div>
-        <!-- <div class="col-sm-1 px-0 py-2 ms-auto">
-          <img id="frame" src="{% if form.instance.photo %}{{ form.instance.photo.url }}{% else %}{% static '../static/dummy.jpg' %}{% endif %}" class="img-fluid photo"><br>
-        </div>
-        <div class="col-sm-2 px-2 py-2">
-          <label {{form.photo.id_for_label}} class="form-label">Upload Photo:</label>
-          {{form.photo}}
-        </div> -->
+       <!-- This code is new, and it is for uploading the Photo of the employee and getting the preview -->
+       <div class="col-sm-1 px-0 py-2 ms-auto">
+        <img id="frame" src="{% if form.instance.photo %}{{ form.instance.photo.url }}{% else %}{% static '../static/dummy.jpg' %}{% endif %}" class="img-fluid photo"><br>
       </div>
+      <div class="col-sm-2 px-2 py-2">
+          <label {{form.photo.id_for_label}} class="form-label"></label>
+          
+          {{form.photo}}
+          <input type="file" id="imageInput" accept="image/*" style="display: none;">
+          <button type="button" onclick="document.getElementById('imageInput').click();" class="btn btn-primary">Select Photo</button>
+      </div>
+      
+      <script>
+          document.getElementById('imageInput').addEventListener('change', function() {
+              var frame = document.getElementById('frame');
+              var file = this.files[0];
+              var reader = new FileReader();
+              reader.onload = function(e) {
+                  frame.src = e.target.result;
+              };
+              reader.readAsDataURL(file);
+          });
+      </script>
+      <!-- This code is new, and it is for uploading the Photo of the employee and getting the preview -->  
+    </div>
 
       <div class="row d-flex">
         <div class="col-sm-2 px-3 py-2">
@@ -99,13 +117,29 @@
           <label for="{{form.last_name.id_for_label}}" class="form-label">Last Name :</label>
           {{form.last_name}}
         </div>
-        <!-- <div class="col-sm-1 px-0 py-2 ms-auto">
-          <img id="frame" src="{% if form.instance.photo %}{{ form.instance.photo.url }}{% else %}{% static '../static/dummy_sign.jpg' %}{% endif %}" class="img-fluid sign"><br>
+        <!-- This is -->
+        <div class="col-sm-1 px-0 py-2 ms-auto">
+          <img id="signFrame" src="{% if form.instance.sign %}{{ form.instance.sign.url }}{% else %}{% static '../static/dummy.jpg' %}{% endif %}" class="img-fluid sign"><br>
         </div>
         <div class="col-sm-2 px-2 py-2">
-          <label {{form.sign.id_for_label}} class="form-label">Upload Sign:</label>
-          {{form.sign}}
-        </div> -->
+            <label {{form.sign.id_for_label}} class="form-label"></label>
+            {{form.sign}}
+            <input type="file" id="signInput" accept="image/*" style="display: none;">
+            <button type="button" onclick="document.getElementById('signInput').click();" class="btn btn-primary">Select Sign</button>
+        </div>
+        
+        <script>
+            document.getElementById('signInput').addEventListener('change', function() {
+                var signFrame = document.getElementById('signFrame');
+                var file = this.files[0];
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    signFrame.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            });
+        </script>
+        <!-- This is -->
       </div>
       <div class="row d-flex">
         <div class="col-sm-2 px-3 py-2">
@@ -170,6 +204,7 @@
       <div class="col-sm-2 px-3 py-2">
         <label for="{{ form.des_nature.id_for_label }}">Designation Nature:</label>
          <select id="{{ form.des_nature.id_for_label }}" name="{{ form.des_nature.name }}" class="form-control" >
+          <option>Please Select</option>
             {% for i in des_nature_data %}
                 <option value="{{ i.des_nature }}">{{ i.des_nature }}</option>
             {% endfor %}
@@ -178,6 +213,7 @@
       <div class="col-sm-2 px-3 py-2">
         <label for="{{ form.dep_name.id_for_label }}">Department :</label>
          <select id="{{ form.dep_name.id_for_label }}" name="{{ form.dep_name.name }}" class="form-control" >
+          <option>Please Select</option>
             {% for i in department_data %}
                 <option value="{{ i.dep_name }}">{{ i.dep_name }}</option>
             {% endfor %}
@@ -186,6 +222,7 @@
       <div class="col-sm-2 px-3 py-2">
         <label for="{{ form.designation.id_for_label }}">Designation :</label>
          <select id="{{ form.designation.id_for_label }}" name="{{ form.designation.name }}" class="form-control" >
+            <option>Please Select</option>
             {% for i in designation_data %}
                 <option value="{{ i.designation }}">{{ i.designation }}</option>
             {% endfor %}  
@@ -194,16 +231,17 @@
       <div class="col-sm-2 px-3 py-2">
         <label for="{{ form.appointment.id_for_label }}">Appointment :</label>
          <select id="{{ form.appointment.id_for_label }}" name="{{ form.appointment.name }}" class="form-control" >
+          <option>Please Select</option>
             {% for i in appointment_data %}
                 <option value="{{ i.appointment }}">{{ i.appointment }}</option>
             {% endfor %}
           </select>
-        {% comment %} <label {{form.appointment.id_for_label}} class="form-label">Appointment</label>
-        {{form.appointment}} {% endcomment %}
+       
       </div> 
       <div class="col-sm-2 px-3 py-2">
         <label for="{{ form.staff_type.id_for_label }}">Staff Type :</label>
          <select id="{{ form.staff_type.id_for_label }}" name="{{ form.staff_type.name }}" class="form-control" >
+              <option>Please Select</option>
             {% for i in staff_type_data %}
                 <option value="{{ i.stafftype }}">{{ i.stafftype }}</option>
             {% endfor %}
@@ -252,31 +290,7 @@
       </div>
     </div>
   </div>
-  {% comment %} <div class="new_block">
-    <div class="title">Service Type Details</div>
-    <div class="row d-flex">
-      <div class="col-sm-2 px-3 py-2">
-        <label {{form.designation_nature.id_for_label}} class="form-label">Designation Nature :</label>
-        {{form.designation_nature}}
-      </div>
-      <div class="col-sm-2 px-3 py-2">
-        <label {{form.department.id_for_label}} class="form-label">Department :</label>
-        {{form.department}}
-      </div>
-      <div class="col-sm-2 px-3 py-2">
-        <label {{form.designation.id_for_label}} class="form-label">Designation :</label>
-        {{form.designation}}
-      </div>
-      <div class="col-sm-2 px-3 py-2">
-        <label {{form.appointment.id_for_label}} class="form-label">Appointment</label>
-        {{form.appointment}}
-      </div>
-      <div class="col-sm-2 px-3 py-2">
-        <label {{form.staff_type.id_for_label}} class="form-label">Staff Type :</label>
-        {{form.staff_type}}
-      </div>
-    </div>
-  </div> {% endcomment %}
+  
   <div class="new_block">
     <div class="title">Bank Details</div>
     <div class="row d-flex">
@@ -309,33 +323,70 @@
       <div class="col-sm-2 px-3 py-2">
         <label for="{{ form.rule.id_for_label }}">Rule :</label>
          <select id="{{ form.rule.id_for_label }}" name="{{ form.rule.name }}" class="form-control" >
+          <option>Please Select</option>
             {% for i in rule_data %}
                 <option value="{{ i.pay_rule }}">{{ i.pay_rule }}</option>
             {% endfor %}
         </select>   
        
-      </div>
-
-     <div class="col-sm-2 px-3 py-2">
-        
-         
-      
-        <label for="{{ form.pay_level.id_for_label }}">Pay Level :</label>
-        <select id="{{ form.pay_level.id_for_label }}" name="{{ form.pay_level.name }}" class="form-control" >
-            {% for i in pay_level_data %}
-                <option value="{{ i.pay_level}}">{{ i.pay_level }}</option>
-            {% endfor %}                                                                               
-        </select>   
-      </div>
-      <div class="col-sm-2 px-3 py-2">
-        <label for="{{form.cell_number.id_for_label}}" >Cell Number :</label>
-        <select id="{{form.cell_number.id_for_label}}" name="{{ form.cell_number.name }}" class="form-control" >
-        </select>     
       </div>     
-      <div class="col-sm-2 px-3 py-2">
-        Basic:  
-      </div>
-       
+        
+         <div class="col-sm-2 px-3 py-2">
+          <label for="id_pay_level">Pay Level:</label>
+          <select id="id_pay_level" name="pay_level" class="form-control" onchange="updateCellValue()">
+            <option>Please Select</option>
+            {% for i in pay_level_data %}
+            <option value="{{ i.pay_level }}" >{{ i.pay_level }}</option>
+            {% endfor %}
+          </select>
+         </div>
+        
+        <div class="col-sm-2 px-3 py-2">
+          <label for="id_cell_number">Cell Number:</label>
+          <select id="id_cell_number" name="cell_number" class="form-control" onchange="updateCellValue()">
+            <option>Please Select</option>
+            {% for number in cell_numbers %}            
+            <option value="{{ number }}" >{{ number }}</option>
+            {% endfor %}
+          </select>    
+        </div>
+        
+        <div class="col-sm-2 px-3 py-2">
+          <label for="{{form.basic.id_for_label}}" class="form-label">Basic: </label>
+          <input id="id_basic" name="basic" class="form-control" readonly  disabled style="background-color: #f0f0f0; color: #333; cursor: not-allowed;"> 
+        </div>
+        <script>
+          function updateCellValue() {
+            var payLevel = document.getElementById('id_pay_level').value;
+            var cellNumber = document.getElementById('id_cell_number').value;
+        
+            // Send AJAX request to the Django view function
+            fetch(`/get_basic_value/?pay_level=${payLevel}&cell_number=${cellNumber}`)
+              .then(response => {
+                if (!response.ok) {
+                  throw new Error('Network response was not ok');
+                }
+                return response.json();
+              })
+              .then(data => {
+                if (data.hasOwnProperty('basic_value')) {
+                  // Update the basic input field with the retrieved basic value
+                  document.getElementById('{{ form.basic.id_for_label }}').value = data.basic_value;
+                } else {
+                  console.error('Error:', data.error);
+                  // Handle error: Display error message or take appropriate action
+                }
+              })
+              .catch(error => console.error('Error:', error));
+          }
+        </script>
+        
+
+        
+
+
+     
+      
      
 
       <div class="col-sm-2 px-3 py-2">

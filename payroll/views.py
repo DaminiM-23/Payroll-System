@@ -13,16 +13,21 @@ def base(request):
     return render(request,"base.html")
 
 def employee_registration_view(request):  
+    pay_level_data = PayLevelMaster.objects.all()
+    cell_numbers = range(1, 41) 
     rule_data = rule_man.objects.all()
     department_data = department.objects.all() 
     staff_type_data=staff_type.objects.all()
     designation_data=designation.objects.all()  
     des_nature_data=des_nature.objects.all()  
     appointment_data=appointment.objects.all() 
-    bank_data=bank.objects.all()        
+    bank_data=bank.objects.all() 
+    last_id = Employee_details.objects.latest('id').id 
+    latest_id = last_id + 1     
     if request.method == 'POST':
         form = Employee_details_Form(request.POST)
         if form.is_valid():
+            
             form.save()  # Save the data to the model
             messages.success(request, 'Employee Registered successfully!')
             # return redirect('success.html')  # Redirect to a success page
@@ -30,7 +35,29 @@ def employee_registration_view(request):
             return redirect('employee_registration')             
     else:
         form = Employee_details_Form()
-    return render(request, 'employee_registration.html',{'form': form,'rule_data': rule_data,'staff_type_data':staff_type_data,'department_data': department_data,'designation_data': designation_data,'des_nature_data': des_nature_data,'appointment_data':appointment_data,'bank_data': bank_data})
+    return render(request, 'employee_registration.html',{'form': form,'latest_id': latest_id,'pay_level_data': pay_level_data,'cell_numbers': cell_numbers,'rule_data': rule_data,'staff_type_data':staff_type_data,'department_data': department_data,'designation_data': designation_data,'des_nature_data': des_nature_data,'appointment_data':appointment_data,'bank_data': bank_data})
+
+
+def get_basic_value(request):
+    pay_level = request.GET.get('pay_level')
+    cell_number = request.GET.get('cell_number')
+
+    try:
+        pay_level_master = PayLevelMaster.objects.get(pay_level=pay_level)
+        basic_value = getattr(pay_level_master, f'cell_{cell_number}')
+        return JsonResponse({'basic_value': basic_value})
+    except PayLevelMaster.DoesNotExist:
+        return JsonResponse({'error': 'Pay level not found'}, status=404)
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=400)
+
+
+
+
+
+
+
+        
 
  
 def staff_type_view(request):
@@ -90,9 +117,8 @@ def pay_level_view(request):
             s=fm.cleaned_data['staff_type']
             pl=fm.cleaned_data['pay_level']  
             reg=PayLevelMaster(staff_type=s, pay_level=pl)
-            reg.save()  # Save the data to the model
-            # messages.success(request, 'Pay Rule added successfully!')
-            return redirect('pay_level')  # Redirect to a success page
+            reg.save() 
+            return redirect('pay_level')  
             
     else:
         fm = PayLevelMaster_Form()
@@ -108,6 +134,10 @@ class DisplayCellValuesView(View):
             cell_values = [pay_level_instance.cell_1, pay_level_instance.cell_2, pay_level_instance.cell_3, pay_level_instance.cell_4, pay_level_instance.cell_5, pay_level_instance.cell_6, pay_level_instance.cell_7, pay_level_instance.cell_8, pay_level_instance.cell_9, pay_level_instance.cell_10, pay_level_instance.cell_11,pay_level_instance.cell_12,pay_level_instance.cell_13,pay_level_instance.cell_14,pay_level_instance.cell_15,pay_level_instance.cell_16,pay_level_instance.cell_17,pay_level_instance.cell_18,pay_level_instance.cell_19,pay_level_instance.cell_20,pay_level_instance.cell_21,pay_level_instance.cell_22,pay_level_instance.cell_23,pay_level_instance.cell_24,pay_level_instance.cell_25,pay_level_instance.cell_26,pay_level_instance.cell_27,pay_level_instance.cell_28,pay_level_instance.cell_29,pay_level_instance.cell_30,pay_level_instance.cell_31,pay_level_instance.cell_32,pay_level_instance.cell_33,pay_level_instance.cell_34,pay_level_instance.cell_35,pay_level_instance.cell_36,pay_level_instance.cell_37,pay_level_instance.cell_38,pay_level_instance.cell_39,pay_level_instance.cell_40]
             enumerated_cell_values = enumerate(cell_values)
             return render(request, 'basic_amount.html', {'pay_level_data': PayLevelMaster.objects.all(), 'cell_values':  enumerated_cell_values})
+
+
+
+
 
 
 
