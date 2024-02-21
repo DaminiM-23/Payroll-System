@@ -16,7 +16,7 @@
   <table class="table table-hover">
     <thead>
       <tr>
-        <th scope="col" >Action</th>
+        
         <th scope="col" >Amount</th>
         <th scope="col">Staff</th>
         <th scope="col">Pay Level</th>
@@ -25,11 +25,11 @@
     <tbody class="table-group-divider">
       {% for pay_level in  pay_level_data %}
         <tr>
-          <td >Edit</td>
+          
           <td><form method="POST" action="{% url 'display_cell_values' %}">
             {% csrf_token %}
             <input type="hidden" name="pay_level_id" value="{{ pay_level.id }}">
-            <button type="submit">display</button>
+            <button class="btn btn-outline-dark" type="submit">Display</button>
         </form></td>
           <td>{{ pay_level.staff_type }}</td>
           <td>{{ pay_level.pay_level }}</td>
@@ -52,69 +52,13 @@
           <th scope="col">Amount</th>
         </tr>
       </thead>
-       <tbody class="table-group-divider" >
-       
+       <tbody class="table-group-divider" >       
           {% for index, cell_value in cell_values %}
               <tr>
                  <td>{{ index|add:1}} </td> 
                   <td>{{ cell_value }}</td>
               </tr>
-          {% endfor %}
-        
-   
-          {% comment %} <tr >    
-            <td>1</td>
-            <td></td>        
-          </tr>       
-          <tr>    
-            <td>2</td>
-            <td>98765</td>
-          </tr>   
-          <tr> 
-            <td>3</td>
-            <td>98765</td>
-          </tr>  
-          <tr> 
-            <td>4</td>
-            <td>9875</td>
-          </tr>   {% endcomment %}
-
-         
-            {% comment %} <td>3</td>
-            <td>{{ i.cell_3 }}</td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>{{ i.cell_4 }}</td>
-          </tr>
-          <tr>    
-            <td>5</td>
-            <td>{{i.cell_5}}</td>            
-          </tr>       
-          <tr>
-            <td>6</td>
-            <td>{{ i.cell_6 }}</td>
-          </tr>
-          <tr>
-            <td>7</td>
-            <td>{{ i.cell_7 }}</td>
-          </tr>
-          <tr>
-            <td>8</td>
-            <td>{{ i.cell_8 }}</td>
-          </tr>
-          <tr>
-            <td>9</td>
-            <td>{{ i.cell_9 }}</td>
-          </tr>
-          <tr>
-            <td>10</td>
-            <td>{{ i.cell_10 }}</td>
-          </tr> {% endcomment %}
-
-
-        
-      
+          {% endfor %}           
        </tbody>
     </table>
     </div>
@@ -132,22 +76,6 @@
   }
   
   
-  .flexborder{
-    width:fit-content;
-    margin: auto !important;
-    padding: 2px;
-    border-width: 2px;
-    border-color: rgb(100, 210, 238);
-    border-style: solid;
-    border-radius: 12px;
-    margin-top: 15px;
-    margin-bottom: 30px;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-inline-end: 10px;
-  
-  }
-  
   /* To control size of the columns */
   
   .col-sm-3{
@@ -157,21 +85,7 @@
   
   /* controlling size of the input field */
   
-  .flextitle{
-    text-align: center;
-    font-style: normal;
-    background-color: rgb(100, 210, 238);
-    color:#0e556e;
-    padding: 1px;
-    border-radius: 10px;
-  }
 
-  .center{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50px;
-  }
 
   div.row.g-3{
     display: flex;
@@ -179,17 +93,7 @@
     justify-content: space-around;
   }
 
-  .flex-container {
-        display: flex;
-        justify-content:center;
-        align-items: flex-start; /* Align items at the top */
-    }
     
-    .block {
-        flex: 0 0 40%; /* Adjust width of the rule management block */
-        /* Additional styling for the rule management block */
-        
-    }
 
     .table-container {
        
@@ -213,30 +117,6 @@
     }
 
     /* Responsive adjustments */
-    @media (max-width: 768px) {
-        .flex-container {
-            flex-direction: column; /* Stack content vertically on smaller screens */
-        }
-
-        .block
-         {
-          flex: 0 0 55%; /* Adjust width of the table */
-          margin-left: auto; /* Ensure full width on smaller screens */
-          margin-bottom: 20px; /* Add space between sections */
-          
-        }
-    }
-
-    .table {
-        border: 1px solid #000; /* Add a solid black border around the table */
-        border-collapse: collapse; /* Collapse borders into a single border */
-        
-    }
-    .table th {
-        background-color:rgb(100, 210, 238); /* Change background color */
-        color: #0e556e; /* Change text color */
-       
-    }
   
 </style>
 {% endblock %}         

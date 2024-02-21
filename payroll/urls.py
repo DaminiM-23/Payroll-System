@@ -8,8 +8,10 @@ from payroll import views
 urlpatterns = [ 
     path('base', views.base,name='base'), 
     path('', views.employee_registration_view ,name='employee_registration'),   
+    path('employee_registration', views.employee_registration_view ,name='employee_registration'),  
     path('rule_man',views.rule_man_view,name='rule_man'),
     path('update_rule/<int:pk>/',views.update_rule_view,name='update_rule'),
+    path('edit_btn/<int:pk>/',views.edit_btn_view,name='edit_btn_view'),
     path('bank',views.bank_view ,name='bank'),
     path('staff_type',views.staff_type_view ,name='staff_type'),
     path('payhead_earning',views.payhead_earning_view ,name='payhead_earning'),    
@@ -24,7 +26,7 @@ urlpatterns = [
     path('designation',views.designation_view ,name='designation'),
     path('des_nature',views.des_nature_view ,name='des_nature'),
     path('des_nature',views.des_nature_view ,name='des_nature'),
-    path('payment_head',views.payment_head_view ,name='payment_head'),  
+    path('get_upcoming_sequence_no/', get_upcoming_sequence_no, name='get_upcoming_sequence_no'),
     
     
 ] 

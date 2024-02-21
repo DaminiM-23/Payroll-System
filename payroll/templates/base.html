@@ -9,20 +9,158 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <style>
+  
+      .heading{
+        text-align: center;
+        
+      }
+
+      .heading h2{
+        font-size: 32px;
+        font-family:'Playfair Display', serif;;
+        color: #063b87 ; 
+        padding:32px;
+        font-weight:lighter;
+        display:inline;
+        
+      }
+      .popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    padding: 20px;
+    z-index: 9999;
+    width: 400px; 
+    height: 300px; 
+}
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+}
+
+.d-flex{
+  padding-right: 1%;
+}
+
+body{
+    overflow-x: hidden;
+  }
+
+.table {
+        border: 1px solid #000; /* Add a solid black border around the table */
+        border-collapse: collapse; /* Collapse borders into a single border */
+    }
+    .table th {
+        background-color:#05518c; /* Change background color */
+        color: white ; /* Change text color */
+       
+    }
+    .table {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; /* Add a solid black border around the table /
+      border-collapse: collapse; / Collapse borders into a single border /
+  }
+  .table th {
+       / Change background color /
+      color: #0063b87 ; / Change text color */
+
+  }
+  .flextitle{
+    text-align: center;
+    font-style: normal;
+    background-color: #05518c; 
+    color:white;
+    padding: 1px;
+    border-radius:10px;
+    
+  }
+  .flexborder{
+  width:fit-content;
+  margin: auto !important;
+  padding: 10px;
+  border-width: 2px;
+  border-radius:10px;
+  margin-top: 4vh;
+  margin-bottom: 30px;
+  margin-left:25vw;
+  margin-right:25vw;
+  margin-inline-end: 10px;
+  height: 300px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;}
+
+  .center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+  }
+
+  div.row.g-3{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .flex-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start; /* Align items at the top */
+    }
+    .block {
+        flex: 0 0 40%; /* Adjust width of the rule management block */
+        /* Additional styling for the rule management block */
+    }
+
+    .table-container {
+      flex: 0 0 55%; /* Adjust width of the table */
+        margin-right: 20px;
+        margin-bottom: 20px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .flex-container {
+            flex-direction: column; /* Stack content vertically on smaller screens */
+        }
+
+        .block
+         {
+          flex: 0 0 55%; /* Adjust width of the table */
+          margin-left: auto; /* Ensure full width on smaller screens */
+          margin-bottom: 20px; /* Add space between sections */
+        }
+    }
+
+
+
+
+    </style>
+  
+  
   </head>
 <body>
     <div class="header">
         <h1>Veermata Jijabai Technological Institute</h1>
-        <h4><i>H R Mahajani Rd, Matunga, Mumbai, Maharashtra 400019</i></h4>
+        <h4>H R Mahajani Rd, Matunga, Mumbai, Maharashtra 400019</h4>
     </div>
     <div class="homenav">
       <nav class="navbar navbar-expand-lg bg-light">
 
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Payroll</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+          <ul class="navbar-nav me-end mb-2 mb-lg-0">
+            <a class="nav-link" aria-current="page" href="/employee_registration" ><img src="../static/home_icon.png" alt="Home" style="height: 2rem;"></a>
+          </ul>
+         
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               {% block nav_item_2 %}
@@ -71,9 +209,7 @@
                           <li>
                             <a class="dropdown-item" href="/deduction_rule">Deduction Rules</a>
                           </li>
-                          <li>
-                            <a class="dropdown-item" href="/payment_head">Pay Head</a>
-                          </li>     
+                         
                   
                          
                           <li>
@@ -164,39 +300,12 @@
                 </ul>
               </li>
               {% endblock %}
-              {% comment %} {% block nav_item_3 %}
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  User Profile 
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="">logout</a></li>
-                  <li>
-                    <a class="dropdown-item" href="#">unkwn</a>
-                  </li>
-
-                  <!-- <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li> -->
-                </ul>
-              </li>
-              {% endblock %} {% endcomment %}
+              {% block nav_item_3 %}
+                 search
+              {% endblock %} 
             </ul>
-            <ul class="navbar-nav me-end mb-2 mb-lg-0">
-              <a class="nav-link" aria-current="page" href="" ><img src="../static/home_icon.png" alt="Home" style="height: 2rem;"></a>
-            </ul> <!-- 
-            <form class="d-flex" role="search"> </form>   -->
-              {% comment %} <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" value="{{ query }}">
-              <button onclick="searchEmployees()" class="btn btn-outline-success" type="submit"> Search</button> {% endcomment %}
-            <!-- JavaScript to handle the search -->
-                {% comment %} <script>
-                  function searchEmployees() {
-                      // Get the value from the input field
-                      var query = document.querySelector('input[name="q"]').value;
-
-                      // Redirect to the search URL with the query parameter
-                      window.location.href = '/search/?q=' + query;
-                  }
-                </script> {% endcomment %}
+            
+              
           </div>
         </div>
       </nav>
@@ -209,22 +318,7 @@
     {% block content %}
     {% endblock %}
 
-    <style>
-      .heading{
-        text-align: center;
-        
-      }
 
-      .heading h2{
-        font-size: 32px;
-        font-family:'Playfair Display', serif;;
-        color: #063b87 ; 
-        padding:32px;
-        font-weight:lighter;
-        display:inline;
-        
-      }
-    </style>
     {% block int_css %}
     {% endblock %}
 

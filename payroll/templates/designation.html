@@ -34,7 +34,7 @@
 </div>
 <div class="center" >
     <div class="d-grid gap-2 d-md-block">
-      <button type="submit" class="btn btn-primary">Submit</button >
+      <button type="submit" class="btn btn-outline-primary">Submit</button >
     </div>
 </div>
 </form>
@@ -54,9 +54,10 @@
                 <tbody class="table-group-divider">
                     {% for i in designation_data %}
                         <tr>
-                            <td >Edit</td>
-                            <td>{{i.id}}</td>
-                            <td>{{i.designation}}</td>
+                          <td ><button class="btn btn-outline-dark edit-btn">Edit</button></td>
+                          <td>{{i.id}}</td>
+                          <td><span class="editable-field" data-field="designation" data-id="{{ i.pk }}">{{i.designation}}</span>
+                            <input type="text" class="editable-field" data-field="designation" data-id="{{ i.pk }}" value="{{ i.designation }}" style="display: none;"></td>
                         </tr>
                 {% endfor %}
                 
@@ -66,6 +67,45 @@
     {% else %} 
             No Data Found
      {% endif %} 
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.edit-btn').on('click', function() {
+            var $row = $(this).closest('tr');
+            $row.find('.editable-field').toggle();
+           
+        });
+
+        $('.editable-field').on('blur', function() {
+            var $input = $(this);
+            var field = $input.data('field');
+            var id = $input.data('id');
+            var value = $input.val();
+
+            // Send AJAX request to update the value in the backend
+            $.ajax({
+                method: 'POST',
+               url: '/edit_btn/' + id + '/',
+                data: {
+                    field: field,
+                    value: value,
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: function(response) {
+                    if (response.success) {
+                        $input.hide();
+                        $input.siblings('.editable-field').text(value).show();
+                    } else {
+                        alert('Failed to update ' + field);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+    });
+</script>
   </div>
 </div>  
 
@@ -77,93 +117,20 @@
   body{
     overflow-x: hidden;
   }
-  
-  
-  .flexborder{
-    width: 500px;;
-    margin: auto !important;
-    padding: 5px;
-    border-width: 2px;
-    margin-top: 4vh;
-    margin-bottom: 30px;
-    margin-left:5vw;
-    margin-right:5vw;
-    height: fit-content;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;}
-  
-  /* To control size of the columns */
+
   
   .col-sm-3{
     padding: 20px;
     width: 30vw;
   }
   
-  /* controlling size of the input field */
-  
-  .flextitle{
-    text-align: center;
-    font-style: normal;
-    background-color: rgb(71, 93, 135);
-    color:#ebf6f9;
-    padding: 1px;
-    
-    
-  }
-
-  .center{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50px;
-  }
-
+ 
   div.row.g-3{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
   }
 
-  .flex-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start; /* Align items at the top */
-    }
-    .block {
-        flex: 0 0 40%; /* Adjust width of the rule management block */
-        /* Additional styling for the rule management block */
-    }
-
-    .table-container {
-      flex: 0 0 55%; /* Adjust width of the table */
-        margin-right: 20px;
-        margin-bottom: 20px;
-        overflow-y: scroll;
-        height: 400px;
-    }
-
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-        .flex-container {
-            flex-direction: column; /* Stack content vertically on smaller screens */
-        }
-
-        .block
-         {
-          flex: 0 0 55%; /* Adjust width of the table */
-          margin-left: auto; /* Ensure full width on smaller screens */
-          margin-bottom: 20px; /* Add space between sections */
-        }
-    }
-
-    .table {
-      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; /* Add a solid black border around the table */
-        border-collapse: collapse; /* Collapse borders into a single border */
-    }
-    .table th {
-         /* Change background color */
-        color: #0e556e; /* Change text color */
-       
-    }
   
 </style>
 {% endblock %}               

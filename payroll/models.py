@@ -1,11 +1,8 @@
 from django.db import models
 
-
- 
-
 class Employee_details(models.Model):
     #PERSONAL_DETAILSS
-    id_no=models.PositiveIntegerField(unique =True)
+    id=models.PositiveIntegerField(unique =True,primary_key=True)
     TITLE_CHOICES = [('', 'Select'),('1', 'Mr.'),('2', 'Mrs.'), ('3', 'Dr.')] 
     title=models.CharField(max_length=1,choices=TITLE_CHOICES,blank=False)
     first_name=models.CharField(max_length=30, default='')
@@ -17,17 +14,15 @@ class Employee_details(models.Model):
     gender=models.CharField(max_length=1,choices=GENDER_CHOICES,blank=False)
     EMPLOYEE_TYPE_CHOICES = [
         ('', 'Select'),
-        ('1', 'Permanent'),
-        # ('2', 'Permanent Teaching Non-Sanctioned'),
-        # ('3', 'Permanent Non-Teaching Excess'),
-        ('2', 'Contractual Non-Teaching'),
-        ('3', 'Contractual Teaching'),
-        ('4', 'Security'),
+        ('Permanent', 'Permanent'),
+        ('Contractual Non-Teaching', 'Contractual Non-Teaching'),
+        ('Contractual Teaching', 'Contractual Teaching'),
+        ('Security', 'Security'),
     ]
     employee_type=models.CharField(max_length=40, choices=EMPLOYEE_TYPE_CHOICES, blank=False)
    
     
-    sequence_no=models.PositiveIntegerField(default=0)
+    sequence_no=models.PositiveIntegerField(default='',blank=False)
     aadhar_id=models.CharField(max_length=20,default='')
     pan_no= models.CharField(max_length=20 , unique =True ,blank=False,default='')
     email = models.EmailField(max_length=30,default='')
@@ -76,6 +71,8 @@ class Employee_details(models.Model):
 
     class Meta:
          verbose_name_plural="Employee Details"
+
+    
     
 
 
@@ -164,16 +161,11 @@ class payhead_earning(models.Model):
     f_name=models.CharField( max_length=30, default='', blank=False)
 
     
-class payment_head(models.Model):
-    # Paycode=models.CharField( max_length=20, default='', blank=False)
-    head=models.CharField( max_length=20, default='', blank=False)
-    type_choices=[('','Select'),('1','Calculative'),('2','Earning')]
-    type=models.CharField(choices=type_choices,max_length=20, default='', blank=False)
-    cal=models.CharField( max_length=20, blank=False, default= "BASIC" )
+
     
 class payhead_deduction(models.Model):
-    pay_head=models.CharField( max_length=20, default='', blank=False)
-    f_name=models.CharField( max_length=30, default='', blank=False)
+    payhead=models.CharField( max_length=20, default='', blank=False)
+    fname=models.CharField( max_length=30, default='', blank=False)
 
 class deduction_rule(models.Model):
     rule=models.CharField(max_length=30, default='', blank=False)

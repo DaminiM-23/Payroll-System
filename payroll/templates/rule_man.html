@@ -27,14 +27,13 @@
             {{ form.rule_name }}
           </div>
       </div>   
-</div>
-<div class="center" >
-    <div class="d-grid gap-2 d-md-block">
-      <button type="submit" class="button" >Submit</button >
-      
-    </div>
-  </div> 
-</form>
+      </div>
+      <div class="center" > 
+          <div class="d-grid gap-2 d-md-block">
+            <button  class="btn btn-outline-primary" type="Submit">Submit</button>     
+          </div>
+        </div> 
+    </form>
   </div>
   <div class="table-container">
     <h2 class="flextitle">Rule List</h2>
@@ -53,7 +52,7 @@
             <tr>   
               <td scope="col">{{forloop.counter}}</td> 
               <td >
-                <button class="btn btn-primary edit-btn">Edit</button>
+                <button class="btn btn-outline-dark edit-btn">Edit</button>
                {% comment %} edit option {% endcomment %}
              </td>
               <td> <span class="editable-field" data-field="pay_rule" data-id="{{ i.pk }}">{{ i.pay_rule }}</span>
@@ -118,83 +117,9 @@
     overflow-x: hidden;
   }
   
-  .table {
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; /* Add a solid black border around the table /
-      border-collapse: collapse; / Collapse borders into a single border /
-  }
-  .table th {
-       / Change background color /
-      color: #0063b87 ; / Change text color */
-
-  }
-  .flexborder{
-  width:fit-content;
-  margin: auto !important;
-  padding: 10px;
-  border-width: 2px;
-  border-radius:10px;
-  margin-top: 4vh;
-  margin-bottom: 30px;
-  margin-left:25vw;
-  margin-right:25vw;
-  margin-inline-end: 10px;
-  height: 300px;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;}
-  {% comment %} .flexborder{
-    width:fit-content;
-    margin: auto !important;
-    padding: 2px;
-    border-width: 2px;
-    border-color: rgb(100, 210, 238);
-    border-style: solid;
-    border-radius: 12px;
-    margin-top: 15px;
-    margin-bottom: 30px;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-inline-end: 10px;
-  
-  } {% endcomment %}
-  
-  /* To control size of the columns */
-  
   .col-sm-3{
     padding: 20px;
     width: 30vw;
-  }
-  
-  /* controlling size of the input field */
-  
-  .flextitle{
-    text-align: center;
-    font-style: normal;
-    background-color: rgb(6,56,127); 
-    color:white;
-    padding: 1px;
-    
-  }
-
-  .button {
-    padding: 10px 20px;
-    background-color: rgb(6, 56, 127);
-    color: white; /* White text color */
-    border: 2px solid #06387F; /* Border color */
-    border-radius: 5px; /* Optional: Rounded corners */
-    transition-duration: 0.4s;
-  }
-  
-  .button:hover {
-    background-color: rgb(6, 56, 127); /* Background color for the hover state */
-    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
-  }
-  
-
-
-  .center{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50px;
   }
 
   div.row.g-3{
@@ -203,45 +128,10 @@
     justify-content: space-around;
   }
 
-  .flex-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start; /* Align items at the top */
-    }
-    .block {
-        flex: 0 0 40%; /* Adjust width of the rule management block */
-        /* Additional styling for the rule management block */
-    }
 
-    .table-container {
-      flex: 0 0 55%; /* Adjust width of the table */
-        margin-right: 20px;
-        margin-bottom: 20px;
-    }
+  
 
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-        .flex-container {
-            flex-direction: column; /* Stack content vertically on smaller screens */
-        }
-
-        .block
-         {
-          flex: 0 0 55%; /* Adjust width of the table */
-          margin-left: auto; /* Ensure full width on smaller screens */
-          margin-bottom: 20px; /* Add space between sections */
-        }
-    }
-
-    .table {
-        border: 1px solid #000; /* Add a solid black border around the table */
-        border-collapse: collapse; /* Collapse borders into a single border */
-    }
-    .table th {
-        background-color:rgb(6,56,127); /* Change background color */
-        color: white ; /* Change text color */
-       
-    }
+  
   
 </style>
 {% endblock %}                 

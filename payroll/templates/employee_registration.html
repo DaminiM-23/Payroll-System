@@ -1,14 +1,7 @@
 {% extends "base.html" %}
-
 {% load static %}
-<!-- For the image uplaod -->
-
-{% block title %}Employee Registration{% endblock %}
-
 {% block nav_item_3 %}{% endblock %}
-
-{% comment %} {% block heading %}Employee Registration{% endblock %} {% endcomment %}
-
+{% block heading %}Employee Registration{% endblock %} 
 {% block content %}
 
 <form method="post" action="" >
@@ -16,7 +9,6 @@
     <div class="title">Personal Details</div>
       <div class="row d-flex">
         {% csrf_token %}
-        {% comment %} {% for field in form %} {% endcomment %}
           <div>
             {% if form.errors %}
                 <ul class="errorlist">
@@ -24,59 +16,26 @@
                         <li>{{ field }}: {{ errors.0 }}</li>
                     {% endfor %}
                 </ul>
-            {% endif %}
-            {% comment %} {% if field.errors %}
-                  <span style="color: red;">{{ field.errors.0 }}</span>
-                  
-            {% endif %} {% endcomment %}
+            {% endif %}          
           </div>
-        {% comment %} {% endfor %}        {% endcomment %}
         <div class="col-sm-2 px-3 py-2">
-          <label for="{{ form.id_no.id_for_label }}" class="form-label">ID No:</label> 
-          {{form.id_no}}
-          {% comment %} <input id ="id_no" name="id" type="text"    class="form-control" value="{{ latest_id}}" disabled>                {% endcomment %}
+          {% comment %} auto-incremeted ID , Django's default model  ID has been used here  {% endcomment %}
+          <label for="{{ form.id.id_for_label }}" class="form-label">ID No:</label> 
+          <input id ="{{ form.id.id_for_label }}" name="{{ form.id.name }}" type="text"  class="form-control" value="{{ latest_id}}" readonly style="background-color: #f0f0f0; color: #333; cursor: not-allowed;" >               
         </div>
         <div class="col-sm-2 px-3 py-2">
           <label {{form.employee_type.id_for_label}} class="form-label">Employee Type:</label>
             {{form.employee_type}}
         </div>
-
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script>
-          $(document).ready(function () {
-            $('#id_employee_type').change(function () {
-              var selectedType = $(this).val();
-              var sequenceNoField = $('#id_sequence_no');
-        
-              if (selectedType === '1') 
-              {
-                sequenceNoField.val('1000');
-              } 
-              else if (selectedType === '2') 
-              {
-                sequenceNoField.val('4000');
-              } 
-              else if (selectedType === '3') 
-              {
-                sequenceNoField.val('5000');
-              }
-              else if (selectedType === '4')
-              {
-                sequenceNoField.val('7000');
-              }
-            });
-          });
-        </script>
-
+        {% comment %} sequence number should get auto-incremented based on the emplpoyee type{% endcomment %}
         <div class="col-sm-2 px-3 py-2">
-          <label {{form.sequence_no.id_for_label}} class="form-label" >Sequence No:</label>
-          {{form.sequence_no}}   
+          <label {{form.sequence_no.id_for_label}} class="form-label"  >Sequence No:</label>
+          <input id ="{{ form.sequence_no.id_for_label }}" name="{{ form.sequence_no.name }}" type="text"    class="form-control" readonly style="background-color: #f0f0f0; color: #333; cursor: not-allowed;" >         
         </div>
-        <!-- This code is new, and it is for uploading the Photo of the employee and getting the preview -->
-        <div class="col-sm-1 px-0 py-2 ms-auto">
+         {% comment %}  <div class="col-sm-1 px-0 py-2 ms-auto">
           <img id="frame" src="{% if form.instance.photo %}{{ form.instance.photo.url }}{% else %}{% static '../static/dummy.jpg' %}{% endif %}" class="img-fluid photo"><br>
         </div>
-        <div class="col-sm-2 px-2 py-2">
+       <div class="col-sm-2 px-2 py-2">
             <label {{form.photo.id_for_label}} class="form-label">Upload Photo:</label>
             {% csrf_token %}
             {{form.photo}}
@@ -95,8 +54,7 @@
                 reader.readAsDataURL(file);
             });
         </script>
-        <!-- This code is new, and it is for uploading the Photo of the employee and getting the preview -->  
-      </div>
+      </div> {% endcomment %}
       <div class="row d-flex">
         <div class="col-sm-2 px-3 py-2">
           <label {{form.title.id_for_label}} class="form-label">Title :</label>
@@ -115,8 +73,8 @@
           <label for="{{form.last_name.id_for_label}}" class="form-label">Last Name :</label>
           {{form.last_name}}
         </div>
-        <!-- This is -->
-        <div class="col-sm-1 px-0 py-2 ms-auto">
+  
+        {% comment %} <div class="col-sm-1 px-0 py-2 ms-auto">
           <img id="signFrame" src="{% if form.instance.sign %}{{ form.instance.sign.url }}{% else %}{% static '../static/dummy.jpg' %}{% endif %}" class="img-fluid sign"><br>
         </div>
         <div class="col-sm-2 px-2 py-2">
@@ -136,8 +94,8 @@
                 };
                 reader.readAsDataURL(file);
             });
-        </script>
-        <!-- This is -->
+        </script> {% endcomment %}
+     
       </div>
       <div class="row d-flex">
         <div class="col-sm-2 px-3 py-2">
@@ -200,6 +158,7 @@
         {{form.to_appointment_date}}
       </div>
       <div class="col-sm-2 px-3 py-2">
+        {% comment %} data from the model 'des_nature' is shown in the dropdown {% endcomment %}
         <label for="{{ form.des_nature.id_for_label }}">Designation Nature:</label>
          <select id="{{ form.des_nature.id_for_label }}" name="{{ form.des_nature.name }}" class="form-control" >
           <option>Please Select</option>
@@ -209,6 +168,7 @@
           </select>
       </div>
       <div class="col-sm-2 px-3 py-2">
+          {% comment %} data from the model 'department' is shown in the dropdown {% endcomment %}
         <label for="{{ form.dep_name.id_for_label }}">Department :</label>
          <select id="{{ form.dep_name.id_for_label }}" name="{{ form.dep_name.name }}" class="form-control" >
           <option>Please Select</option>
@@ -218,6 +178,7 @@
         </select>
       </div>
       <div class="col-sm-2 px-3 py-2">
+          {% comment %} data from the model 'designation' is shown in the dropdown {% endcomment %}
         <label for="{{ form.designation.id_for_label }}">Designation :</label>
          <select id="{{ form.designation.id_for_label }}" name="{{ form.designation.name }}" class="form-control" >
             <option>Please Select</option>
@@ -227,6 +188,7 @@
           </select>
       </div>
       <div class="col-sm-2 px-3 py-2">
+          {% comment %} data from the model 'appointment' is shown in the dropdown {% endcomment %}
         <label for="{{ form.appointment.id_for_label }}">Appointment :</label>
          <select id="{{ form.appointment.id_for_label }}" name="{{ form.appointment.name }}" class="form-control" >
           <option>Please Select</option>
@@ -237,6 +199,7 @@
        
       </div> 
       <div class="col-sm-2 px-3 py-2">
+          {% comment %} data from the model 'staff_type' is shown in the dropdown {% endcomment %}
         <label for="{{ form.staff_type.id_for_label }}">Staff Type :</label>
          <select id="{{ form.staff_type.id_for_label }}" name="{{ form.staff_type.name }}" class="form-control" >
               <option>Please Select</option>
@@ -319,6 +282,7 @@
     <div class="title">Pay-Scale Details</div>
     <div class="row d-flex">
       <div class="col-sm-2 px-3 py-2">
+          {% comment %} data from the model 'rule_man' is shown in the dropdown {% endcomment %}
         <label for="{{ form.rule.id_for_label }}">Rule :</label>
          <select id="{{ form.rule.id_for_label }}" name="{{ form.rule.name }}" class="form-control" >
           <option>Please Select</option>
@@ -328,11 +292,11 @@
         </select>   
        
       </div>     
-        
+        {% comment %} each pay_level has 40 basic amounts associated with it.after selecting a pay_level and any corresponding cell_number ,the basic amount is getting displayed. this is coming from 'PaylevelMaters' Model. {% endcomment %}
          <div class="col-sm-2 px-3 py-2">
           <label for="id_pay_level">Pay Level:</label>
           <select id="id_pay_level" name="pay_level" class="form-control" onchange="updateCellValue()">
-            <option>Please Select</option>
+            <option>Please Select</option> 
             {% for i in pay_level_data %}
             <option value="{{ i.pay_level }}" >{{ i.pay_level }}</option>
             {% endfor %}
@@ -342,7 +306,7 @@
         <div class="col-sm-2 px-3 py-2">
           <label for="id_cell_number">Cell Number:</label>
           <select id="id_cell_number" name="cell_number" class="form-control" onchange="updateCellValue()">
-            <option>Please Select</option>
+            <option>Please Select</option> 
             {% for number in cell_numbers %}            
             <option value="{{ number }}" >{{ number }}</option>
             {% endfor %}
@@ -350,10 +314,10 @@
         </div>
         
         <div class="col-sm-2 px-3 py-2">
-          <label for="{{form.basic.id_for_label}}" class="form-label">Basic: </label>
-          <input id="id_basic" name="basic" class="form-control" readonly  disabled style="background-color: #f0f0f0; color: #333; cursor: not-allowed;"> 
+          <label for="{{ form.basic.id_for_label }}" >Basic: </label>
+          <input id="{{ form.basic.id_for_label }}"  name="{{ form.basic.name }}" class="form-control" readonly style="background-color: #f0f0f0; color: #333; cursor: not-allowed;" > 
         </div>
-        <script>
+        <script>   
           function updateCellValue() {
             var payLevel = document.getElementById('id_pay_level').value;
             var cellNumber = document.getElementById('id_cell_number').value;
@@ -369,7 +333,7 @@
               .then(data => {
                 if (data.hasOwnProperty('basic_value')) {
                   // Update the basic input field with the retrieved basic value
-                  document.getElementById('{{ form.basic.id_for_label }}').value = data.basic_value;
+                  document.getElementById("{{ form.basic.id_for_label }}").value = data.basic_value;
                 } else {
                   console.error('Error:', data.error);
                   // Handle error: Display error message or take appropriate action
@@ -378,20 +342,13 @@
               .catch(error => console.error('Error:', error));
           }
         </script>
-        
-
-        
-
-
-     
-      
-     
-
       <div class="col-sm-2 px-3 py-2">
+        {% comment %}  pay status implies that an employee should get salary of the month in which the registration has been done  {% endcomment %}
         <label for="{{form.pay_status.id_for_label}}" class="form-label">Pay Status :</label>
         {{form.pay_status}} 
       </div>
       <div class="col-sm-2 px-3 py-2">
+        {% comment %} 6th pay rule had grade pay.7th pay rule does not have grade pay . as only one employee of our institute comes under 6th pay commision , this option will be removed if that employee gets promoted to 7th pay. {% endcomment %}
         <label for="{{form.grade_pay.id_for_label}}" class="form-label">Grade Pay :</label>
         {{form.grade_pay}} 
       </div>
@@ -401,19 +358,37 @@
 
   <div class="center" >
     <div class="d-grid gap-3 d-md-block">
-    <button type="submit" class="btn btn-primary">SAVE</button >
-    <button type="button" class="btn btn-primary">UNDO</button>
-    <button type="button" class="btn btn-primary">PRINT</button>
+      <button type="submit" class="btn btn-outline-primary">SAVE</button >
+        <button type="button" class="btn btn-outline-warning">UNDO</button>
+        <button type="button" class="btn btn-outline-danger">PRINT</button>
     </div>
   </div>
 </form>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('#{{ form.employee_type.auto_id }}').change(function() {
+        var employeeType = $(this).val();
+        $.ajax({
+            url: '/get_upcoming_sequence_no/',
+            data: {
+                'employee_type': employeeType
+            },
+            dataType: 'json',
+            success: function(data) {
+                $('#upcoming_sequence_no').text(data.sequence_no);
+                $('#{{ form.sequence_no.auto_id }}').val(data.sequence_no);
+            }
+        });
+    });
+});
+</script> 
 
 
 {% endblock %}
 
 {% block int_css %}
-<style>
+<<style>
   body{
     overflow-x: hidden;
   }
@@ -421,13 +396,16 @@
   .new_block{
     margin: 2vw;
   }
+  
   .title{
       text-align: center;
       font-style: normal;
-      background-color: rgb(100, 210, 238);
-      color:#0e556e;
+      background-color:#05518c;
+      
       padding: 1px;
       border-radius: 10px;
+      color:#ffffff;
+     
   }
 
   .center{
@@ -450,6 +428,8 @@
  .form-control option[value=""] {
   color: #888888; /* Change the color as needed */
  }
+  
+ 
 
 </style>
 {% endblock %}

@@ -55,7 +55,7 @@
         </div>
         <div class="center" >
             <div class="d-grid gap-2 d-md-block">
-              <button type="submit" class="btn btn-primary">Submit</button >
+              <button type="submit" class="btn btn-outline-primary">Submit</button >
 
             </div>
         </div>
@@ -78,12 +78,27 @@
       <tbody class="table-group-divider">
         {% for i in  deduction_rule_data %}
         <tr>
-          <th scope="col">Edit</th>
-          <th scope="col">{{i.rule}}</th>
-          <th scope="col">{{i.head_deduction}}</th>
-          <th scope="col">{{i.per}}</th>
-          <th scope="col">{{i.cal}}</th>
-          <th scope="col">{{i.eff_date}}</th>
+          <td scope="col"><button class="btn btn-outline-dark edit-btn">Edit</button></td>
+          <td scope="col">
+            <span class="editable-field" data-field="rule" data-id="{{ i.pk }}">{{i.rule}}</span>
+            <input type="text" class="editable-field" data-field="rule" data-id="{{ i.pk }}" value="{{ i.rule}}" style="display: none;">
+          </td>
+          <td scope="col">
+            <span class="editable-field" data-field="head_deduction" data-id="{{ i.pk }}">{{i.head_deduction}}</span>
+            <input type="text" class="editable-field" data-field="head_deduction" data-id="{{ i.pk }}" value="{{ i.head_deduction }}" style="display: none;">
+          </td>
+          <td scope="col">
+            <span class="editable-field" data-field="per" data-id="{{ i.pk }}">{{i.per}}</span>
+            <input type="text" class="editable-field" data-field="per" data-id="{{ i.pk }}" value="{{ i.per}}" style="display: none;">
+          </td>
+          <td scope="col">
+            <span class="editable-field" data-field="cal" data-id="{{ i.pk }}">{{i.cal}}</span>
+            <input type="text" class="editable-field" data-field="cal" data-id="{{ i.pk }}" value="{{ i.cal}}" style="display: none;">
+          </td>
+          <td scope="col">
+            <span class="editable-field" data-field="eff_date" data-id="{{ i.pk }}">{{i.eff_date}}</span>
+            <input type="text" class="editable-field" data-field="eff_date" data-id="{{ i.pk }}" value="{{ i.eff_date}}" style="display: none;">
+          </td>
         </tr>
         {% endfor %}
       </tbody>
@@ -92,11 +107,51 @@
     {% else %} 
     No Data Found
     {% endif %} 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.edit-btn').on('click', function() {
+            var $row = $(this).closest('tr');
+            $row.find('.editable-field').toggle();
+           
+        });
+
+        $('.editable-field').on('blur', function() {
+            var $input = $(this);
+            var field = $input.data('field');
+            var id = $input.data('id');
+            var value = $input.val();
+
+            // Send AJAX request to update the value in the backend
+            $.ajax({
+                method: 'POST',
+               url: '/edit_btn/' + id + '/',
+                data: {
+                    field: field,
+                    value: value,
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: function(response) {
+                    if (response.success) {
+                        $input.hide();
+                        $input.siblings('.editable-field').text(value).show();
+                    } else {
+                        alert('Failed to update ' + field);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+    });
+</script>
   </div>  
   
 {% endblock %}
 
 {% block int_css %}
+
 <style>
   body{
     overflow-x: hidden;
@@ -126,21 +181,7 @@
   
   /* controlling size of the input field */
   
-  .flextitle{
-    text-align: center;
-    font-style: normal;
-    background-color: rgb(71, 93, 135);
-    color:#ebf6f9;
-    padding: 1px;
-    border-radius: 10px;
-  }
-
-  .center{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50px;
-  }
+ 
 
   div.row.g-3{
     display: flex;
@@ -155,40 +196,6 @@
         margin-left: 10px;
     }
 
-
-    .table-container {
-      flex: 0 0 55%; /* Adjust width of the table */
-        margin-right: 20px;
-        margin-bottom: 20px;
-        overflow-y: scroll;
-        height: 400px;
-    }
-
-
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-        .flex-container {
-            flex-direction: column; /* Stack content vertically on smaller screens */
-        }
-
-        .block
-         {
-          flex: 0 0 55%; /* Adjust width of the table */
-          margin-left: 15px; /* Ensure full width on smaller screens */
-          margin-bottom: 20px; /* Add space between sections */
-        }
-    }
-
-    .table {
-      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; /* Add a solid black border around the table */
-        border-collapse: collapse; /* Collapse borders into a single border */
-    }
-    .table th {
-         /* Change background color */
-        color: #0e556e; /* Change text color */
-       
-    }
-  
   
 </style>
 {% endblock %}

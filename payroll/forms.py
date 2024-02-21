@@ -7,6 +7,7 @@ class Employee_details_Form(forms.ModelForm):
     class Meta:
         model = Employee_details
         fields = '__all__'
+        # exclude=['sequence_no']
         widgets={
              'date_of_birth':forms.DateInput(attrs={'type': 'date','class': 'form-control'}),
              'date_of_joining':forms.DateInput(attrs={'type': 'date','class': 'form-control'}),
@@ -30,7 +31,7 @@ class Employee_details_Form(forms.ModelForm):
              'title':forms.Select(attrs={'class': 'form-control'}),
              'middle_name':forms.TextInput(attrs={'class': 'form-control'}),
              'last_name':forms.TextInput(attrs={'class': 'form-control'}),
-             'first_name':forms.TextInput(attrs={'class': 'form-control','placeholder':'Enter your name','autocomplete': 'name'}),
+             'first_name':forms.TextInput(attrs={'class': 'form-control','autocomplete': 'name'}),
              'gender':forms.Select(attrs={'class': 'form-control'}),
              'sequence_no':forms.TextInput(attrs={'class': 'form-control','readonly': 'readonly'}),
              'aadhar_id':forms.TextInput(attrs={'class': 'form-control'}),
@@ -59,8 +60,16 @@ class Employee_details_Form(forms.ModelForm):
              'grade_pay':forms.TextInput(attrs={'class': 'form-control',}),
              'HRA':forms.RadioSelect(choices=[(True, 'Yes'), (False, 'No')],)
               } 
-        
 
+
+class SequenceNoWidget(forms.TextInput):
+    def render(self, name, value, attrs=None, renderer=None):
+        if value is None:
+            value = ''
+        upcoming_sequence = attrs.pop('data-upcoming-sequence', '') 
+        html = super().render(name, value, attrs, renderer)
+        html += f'<div id="upcoming_sequence_no">{upcoming_sequence}</div>' 
+        return html
 
 
 
@@ -160,22 +169,13 @@ class payhead_earning_Form(forms.ModelForm):
 class payhead_deduction_Form(forms.ModelForm):
     class Meta:
         model = payhead_deduction
-        fields = ['pay_head','f_name']
+        fields = ['payhead','fname']
         widgets={   
-            'pay_head':forms.TextInput(attrs={'class': 'form-control'}),
-            'f_name':forms.TextInput(attrs={'class': 'form-control'})
+            'payhead':forms.TextInput(attrs={'class': 'form-control'}),
+            'fname':forms.TextInput(attrs={'class': 'form-control'})
         }    
    
-class payment_head_Form(forms.ModelForm):
-    class Meta:
-        model = payment_head
-        fields = ['head','type','cal']
-        widgets={   
-            # 'Paycode':forms.TextInput(attrs={'class': 'form-control'}),
-            'head':forms.TextInput(attrs={'class': 'form-control'}),
-            'type':forms.Select(attrs={'class': 'form-control'}),
-            'cal':forms.TextInput(attrs={'class': 'form-control'})
-        }
+
 
 class deduction_rule_Form(forms.ModelForm):
     class Meta: 
